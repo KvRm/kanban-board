@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+@tailwind base;
+
+:root {
+  --color-bg-primary: #fff;
+  --color-bg-primary-soft: #eee;
+  --color-bg-secondary: #7d9d9c;
+  --color-bg-secondary-soft: #576f72;
+  --color-bg-default: #fff;
+
+  --color-text-primary: #232931;
+  --color-text-secondary: #444;
+  --color-text-secondary-soft: #999;
+
+  --font-primary: 'Montserrat', sans-serif;
+
+  --rounded-btn: 0.5rem;
+}
+
+/** purgecss start ignore */
+.theme-dark {
+  --color-bg-primary: #f0ebe3;
+  --color-bg-primary-soft: #eee;
+  --color-bg-secondary: #7d9d9c;
+  --color-bg-secondary-soft: #576f72;
+  --color-bg-default: #fff;
+
+  --color-text-primary: #232931;
+  --color-text-default: #444;
+  --color-text-default-soft: #999;
+
+  --font-primary: 'Montserrat', sans-serif;
+
+  --rounded-btn: 0.5rem;
+}
+/** purgecss end ignore */
+
+@tailwind components;
+@tailwind utilities;

@@ -11,6 +11,9 @@
 - [Momentjs]
 - [Firebase]
 
+Took the theme switch here:
+   https://github.com/huphtur/tailwind-theme-switcher
+
 ## Developmnent
 
 ```sh

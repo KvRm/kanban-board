@@ -1,5 +1,5 @@
 <template>
-  <div class="board-link-list flex flex-wrap justify-between gap-4 sm:mr-10 mb-16">
+  <div class="board-link-list flex flex-wrap gap-4 max-md:mr-10 max-sm:mr-0 mb-16">
     <BoardLink
       v-for="board in boardList"
       :key="board.id"

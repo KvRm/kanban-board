@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
-  purge: {
-    mode: 'all',
-    content: ['./src/**/*.vue'],
-  },
   theme: {
     colors: {},
     textColor: {
@@ -31,8 +27,8 @@ module.exports = {
     extend: {
       flex: {
         single: '0 0 100%',
-        triple: '0 0 31%',
         double: '0 0 45%',
+        triple: '0 0 31%',
       },
     },
   },

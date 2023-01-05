@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex-triple max-lg:flex-double max-md:flex-single bg-primary-soft h-36 rounded-card shadow-lg"
+    class="flex-triple max-lg:flex-double max-md:flex-single bg-primary-soft h-36 rounded-card shadow-lg hover:shadow-xl"
   >
     <router-link
       :to="`board/${id}`"

@@ -1,10 +1,13 @@
 <template>
-  <header class="header">
-    <nav class="header-nav w-full h-16 flex items-center shadow-md gap-4 text-xl px-2">
+  <header class="header flex w-full h-16 shadow-md text-xl px-2 justify-between bg-primary text-primary">
+    <nav class="header-nav flex items-center gap-4">
       <router-link class="header-nav__link" to="/">На главную</router-link>
       <router-link class="header-nav__link" to="/my-tasks">Мои задачи</router-link>
     </nav>
+    <ThemeSwitcher />
   </header>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ThemeSwitcher from './ThemeSwitcher.vue'
+</script>

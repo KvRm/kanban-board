@@ -2,8 +2,8 @@
 @tailwind base;
 
 :root {
-  --color-bg-primary: #fff;
-  --color-bg-primary-soft: #eee;
+  --color-bg-primary: #f5f5f5;
+  --color-bg-primary-soft: #fff;
   --color-bg-secondary: #7d9d9c;
   --color-bg-secondary-soft: #576f72;
   --color-bg-default: #fff;
@@ -11,10 +11,12 @@
   --color-text-primary: #232931;
   --color-text-secondary: #444;
   --color-text-secondary-soft: #999;
+  --color-text-blue: #2460ce;
 
   --font-primary: 'Montserrat', sans-serif;
 
   --rounded-btn: 0.5rem;
+  --rounded-card: 0.6rem;
 }
 
 /** purgecss start ignore */
@@ -28,10 +30,12 @@
   --color-text-primary: #232931;
   --color-text-default: #444;
   --color-text-default-soft: #999;
+  --color-text-blue: #2460ce;
 
   --font-primary: 'Montserrat', sans-serif;
 
   --rounded-btn: 0.5rem;
+  --rounded-card: 0.6rem;
 }
 /** purgecss end ignore */
 

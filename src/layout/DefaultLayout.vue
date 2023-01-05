@@ -1,7 +1,7 @@
 <template>
-  <div class="layout h-screen">
-    <HeaderComponent />
-    <div class="main px-2">
+  <div class="layout min-h-screen">
+    <HeaderComponent class="absolute z-50" />
+    <div class="main px-2 h-full pt-20">
       <slot />
     </div>
   </div>

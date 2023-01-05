@@ -11,6 +11,7 @@ module.exports = {
       primary: 'var(--color-text-primary)',
       secondary: 'var(--color-text-secondary)',
       'secondary-soft': 'var(--color-text-secondary-soft)',
+      blue: 'var(--color-text-blue)',
     },
     backgroundColor: {
       primary: 'var(--color-bg-primary)',
@@ -25,6 +26,14 @@ module.exports = {
     borderRadius: {
       none: '0',
       btn: 'var(--rounded-btn)',
+      card: 'var(--rounded-card)',
+    },
+    extend: {
+      flex: {
+        single: '0 0 100%',
+        triple: '0 0 31%',
+        double: '0 0 45%',
+      },
     },
   },
   plugins: [],

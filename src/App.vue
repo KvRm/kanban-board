@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout">
+  <component :is="layout" class="bg-primary">
     <router-view />
   </component>
 </template>

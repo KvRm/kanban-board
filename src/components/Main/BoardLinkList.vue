@@ -3,31 +3,33 @@
     <BoardLink
       v-for="board in boardList"
       :key="board.id"
-      :name="board.name"
+      :title="board.title"
       :id="board.id"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import type { Link } from '../../types'
 import BoardLink from './BoardLink.vue'
 
-const boardList = [
+const boardList = ref<Link[]>([
   {
-    name: 'Some Name',
+    title: 'Some title',
     id: '0',
   },
   {
-    name: 'Some Name',
+    title: 'Some title',
     id: '1',
   },
   {
-    name: 'Some Name',
+    title: 'Some title',
     id: '2',
   },
   {
-    name: 'Some Name',
+    title: 'Some title',
     id: '3',
   },
-]
+])
 </script>

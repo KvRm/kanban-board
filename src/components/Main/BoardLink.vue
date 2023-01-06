@@ -7,14 +7,14 @@
       :key="id"
       class="board-link-item flex justify-center items-center w-full h-full overflow-hidden"
     >
-      {{ name }}
+      {{ title }}
     </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
 defineProps({
-  name: {
+  title: {
     type: String,
     required: true,
   },

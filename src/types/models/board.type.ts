@@ -5,10 +5,10 @@ export interface Board {
   title: string
   ownerId: string
   participantsIds: string[]
-  statusSections: StatusSection[]
+  statusSections: BoardStatusSection[]
 }
 
-interface StatusSection {
+export interface BoardStatusSection {
   id: string
   title: string
   tasks: Task[]

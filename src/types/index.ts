@@ -1,3 +1,4 @@
-export * from './Models/Board'
-export * from './Models/Task'
+export * from './Models/board.type'
+export * from './Models/task.type'
 export * from './auth/index'
+export * from './common.type'

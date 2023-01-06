@@ -3,6 +3,8 @@ export interface Task {
   title: string
   criticalLvl: TaskCriticalLvl
   completeDate: string
+  statusSection: string
+  board: string
   author: {
     name: string
     id: string
@@ -12,10 +14,10 @@ export interface Task {
     id: string
   }
   description: string
-  comments: Comment[]
+  comments: TaskComment[]
 }
 
-interface Comment {
+interface TaskComment {
   id: string
   author: {
     name: string
@@ -29,5 +31,5 @@ export enum TaskCriticalLvl {
   veryHigh = 'Очень высокая',
   high = 'Высокая',
   medium = 'Средняя',
-  low = 'Низкая'
+  low = 'Низкая',
 }

@@ -13,14 +13,8 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  id: {
-    type: String,
-    requried: true,
-  },
-})
+defineProps<{
+  title: string
+  id: string
+}>()
 </script>

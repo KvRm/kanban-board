@@ -26,14 +26,14 @@ const routes: Array<RouteRecordRaw> = [
   //     needAuth: true,
   //   },
   // },
-  // {
-  //   path: '/my-tasks',
-  //   name: 'my-tasks',
-  //   component: () => import('../views/MyTasksView.vue'),
-  //   meta: {
-  //     needAuth: true,
-  //   },
-  // },
+  {
+    path: '/my-tasks',
+    name: 'my-tasks',
+    component: () => import('../views/MyTasksView.vue'),
+    meta: {
+      needAuth: true,
+    },
+  },
   {
     path: '/login',
     name: 'login',

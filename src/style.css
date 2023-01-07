@@ -4,40 +4,48 @@
 :root {
   --color-bg-primary: #f5f5f5;
   --color-bg-primary-soft: #fff;
-  --color-bg-secondary: #7d9d9c;
-  --color-bg-secondary-soft: #576f72;
+  --color-bg-secondary: #576f72;
+  --color-bg-secondary-soft: #7d9d9c;
   --color-bg-default: #fff;
+  --color-bg-light-grey: #e8eaec;
 
   --color-text-primary: #232931;
   --color-text-secondary: #444;
   --color-text-secondary-soft: #999;
-  --color-text-blue: #2460ce;
+  --color-text-blue: #3b7cf5;
+  --color-text-white: #fff;
 
   --font-primary: 'Montserrat', sans-serif;
 
   --rounded-btn: 0.5rem;
   --rounded-card: 0.6rem;
+
+  --border-color-soft: #c2c4c5;
+  --border-color-primary: #576f72;
 }
 
-/** purgecss start ignore */
 .theme-dark {
   --color-bg-primary: #f0ebe3;
   --color-bg-primary-soft: #eee;
-  --color-bg-secondary: #7d9d9c;
-  --color-bg-secondary-soft: #576f72;
+  --color-bg-secondary: #576f72;
+  --color-bg-secondary-soft: #7d9d9c;
   --color-bg-default: #fff;
+  --color-bg-light-grey: #e8eaec;
 
   --color-text-primary: #232931;
   --color-text-default: #444;
   --color-text-default-soft: #999;
-  --color-text-blue: #2460ce;
+  --color-text-blue: #3b7cf5;
+  --color-text-white: #fff;
 
   --font-primary: 'Montserrat', sans-serif;
 
   --rounded-btn: 0.5rem;
   --rounded-card: 0.6rem;
+
+  --border-color-soft: #c2c4c5;
+  --border-color-primary: #576f72;
 }
-/** purgecss end ignore */
 
 @tailwind components;
 @tailwind utilities;

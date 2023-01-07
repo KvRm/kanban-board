@@ -11,14 +11,13 @@ import EmptyLayout from './layout/EmptyLayout.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
-  faUser,
-  faPen,
-  faArrowRightFromBracket,
-  faTrashCan,
-  faCircleExclamation,
+  faMagnifyingGlass,
+  faChevronDown,
+  faArrowUpWideShort,
+  faArrowDownWideShort,
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser, faPen, faArrowRightFromBracket, faTrashCan, faCircleExclamation)
+library.add(faMagnifyingGlass, faChevronDown, faArrowUpWideShort, faArrowDownWideShort)
 
 const store = useStore()
 

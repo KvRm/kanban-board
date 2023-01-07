@@ -1,12 +1,16 @@
 <template>
-  <tr class="max-md:block">
+  <tr
+    class="border-color-soft lg:border-b lg:hover:bg-light-grey lg:last:border-none max-lg:block max-lg:border max-lg:rounded-btn mb-2 px-4 py-2"
+  >
     <td
-      class="text-center max-md:text-right max-md:block before:content-[attr(data-label)]"
+      class="text-center py-1 max-lg:border-b border-color-soft last:border-none max-lg:text-right max-lg:block max-lg:border-dashed max-lg:before:content-[attr(data-label)] before:float-left"
       v-for="item in taskItems"
       :key="item.title"
       :data-label="item.category"
     >
-      <router-link v-if="item.id" :to="item.id">{{ item.title }}</router-link>
+      <router-link v-if="item.id" :to="item.id" class="hover:text-blue">
+        {{ item.title }}
+      </router-link>
       <p v-else>{{ item.title }}</p>
     </td>
   </tr>

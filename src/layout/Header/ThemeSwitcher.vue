@@ -17,8 +17,6 @@ if (currentTheme == 'dark') {
 }
 
 function switchTheme() {
-  console.log('click')
-
   if (d.classList.contains('theme-dark')) {
     d.classList.remove('theme-dark')
     localStorage.removeItem('theme')

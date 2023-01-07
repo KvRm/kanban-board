@@ -1,5 +1,5 @@
 import { TaskCriticalLvlEnum } from '.'
-import { IUser } from '../user'
+import { User } from '../user'
 
 export interface MyTask {
   id: string
@@ -7,7 +7,7 @@ export interface MyTask {
   criticalLvl: TaskCriticalLvlEnum
   completeDate: string
   board: MyTaskBoard
-  author: IUser
+  author: User
 }
 
 interface MyTaskBoard {

@@ -1,21 +1,21 @@
-import { IUser } from '..'
+import { User } from '../user'
 
-export interface ITask {
+export interface Task {
   id: string
   title: string
   criticalLvl: TaskCriticalLvlEnum
   completeDate: string
   statusSection: string
   board: string
-  author: IUser
-  executor: IUser
+  author: User
+  executor: User
   description: string
   comments: TaskComment[]
 }
 
 interface TaskComment {
   id: string
-  author: IUser
+  author: User
   creatingTime: string
   text: string
 }

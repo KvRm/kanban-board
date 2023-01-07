@@ -1,4 +1,4 @@
-import { Link } from '../common/link.type'
+import { Link } from '../common'
 
 export interface BoardStatusSection {
   id: string

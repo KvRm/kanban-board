@@ -1,6 +1,6 @@
 import { BoardStatusSection } from '.'
 
-export interface IBoard {
+export interface Board {
   id: string
   title: string
   ownerId: string

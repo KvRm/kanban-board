@@ -1,4 +1,4 @@
-import { Board } from '../types'
+import { IBoard } from '../types'
 import { User } from 'firebase/auth'
 import { AuthStore } from './auth'
 // import { BoardStore } from './board'
@@ -10,7 +10,7 @@ export interface RootState {
     error: string
   }
   board: {
-    board?: Board
+    board?: IBoard
     isAvailable: boolean
     loading: boolean
     error: string

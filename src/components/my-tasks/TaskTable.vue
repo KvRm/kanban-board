@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { TaskCriticalLvl } from '../../types/index'
+import { TaskCriticalLvlEnum } from '../../types/index'
 import type { MyTask } from './my-task.type'
 import { TableCategories } from './table-task-item.type'
 import TaskTableItem from './TaskTableItem.vue'
@@ -26,7 +26,7 @@ const tasks = ref<MyTask[]>([
   {
     id: '1',
     title: 'Some task',
-    criticalLvl: TaskCriticalLvl.high,
+    criticalLvl: TaskCriticalLvlEnum.high,
     completeDate: '22.11.2023',
     board: {
       id: '1',
@@ -41,7 +41,7 @@ const tasks = ref<MyTask[]>([
   {
     id: '1',
     title: 'Some task',
-    criticalLvl: TaskCriticalLvl.high,
+    criticalLvl: TaskCriticalLvlEnum.high,
     completeDate: '22.11.2023',
     board: {
       id: '1',
@@ -56,7 +56,7 @@ const tasks = ref<MyTask[]>([
   {
     id: '1',
     title: 'Some task',
-    criticalLvl: TaskCriticalLvl.high,
+    criticalLvl: TaskCriticalLvlEnum.high,
     completeDate: '22.11.2023',
     board: {
       id: '1',

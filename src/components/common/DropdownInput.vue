@@ -12,7 +12,7 @@
       class="dropdown-menu absolute hidden w-full pt-1 min-w-fit box-border"
     >
       <li
-        class="border-x border-b first:border-t border-color-primary bg-primary-soft first:rounded-t-btn last:rounded-b-btn"
+        class="border-x border-b first:border-t border-color-soft bg-primary-soft first:rounded-t-btn last:rounded-b-btn"
         v-for="item in items"
         :key="item"
         @click="dropdownHandler"

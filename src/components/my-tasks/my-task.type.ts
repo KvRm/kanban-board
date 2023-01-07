@@ -1,9 +1,9 @@
-import { TaskCriticalLvl } from '../../types/index'
+import { TaskCriticalLvlEnum } from '../../types/index'
 
 export interface MyTask {
   id: string
   title: string
-  criticalLvl: TaskCriticalLvl
+  criticalLvl: TaskCriticalLvlEnum
   completeDate: string
   board: {
     id: string

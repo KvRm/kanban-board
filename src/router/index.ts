@@ -10,14 +10,14 @@ const routes: Array<RouteRecordRaw> = [
       needAuth: true,
     },
   },
-  // {
-  //   path: '/board/:board',
-  //   name: 'board',
-  //   component: () => import('../views/BoardView.vue'),
-  //   meta: {
-  //     needAuth: true,
-  //   },
-  // },
+  {
+    path: '/board/:board',
+    name: 'board',
+    component: () => import('../views/BoardView.vue'),
+    meta: {
+      needAuth: true,
+    },
+  },
   // {
   //   path: '/board/:board/:task',
   //   name: 'task',

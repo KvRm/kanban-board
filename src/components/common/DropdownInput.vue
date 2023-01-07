@@ -28,7 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { watch } from 'fs'
+import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
   dropdownKey: string
@@ -41,7 +42,7 @@ const emit = defineEmits<{
 }>()
 
 const currentValue = ref<string>('')
-const select = ref<Element | null>(null)
+const select = ref<HTMLElement | null>(null)
 
 function dropdownHandler(e: Event) {
   if (e.target instanceof Element && e.target.textContent) {
@@ -54,8 +55,19 @@ function dropdownHandler(e: Event) {
 }
 
 function toggleSelect() {
-  if (select.value instanceof Element) {
+  if (select.value instanceof HTMLElement) {
     select.value.classList.toggle('hidden')
+
+    if (!select.value.classList.contains('hidden')) {
+      const windowWidth = window.innerWidth
+      const selectRightPosition = select.value?.getBoundingClientRect().right
+
+      const difference = windowWidth - selectRightPosition
+
+      difference < 40
+        ? select.value.classList.add('-translate-x-10')
+        : select.value.classList.remove('-translate-x-10')
+    }
   }
 }
 </script>

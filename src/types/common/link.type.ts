@@ -1,4 +1,5 @@
 export interface Link {
-  title: string
   id: string
+  title: string
+  prefix?: string
 }

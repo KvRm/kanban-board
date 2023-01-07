@@ -1,33 +1,26 @@
-export interface Task {
+import { IUser } from '..'
+
+export interface ITask {
   id: string
   title: string
-  criticalLvl: TaskCriticalLvl
+  criticalLvl: TaskCriticalLvlEnum
   completeDate: string
   statusSection: string
   board: string
-  author: {
-    name: string
-    id: string
-  }
-  executor: {
-    name: string
-    id: string
-  }
+  author: IUser
+  executor: IUser
   description: string
   comments: TaskComment[]
 }
 
 interface TaskComment {
   id: string
-  author: {
-    name: string
-    id: string
-  }
+  author: IUser
   creatingTime: string
   text: string
 }
 
-export enum TaskCriticalLvl {
+export enum TaskCriticalLvlEnum {
   veryHigh = 'Очень высокая',
   high = 'Высокая',
   medium = 'Средняя',

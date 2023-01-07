@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { routerGuard } from './middleware'
+import { middleware } from './middleware'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'main',
     component: () => import('../views/MainView.vue'),
     meta: {
-      needAuth: true,
+      requiresAuth: true,
     },
   },
   {
@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'board',
     component: () => import('../views/BoardView.vue'),
     meta: {
-      needAuth: true,
+      requiresAuth: true,
     },
   },
   // {
@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
   //   name: 'task',
   //   component: () => import('../views/TaskView.vue'),
   //   meta: {
-  //     needAuth: true,
+  //     requiresAuth: true,
   //   },
   // },
   {
@@ -31,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'my-tasks',
     component: () => import('../views/MyTasksView.vue'),
     meta: {
-      needAuth: true,
+      requiresAuth: true,
     },
   },
   {
@@ -39,7 +39,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'login',
     component: () => import('../views/MainView.vue'),
     meta: {
-      login: true,
+      loginView: true,
       layout: 'EmptyLayout',
     },
   },
@@ -59,6 +59,6 @@ const router = createRouter({
   routes,
 })
 
-// router.beforeEach(routerGuard)
+// router.beforeEach(middleware)
 
 export default router

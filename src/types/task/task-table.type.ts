@@ -1,10 +1,10 @@
-export interface TableTaskItem {
-  category: TableCategories
+export interface TaskTableItem {
+  category: TaskTableCategoriesEnum
   title: string
   id?: string
 }
 
-export enum TableCategories {
+export enum TaskTableCategoriesEnum {
   'Идентификатор задачи' = 'Идентификатор задачи',
   'Название задачи' = 'Название задачи',
   'Доска' = 'Доска',
@@ -14,7 +14,7 @@ export enum TableCategories {
   'Автор' = 'Автор',
 }
 
-export enum TableCategoriesLinks {
+export enum TaskTableCategoriesLinksEnum {
   'Идентификатор задачи' = 'task',
   'Доска' = 'board',
   'Автор' = 'user',

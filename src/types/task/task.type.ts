@@ -1,33 +1,26 @@
+import { User } from '../user'
+
 export interface Task {
   id: string
   title: string
-  criticalLvl: TaskCriticalLvl
+  criticalLvl: TaskCriticalLvlEnum
   completeDate: string
   statusSection: string
   board: string
-  author: {
-    name: string
-    id: string
-  }
-  executor: {
-    name: string
-    id: string
-  }
+  author: User
+  executor: User
   description: string
   comments: TaskComment[]
 }
 
 interface TaskComment {
   id: string
-  author: {
-    name: string
-    id: string
-  }
+  author: User
   creatingTime: string
   text: string
 }
 
-export enum TaskCriticalLvl {
+export enum TaskCriticalLvlEnum {
   veryHigh = 'Очень высокая',
   high = 'Высокая',
   medium = 'Средняя',

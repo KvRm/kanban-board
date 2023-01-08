@@ -1,7 +1,23 @@
 export interface TaskTableItem {
   category: TaskTableCategoriesEnum
+  params: TaskTableLink | TaskTableParagraph
+}
+
+interface TaskTableLink {
+  type: TaskTableItemType.link
   title: string
-  id?: string
+  id: string
+  prefix: TaskTableCategoriesLinkPrefixEnum
+}
+
+interface TaskTableParagraph {
+  type: TaskTableItemType.paragragh
+  title: string
+}
+
+export enum TaskTableItemType {
+  'link' = 'link',
+  'paragragh' = 'paragragh',
 }
 
 export enum TaskTableCategoriesEnum {
@@ -14,8 +30,8 @@ export enum TaskTableCategoriesEnum {
   'Автор' = 'Автор',
 }
 
-export enum TaskTableCategoriesLinksEnum {
-  'Идентификатор задачи' = 'task',
-  'Доска' = 'board',
-  'Автор' = 'user',
+export enum TaskTableCategoriesLinkPrefixEnum {
+  'Идентификатор задачи' = 'task/',
+  'Доска' = 'board/',
+  'Автор' = 'user/',
 }

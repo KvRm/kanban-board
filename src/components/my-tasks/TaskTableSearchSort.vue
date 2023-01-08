@@ -25,10 +25,10 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { SortParams } from '../../types/common'
+import { TaskTableCategoriesEnum } from '../../types/task'
 import DropdownInput from '../common/DropdownInput.vue'
 import SearchInput from '../common/SearchInput.vue'
-import type { SortParams, SortType } from './sort-params.type'
-import { TableCategories } from './table-task-item.type'
 
 const emit = defineEmits<{
   (e: 'selectSortParams', sortParams: SortParams): void
@@ -45,13 +45,13 @@ const sortTypeIconName = computed<'up' | 'down'>(() =>
 )
 
 const dropdownItems = [
-  TableCategories['Идентификатор задачи'],
-  TableCategories['Название задачи'],
-  TableCategories['Доска'],
-  TableCategories['Статус'],
-  TableCategories['Критичность'],
-  TableCategories['Крайний срок'],
-  TableCategories['Автор'],
+  TaskTableCategoriesEnum['Идентификатор задачи'],
+  TaskTableCategoriesEnum['Название задачи'],
+  TaskTableCategoriesEnum['Доска'],
+  TaskTableCategoriesEnum['Статус'],
+  TaskTableCategoriesEnum['Критичность'],
+  TaskTableCategoriesEnum['Крайний срок'],
+  TaskTableCategoriesEnum['Автор'],
 ]
 
 function selectSortCategory(value: string) {

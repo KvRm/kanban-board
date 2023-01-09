@@ -7,8 +7,9 @@
     <div class="sort flex gap-4 max-sm:justify-center">
       <DropdownInput
         :items="dropdownItems"
-        :placeholderText="'Сортировать по'"
+        :placeholderText="'Сортировать по:'"
         :dropdownKey="'categories'"
+        :width="60"
         @dropdownSelect="selectSortCategory"
       />
 

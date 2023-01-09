@@ -9,11 +9,7 @@
       :data-label="item.category"
     >
       <TheTaskLink
-        v-if="
-          item.params.type === TaskTableItemType.Link &&
-          Object.keys(item.params.linkParams).includes('prefix') &&
-          Object.keys(item.params.linkParams).includes('board')
-        "
+        v-if="item.params.type === TaskTableItemType.Link && isTypeLink(item)"
         :task-link="(item.params.linkParams as TaskLink)"
       />
       <router-link
@@ -43,6 +39,11 @@ import TheTaskLink from '../common/TheTaskLink.vue'
 const props = defineProps<{
   task: MyTask
 }>()
+
+const isTypeLink = (item: TaskTableItem): boolean =>
+  item.params.type === TaskTableItemType.Link &&
+  Object.keys(item.params.linkParams).includes('prefix') &&
+  Object.keys(item.params.linkParams).includes('board')
 
 const taskTableItems = ref<TaskTableItem[]>([
   {

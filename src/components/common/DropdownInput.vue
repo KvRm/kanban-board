@@ -1,11 +1,13 @@
 <template>
   <div class="dropdown inline-block relative transition-all">
     <button
-      class="py-2 px-4 rounded-btn inline-flex items-center bg-secondary text-white h-full"
+      class="py-2 px-4 rounded-btn flex items-center hover:bg-secondary h-full justify-center transition"
+      :class="`w-${width}`"
       @click="toggleSelect"
+      :key="dropdownKey"
     >
       <span class="mr-1">{{ currentValue || placeholderText }}</span>
-      <FontAwesomeIcon icon="fa-solid fa-chevron-down" class="text-white h-3" />
+      <FontAwesomeIcon icon="fa-solid fa-chevron-down" class="h-3" />
     </button>
     <ul
       ref="select"
@@ -34,6 +36,7 @@ const props = defineProps<{
   dropdownKey: string
   placeholderText: string
   items: string[]
+  width: 24 | 32 | 44 | 52 | 60 | 64
 }>()
 
 const emit = defineEmits<{

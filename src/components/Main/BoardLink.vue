@@ -3,7 +3,7 @@
     class="flex-triple max-lg:flex-double max-md:flex-single bg-primary-soft h-36 rounded-card shadow-lg hover:shadow-xl"
   >
     <router-link
-      :to="link.prefix + link.id"
+      :to="'board/' + link.id"
       :key="link.id"
       class="board-link-item flex justify-center items-center w-full h-full overflow-hidden"
     >

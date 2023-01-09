@@ -1,9 +1,10 @@
 import { BoardStatusSection } from '.'
+import { User } from '../user'
 
 export interface Board {
   id: string
   title: string
-  ownerId: string
-  participantsId: string[]
+  owner: User
+  participants: User[]
   statusSections: BoardStatusSection[]
 }

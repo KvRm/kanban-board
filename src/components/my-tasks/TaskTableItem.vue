@@ -8,12 +8,20 @@
       :key="item.category"
       :data-label="item.category"
     >
+      <TheTaskLink
+        v-if="
+          item.params.type === TaskTableItemType.Link &&
+          Object.keys(item.params.linkParams).includes('prefix') &&
+          Object.keys(item.params.linkParams).includes('board')
+        "
+        :task-link="(item.params.linkParams as TaskLink)"
+      />
       <router-link
-        v-if="item.params.type === TaskTableItemType.link"
-        :to="item.params.prefix + item.params.id"
+        v-else-if="item.params.type === TaskTableItemType.Link"
         class="hover:text-blue"
+        :to="item.params.linkParams.linkRoute + item.params.linkParams.id"
       >
-        {{ item.params.title }}
+        {{ item.params.linkParams.title }}
       </router-link>
       <p v-else>{{ item.params.title }}</p>
     </td>
@@ -22,13 +30,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { LinkRouteEnum } from '../../types/common'
 import {
-  TaskTableItemType,
   MyTask,
+  TaskLink,
   TaskTableCategoriesEnum,
-  TaskTableCategoriesLinkPrefixEnum,
   TaskTableItem,
+  TaskTableItemType,
 } from '../../types/task'
+import TheTaskLink from '../common/TheTaskLink.vue'
 
 const props = defineProps<{
   task: MyTask
@@ -36,58 +46,67 @@ const props = defineProps<{
 
 const taskTableItems = ref<TaskTableItem[]>([
   {
-    category: TaskTableCategoriesEnum['Идентификатор задачи'],
+    category: TaskTableCategoriesEnum.Id,
     params: {
-      type: TaskTableItemType.link,
-      title: props.task.id,
-      id: props.task.id,
-      prefix: TaskTableCategoriesLinkPrefixEnum['Идентификатор задачи'],
+      type: TaskTableItemType.Link,
+      linkParams: {
+        id: props.task.id,
+        prefix: props.task.prefix,
+        title: `${props.task.prefix}-${props.task.id}`,
+        board: {
+          id: props.task.board.id,
+        },
+      },
     },
   },
   {
-    category: TaskTableCategoriesEnum['Название задачи'],
+    category: TaskTableCategoriesEnum.TaskName,
     params: {
-      type: TaskTableItemType.paragragh,
+      type: TaskTableItemType.Paragragh,
       title: props.task.title,
     },
   },
   {
-    category: TaskTableCategoriesEnum['Доска'],
+    category: TaskTableCategoriesEnum.Board,
     params: {
-      type: TaskTableItemType.link,
-      title: props.task.board.title,
-      id: props.task.board.id,
-      prefix: TaskTableCategoriesLinkPrefixEnum['Доска'],
+      type: TaskTableItemType.Link,
+      linkParams: {
+        id: props.task.board.id,
+        title: props.task.board.title,
+        linkRoute: LinkRouteEnum.Board,
+      },
     },
   },
   {
-    category: TaskTableCategoriesEnum['Статус'],
+    category: TaskTableCategoriesEnum.StatusSection,
     params: {
-      type: TaskTableItemType.paragragh,
+      type: TaskTableItemType.Paragragh,
       title: props.task.board.statusSection,
     },
   },
   {
-    category: TaskTableCategoriesEnum['Критичность'],
+    category: TaskTableCategoriesEnum.CriticalLvl,
     params: {
-      type: TaskTableItemType.paragragh,
+      type: TaskTableItemType.Paragragh,
       title: props.task.criticalLvl,
     },
   },
   {
-    category: TaskTableCategoriesEnum['Идентификатор задачи'],
+    category: TaskTableCategoriesEnum.CompleteDate,
     params: {
-      type: TaskTableItemType.paragragh,
+      type: TaskTableItemType.Paragragh,
       title: props.task.completeDate,
     },
   },
   {
-    category: TaskTableCategoriesEnum['Автор'],
+    category: TaskTableCategoriesEnum.Author,
     params: {
-      type: TaskTableItemType.link,
-      title: props.task.author.name,
-      id: props.task.author.id,
-      prefix: TaskTableCategoriesLinkPrefixEnum['Автор'],
+      type: TaskTableItemType.Link,
+      linkParams: {
+        title: props.task.author.name,
+        id: props.task.author.id,
+        linkRoute: LinkRouteEnum.User,
+      },
     },
   },
 ])

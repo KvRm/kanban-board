@@ -3,15 +3,14 @@ import { User } from '../user'
 
 export interface MyTask {
   id: string
+  prefix: string
   title: string
   criticalLvl: TaskCriticalLvlEnum
   completeDate: string
-  board: MyTaskBoard
+  board: {
+    id: string
+    title: string
+    statusSection: string
+  }
   author: User
-}
-
-interface MyTaskBoard {
-  id: string
-  title: string
-  statusSection: string
 }

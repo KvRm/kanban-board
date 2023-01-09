@@ -1,7 +1,9 @@
+import { Link } from '../common'
 import { User } from '../user'
 
 export interface Task {
   id: string
+  prefix: string
   title: string
   criticalLvl: TaskCriticalLvlEnum
   completeDate: string
@@ -21,8 +23,15 @@ interface TaskComment {
 }
 
 export enum TaskCriticalLvlEnum {
-  veryHigh = 'Очень высокая',
-  high = 'Высокая',
-  medium = 'Средняя',
-  low = 'Низкая',
+  VeryHigh = 'Очень высокая',
+  High = 'Высокая',
+  Medium = 'Средняя',
+  Low = 'Низкая',
+}
+
+export interface TaskLink extends Link {
+  prefix: string
+  board: {
+    id: string
+  }
 }

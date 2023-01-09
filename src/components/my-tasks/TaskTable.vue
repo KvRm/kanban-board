@@ -23,8 +23,9 @@ import TaskTableSearchSort from './TaskTableSearchSort.vue'
 const tasks = ref<MyTask[]>([
   {
     id: '121212213',
+    prefix: 'JAP',
     title: 'Some task',
-    criticalLvl: TaskCriticalLvlEnum.high,
+    criticalLvl: TaskCriticalLvlEnum.High,
     completeDate: '22.11.2023',
     board: {
       id: '1',
@@ -38,8 +39,9 @@ const tasks = ref<MyTask[]>([
   },
   {
     id: '1',
+    prefix: 'JAP',
     title: 'Some task',
-    criticalLvl: TaskCriticalLvlEnum.high,
+    criticalLvl: TaskCriticalLvlEnum.High,
     completeDate: '22.11.2023',
     board: {
       id: '1',
@@ -53,8 +55,9 @@ const tasks = ref<MyTask[]>([
   },
   {
     id: '1',
+    prefix: 'JAP',
     title: 'Some task',
-    criticalLvl: TaskCriticalLvlEnum.high,
+    criticalLvl: TaskCriticalLvlEnum.High,
     completeDate: '22.11.2023',
     board: {
       id: '1',

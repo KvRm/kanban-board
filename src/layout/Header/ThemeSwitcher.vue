@@ -10,7 +10,7 @@ import { useLocalStorage, LocalStorageKeys } from '../../composables/localStorag
 const ls = useLocalStorage()
 
 const d = document.documentElement,
-  currentTheme = ls.get(LocalStorageKeys['theme-dark'])
+  currentTheme = ls.get(LocalStorageKeys.Theme)
 
 if (currentTheme == 'dark') {
   d.classList.add('theme-dark')
@@ -19,10 +19,10 @@ if (currentTheme == 'dark') {
 function switchTheme() {
   if (d.classList.contains('theme-dark')) {
     d.classList.remove('theme-dark')
-    localStorage.removeItem('theme')
+    ls.remove(LocalStorageKeys.Theme)
   } else {
     d.classList.add('theme-dark')
-    localStorage.setItem('theme', 'dark')
+    ls.set(LocalStorageKeys.Theme, 'dark')
   }
 }
 </script>

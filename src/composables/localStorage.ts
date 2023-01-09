@@ -1,5 +1,5 @@
 export enum LocalStorageKeys {
-  'theme-dark' = 'theme-dark',
+  Theme = 'theme',
 }
 
 export const useLocalStorage = () => {

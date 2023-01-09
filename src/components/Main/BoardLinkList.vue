@@ -13,22 +13,18 @@ const boardList = ref<Link[]>([
   {
     title: 'Some title',
     id: '0',
-    prefix: 'board/',
   },
   {
     title: 'Some title',
     id: '1',
-    prefix: 'board/',
   },
   {
     title: 'Some title',
     id: '2',
-    prefix: 'board/',
   },
   {
     title: 'Some title',
     id: '3',
-    prefix: 'board/',
   },
 ])
 </script>

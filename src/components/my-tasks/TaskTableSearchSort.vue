@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, reactive } from 'vue'
 import { SortParams } from '../../types/common'
 import { TaskTableCategoriesEnum } from '../../types/task'
 import DropdownInput from '../common/DropdownInput.vue'
@@ -35,32 +35,32 @@ const emit = defineEmits<{
   (e: 'search', text: string): void
 }>()
 
-const sortParams = ref<SortParams>({
+const sortParams = reactive<SortParams>({
   category: '',
   sortBy: 'increasing',
 })
 
 const sortTypeIconName = computed<'up' | 'down'>(() =>
-  sortParams.value.sortBy === 'decreasing' ? 'down' : 'up',
+  sortParams.sortBy === 'decreasing' ? 'down' : 'up',
 )
 
 const dropdownItems = [
-  TaskTableCategoriesEnum['Идентификатор задачи'],
-  TaskTableCategoriesEnum['Название задачи'],
-  TaskTableCategoriesEnum['Доска'],
-  TaskTableCategoriesEnum['Статус'],
-  TaskTableCategoriesEnum['Критичность'],
-  TaskTableCategoriesEnum['Крайний срок'],
-  TaskTableCategoriesEnum['Автор'],
+  TaskTableCategoriesEnum.Id,
+  TaskTableCategoriesEnum.TaskName,
+  TaskTableCategoriesEnum.Board,
+  TaskTableCategoriesEnum.StatusSection,
+  TaskTableCategoriesEnum.CriticalLvl,
+  TaskTableCategoriesEnum.CompleteDate,
+  TaskTableCategoriesEnum.Author,
 ]
 
 function selectSortCategory(value: string) {
-  sortParams.value.category = value
+  sortParams.category = value
 }
 
 function toggleSortType() {
-  sortParams.value.sortBy === 'decreasing'
-    ? (sortParams.value.sortBy = 'increasing')
-    : (sortParams.value.sortBy = 'decreasing')
+  sortParams.sortBy === 'decreasing'
+    ? (sortParams.sortBy = 'increasing')
+    : (sortParams.sortBy = 'decreasing')
 }
 </script>

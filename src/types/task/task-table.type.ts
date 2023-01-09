@@ -1,37 +1,32 @@
+import { TaskLink } from '.'
+import { Link } from '../common'
+
 export interface TaskTableItem {
   category: TaskTableCategoriesEnum
-  params: TaskTableLink | TaskTableParagraph
+  params: TaskTableLinkParams | TaskTableParagraphParams
 }
 
-interface TaskTableLink {
-  type: TaskTableItemType.link
-  title: string
-  id: string
-  prefix: TaskTableCategoriesLinkPrefixEnum
+interface TaskTableLinkParams {
+  type: TaskTableItemType.Link
+  linkParams: Link | TaskLink
 }
 
-interface TaskTableParagraph {
-  type: TaskTableItemType.paragragh
+interface TaskTableParagraphParams {
+  type: TaskTableItemType.Paragragh
   title: string
 }
 
 export enum TaskTableItemType {
-  'link' = 'link',
-  'paragragh' = 'paragragh',
+  Link = 'link',
+  Paragragh = 'paragragh',
 }
 
 export enum TaskTableCategoriesEnum {
-  'Идентификатор задачи' = 'Идентификатор задачи',
-  'Название задачи' = 'Название задачи',
-  'Доска' = 'Доска',
-  'Статус' = 'Статус',
-  'Критичность' = 'Критичность',
-  'Крайний срок' = 'Крайний срок',
-  'Автор' = 'Автор',
-}
-
-export enum TaskTableCategoriesLinkPrefixEnum {
-  'Идентификатор задачи' = 'task/',
-  'Доска' = 'board/',
-  'Автор' = 'user/',
+  Id = 'Идентификатор задачи',
+  TaskName = 'Название задачи',
+  Board = 'Доска',
+  StatusSection = 'Статус',
+  CriticalLvl = 'Критичность',
+  CompleteDate = 'Крайний срок',
+  Author = 'Автор',
 }

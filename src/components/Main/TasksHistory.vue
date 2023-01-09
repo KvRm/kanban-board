@@ -4,42 +4,56 @@
   >
     <span class="font-bold mb-2">Последние задачи:</span>
     <p class="mb-3" v-for="(task, ind) in tasks" :key="ind">
-      <router-link class="hover:text-blue" :to="task.prefix + task.id">
-        {{ task.title + ` ${ind}` }}
-      </router-link>
+      <TheTaskLink :task-link="task" />
     </p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Link } from '../../types/common'
+import type { TaskLink } from '../../types/task'
+import TheTaskLink from '../common/TheTaskLink.vue'
 
-const tasks = ref<Link[]>([
+const tasks = ref<TaskLink[]>([
   {
-    title: 'TaskLink',
+    title: 'TaskLink 1',
     id: '0',
-    prefix: 'task/',
+    prefix: 'JAP',
+    board: {
+      id: '212',
+    },
   },
   {
-    title: 'TaskLink',
+    title: 'TaskLink 2',
     id: '0',
-    prefix: 'task/',
+    prefix: 'JAP',
+    board: {
+      id: '212',
+    },
   },
   {
-    title: 'TaskLink',
+    title: 'TaskLink 3',
     id: '0',
-    prefix: 'task/',
+    prefix: 'JAP',
+    board: {
+      id: '212',
+    },
   },
   {
-    title: 'TaskLink',
+    title: 'TaskLink 4',
     id: '0',
-    prefix: 'task/',
+    prefix: 'JAP',
+    board: {
+      id: '212',
+    },
   },
   {
-    title: 'TaskLink',
+    title: 'TaskLink 5',
     id: '0',
-    prefix: 'task/',
+    prefix: 'JAP',
+    board: {
+      id: '212',
+    },
   },
 ])
 </script>

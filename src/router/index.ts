@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/board/:board',
+    path: '/board/:boardId',
     name: 'board',
     component: () => import('../views/BoardView.vue'),
     meta: {
@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   // {
-  //   path: '/board/:board/:task',
+  //   path: '/board/:boardId/:taskId',
   //   name: 'task',
   //   component: () => import('../views/TaskView.vue'),
   //   meta: {

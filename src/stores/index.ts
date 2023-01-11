@@ -7,7 +7,7 @@ export const store = createStore<RootState>({
   modules: {
     auth: authModule,
     // board: boardModule
-  }
+  },
 })
 
 export function useStore() {

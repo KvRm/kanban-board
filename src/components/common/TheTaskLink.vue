@@ -5,14 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import type { TaskLink } from '../../types/task'
+  import { computed } from 'vue'
+  import type { TaskLink } from '../../types/task'
 
-const props = defineProps<{
-  taskLink: TaskLink
-}>()
+  const props = defineProps<{
+    taskLink: TaskLink
+  }>()
 
-const link = computed(
-  () => `board/${props.taskLink.board.id}/${props.taskLink.prefix}-${props.taskLink.id}`,
-)
+  const link = computed(
+    () =>
+      `board/${props.taskLink.board.id}/${props.taskLink.prefix}-${props.taskLink.id}`,
+  )
 </script>

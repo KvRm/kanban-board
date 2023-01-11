@@ -6,18 +6,28 @@
         class="absolute top-3 left-2 text-secondary"
       />
       <input
+        id="price"
+        v-model.lazy="input"
         type="text"
         name="price"
-        id="price"
         class="block w-80 rounded-btn border-color-primary focus:outline-0 pl-8"
         placeholder="Введите id или название задачи"
+        @input="$emit('search', input)"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  searchResource: any
-}>()
+  import { ref } from 'vue'
+
+  defineProps<{
+    searchResource: any
+  }>()
+
+  defineEmits<{
+    (e: 'search', value: 'string'): void
+  }>()
+
+  const input = ref<string>('')
 </script>

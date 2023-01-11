@@ -5,26 +5,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { Link } from '../../types/common'
-import BoardLink from './BoardLink.vue'
+  import { ref } from 'vue'
+  import type { Link } from '../../types/common'
+  import BoardLink from './BoardLink.vue'
 
-const boardList = ref<Link[]>([
-  {
-    title: 'Some title',
-    id: '0',
-  },
-  {
-    title: 'Some title',
-    id: '1',
-  },
-  {
-    title: 'Some title',
-    id: '2',
-  },
-  {
-    title: 'Some title',
-    id: '3',
-  },
-])
+  const boardList = ref<Link[]>([
+    {
+      title: 'Some title',
+      id: '0',
+    },
+    {
+      title: 'Some title',
+      id: '1',
+    },
+    {
+      title: 'Some title',
+      id: '2',
+    },
+    {
+      title: 'Some title',
+      id: '3',
+    },
+  ])
 </script>

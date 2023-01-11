@@ -11,5 +11,5 @@
 </template>
 
 <script setup lang="ts">
-import ThemeSwitcher from './ThemeSwitcher.vue'
+  import ThemeSwitcher from './ThemeSwitcher.vue'
 </script>

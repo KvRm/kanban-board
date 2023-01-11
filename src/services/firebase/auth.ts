@@ -8,7 +8,7 @@ const app = initializeApp({
   storageBucket: 'scrum-board-vue.appspot.com',
   messagingSenderId: '164457409672',
   appId: '1:164457409672:web:5621b164f82e3bfd4d033d',
-  measurementId: 'G-NYPXPVZ2KZ'
+  measurementId: 'G-NYPXPVZ2KZ',
 })
 
 export const auth = getAuth(app)

@@ -13,6 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import BoardLinkList from '../components/Main/BoardLinkList.vue'
-import TasksHistory from '../components/Main/TasksHistory.vue'
+  import BoardLinkList from '../components/Main/BoardLinkList.vue'
+  import TasksHistory from '../components/Main/TasksHistory.vue'
 </script>

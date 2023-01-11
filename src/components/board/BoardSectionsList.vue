@@ -5,16 +5,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { BoardStatusSection } from '../../types/board'
-import BoardSectionItem from './BoardSectionItem.vue'
+  import { ref } from 'vue'
+  import { BoardStatusSection } from '../../types/board'
+  import BoardSectionItem from './BoardSectionItem.vue'
 
-const sections = ref<BoardStatusSection[]>([
-  // {
-  //   id: '1',
-  //   title: 'Важно',
-  //   tasks: [{
-  //   }],
-  // },
-])
+  const sections = ref<BoardStatusSection[]>([
+    {
+      id: '1',
+      title: 'Важно',
+      tasks: [
+        {
+          id: 's',
+          prefix: 's',
+          title: 'sa',
+          board: {
+            id: 's',
+          },
+        },
+      ],
+    },
+  ])
 </script>

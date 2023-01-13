@@ -1,6 +1,9 @@
+var safelist = require('./tailwind.safelist.cjs')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
+  safelist: safelist.widthSafeList(),
   theme: {
     colors: {},
     extend: {

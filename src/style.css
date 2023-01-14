@@ -2,7 +2,7 @@
 @tailwind base;
 
 :root {
-  --color-bg-primary: #f8f8f8;
+  --color-bg-primary: #f5f5f5;
   --color-bg-primary-soft: #fff;
   --color-bg-secondary: #576f72;
   --color-bg-secondary-soft: #7d9d9c;

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useLocalStorage, LocalStorageKeys } from '../../composables/localStorage'
+  import { useLocalStorage, LocalStorageKeys } from '../../utils/useLocalStorage'
 
   const ls = useLocalStorage()
 

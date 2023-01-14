@@ -2,24 +2,23 @@
   <div
     class="search-sort flex mb-3 justify-between max-sm:flex-col max-sm:gap-4 max-sm:text-center"
   >
-    <SearchInput :search-resource="['ss', 'aa']" @search="$emit('search')" />
+    <SearchInput :search-resource="['ss', 'aa']" @search="handleSearch" />
 
     <div class="sort flex gap-4 max-sm:justify-center">
       <DropdownInput
         :items="dropdownItems"
         :placeholder-text="'Сортировать по:'"
         :dropdown-key="'categories'"
-        :width="60"
+        width="60"
         @dropdown-select="selectSortCategory"
       />
 
-      <div class="sort-type flex items-center">
+      <button class="sort-type flex items-center" @click="toggleSortType">
         <FontAwesomeIcon
           :icon="`fa-solid fa-arrow-${sortTypeIconName}-wide-short`"
           class="h-6 text-secondary cursor-pointer"
-          @click="toggleSortType"
         />
-      </div>
+      </button>
     </div>
   </div>
 </template>
@@ -42,7 +41,7 @@
   })
 
   const sortTypeIconName = computed<'up' | 'down'>(() =>
-    sortParams.sortBy === 'decreasing' ? 'down' : 'up',
+    sortParams.sortBy === 'decreasing' ? 'down' : 'up'
   )
 
   const dropdownItems = [
@@ -54,6 +53,10 @@
     TaskTableCategoriesEnum.CompleteDate,
     TaskTableCategoriesEnum.Author,
   ]
+
+  function handleSearch(value: string) {
+    emit('search', value)
+  }
 
   function selectSortCategory(value: string) {
     sortParams.category = value

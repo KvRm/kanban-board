@@ -20,7 +20,9 @@
   import TaskTableItem from './TaskTableItem.vue'
   import TaskTableSearchSort from './TaskTableSearchSort.vue'
 
-  function handleSearch(value: string) {}
+  function handleSearch(value: string) {
+    console.log(value)
+  }
 
   function selectSortParams() {}
 

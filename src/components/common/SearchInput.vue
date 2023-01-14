@@ -7,12 +7,12 @@
       />
       <input
         id="price"
-        v-model.lazy="input"
+        v-model.trim="input"
         type="text"
         name="price"
-        class="block w-80 rounded-btn border-color-primary focus:outline-0 pl-8"
+        class="block w-80 rounded-btn border-color-soft focus:outline-0 pl-8 bg-primary-soft"
         placeholder="Введите id или название задачи"
-        @input="$emit('search', input)"
+        @input="search"
       />
     </div>
   </div>
@@ -20,14 +20,19 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
+  import { useDebouncer } from '../../utils/useDebouncer'
 
   defineProps<{
-    searchResource: any
+    searchResource: any[]
   }>()
 
-  defineEmits<{
-    (e: 'search', value: 'string'): void
+  const emit = defineEmits<{
+    (e: 'search', value: string): void
   }>()
 
   const input = ref<string>('')
+
+  const search = useDebouncer(() => {
+    emit('search', input.value)
+  }, 1000)
 </script>

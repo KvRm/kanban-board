@@ -9,14 +9,15 @@
     <div
       class="header-bottom flex justify-between mb-5 max-sm:flex-col max-sm:items-center"
     >
-      <TagBadge class="max-sm:mb-5" title="tag" color="red" />
+      <TagBadge class="max-sm:mb-5" title="tag" :color="colorEnum.DarkBlue" />
       <BoardSettings />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import SearchInput from '../common/SearchInput.vue'
+  import { colorEnum } from '../../types/common/colors';
+import SearchInput from '../common/SearchInput.vue'
   import TagBadge from '../common/TagBadge.vue'
   import BoardSettings from './BoardSettings.vue'
 

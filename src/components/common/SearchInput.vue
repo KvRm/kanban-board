@@ -6,18 +6,34 @@
         class="absolute top-3 left-2 text-secondary"
       />
       <input
+        id="price"
+        v-model="input"
         type="text"
         name="price"
-        id="price"
-        class="block w-80 rounded-btn border-color-primary focus:outline-0 pl-8"
+        class="block w-80 rounded-btn border-color-soft focus:outline-0 pl-8 bg-primary-soft"
         placeholder="Введите id или название задачи"
+        @input="search"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  searchResource: any
-}>()
+  import { ref } from 'vue'
+  import { useDebouncer } from '../../utils/useDebouncer'
+
+  defineProps<{
+    searchResource: any[]
+  }>()
+
+  const emit = defineEmits<{
+    (e: 'search', value: string): void
+  }>()
+
+  const input = ref<string>('')
+
+  const search = useDebouncer(() => {
+    input.value = input.value.trim()
+    emit('search', input.value)
+  }, 1000)
 </script>

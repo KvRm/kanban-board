@@ -13,5 +13,5 @@ export const mutations: MutationTree<RootState['auth']> & Mutations = {
 
   [AuthMutationEnum.USER]: (state, user) => {
     state.user = user
-  }
+  },
 }

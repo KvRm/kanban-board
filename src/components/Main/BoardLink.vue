@@ -3,18 +3,19 @@
     class="flex-triple max-lg:flex-double max-md:flex-single bg-primary-soft h-36 rounded-card shadow-lg hover:shadow-xl"
   >
     <router-link
-      :to="`board/${id}`"
-      :key="id"
+      :key="link.id"
+      :to="'board/' + link.id"
       class="board-link-item flex justify-center items-center w-full h-full overflow-hidden"
     >
-      {{ title }}
+      {{ link.title }}
     </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  title: string
-  id: string
-}>()
+  import { Link } from '../../types/common'
+
+  defineProps<{
+    link: Link
+  }>()
 </script>

@@ -1,17 +1,16 @@
-import { TaskCriticalLvl } from '../../types/index'
+import { TaskCriticalLvlEnum } from '.'
+import { User } from '../user'
 
 export interface MyTask {
   id: string
+  prefix: string
   title: string
-  criticalLvl: TaskCriticalLvl
+  criticalLvl: TaskCriticalLvlEnum
   completeDate: string
   board: {
     id: string
     title: string
     statusSection: string
   }
-  author: {
-    id: string
-    name: string
-  }
+  author: User
 }

@@ -11,5 +11,5 @@ export type Getters<S = RootState['auth']> = {
 export const getters: GetterTree<RootState['auth'], RootState> & Getters = {
   errorState: (state) => state.error,
   loadingState: (state) => state.loading,
-  user: (state) => state.user
+  user: (state) => state.user,
 }

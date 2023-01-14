@@ -1,10 +1,10 @@
 export enum LocalStorageKeys {
-  'theme-dark' = 'theme-dark',
+  Theme = 'theme',
 }
 
 export const useLocalStorage = () => {
-  const set = (key: LocalStorageKeys, data: string): void => {
-    window.localStorage.setItem(key, data)
+  const set = (key: LocalStorageKeys, value: string): void => {
+    window.localStorage.setItem(key, value)
   }
 
   const get = (key: LocalStorageKeys): string =>

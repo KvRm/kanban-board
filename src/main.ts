@@ -15,9 +15,20 @@ import {
   faChevronDown,
   faArrowUpWideShort,
   faArrowDownWideShort,
+  faEllipsis,
+  faCircleUp,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faMagnifyingGlass, faChevronDown, faArrowUpWideShort, faArrowDownWideShort)
+library.add(
+  faMagnifyingGlass,
+  faChevronDown,
+  faArrowUpWideShort,
+  faArrowDownWideShort,
+  faEllipsis,
+  faCircleUp,
+  faXmark
+)
 
 const store = useStore()
 

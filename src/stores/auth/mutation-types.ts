@@ -4,7 +4,7 @@ import { RootState } from '../types'
 export enum AuthMutationEnum {
   LOADING = 'LOADING',
   ERROR = 'ERROR',
-  USER = 'USER'
+  USER = 'USER',
 }
 
 export type Mutations<S = RootState['auth']> = {

@@ -8,10 +8,10 @@ export const authModule: Module<RootState['auth'], RootState> = {
   state: () => ({
     user: null,
     loading: false,
-    error: ''
+    error: '',
   }),
 
   mutations,
   getters,
-  actions
+  actions,
 }

@@ -8,7 +8,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  UserCredential
+  UserCredential,
 } from 'firebase/auth'
 import { auth } from '../../services/firebase/auth'
 
@@ -21,7 +21,7 @@ export const actions: ActionTree<RootState['auth'], RootState> & Actions = {
       const userCredential: UserCredential = await signInWithEmailAndPassword(
         auth,
         body.email,
-        body.password
+        body.password,
       )
 
       const user = userCredential.user
@@ -40,8 +40,11 @@ export const actions: ActionTree<RootState['auth'], RootState> & Actions = {
       commit(AuthMutationEnum.USER, null)
       commit(AuthMutationEnum.LOADING, true)
 
-      const userCredential: UserCredential =
-        await createUserWithEmailAndPassword(auth, body.email, body.password)
+      const userCredential: UserCredential = await createUserWithEmailAndPassword(
+        auth,
+        body.email,
+        body.password,
+      )
 
       const user = userCredential.user
       commit(AuthMutationEnum.USER, user)
@@ -68,5 +71,5 @@ export const actions: ActionTree<RootState['auth'], RootState> & Actions = {
     } finally {
       commit(AuthMutationEnum.LOADING, false)
     }
-  }
+  },
 }

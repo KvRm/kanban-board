@@ -12,7 +12,7 @@
 - [Firebase]
 
 Took the theme switch here:
-   https://github.com/huphtur/tailwind-theme-switcher
+https://github.com/huphtur/tailwind-theme-switcher
 
 ## Developmnent
 
@@ -27,11 +27,11 @@ http://127.0.0.1:3131
 http://localhost:3131
 ```
 
-   [Vue]: <https://vuejs.org/>
-   [Vuex]: <https://vuex.vuejs.org/>
-   [Vue-router]: <https://router.vuejs.org/>
-   [Vee-validate]: <https://vee-validate.logaretm.com/v4/>
-   [Font Awesome]: <https://fontawesome.com>
-   [Momentjs]: <https://momentjs.com/>
-   [Firebase]: <https://firebase.google.com/>
-   [Tailwind]: <https://tailwindcss.com/>
+[vue]: https://vuejs.org/
+[vuex]: https://vuex.vuejs.org/
+[vue-router]: https://router.vuejs.org/
+[vee-validate]: https://vee-validate.logaretm.com/v4/
+[font awesome]: https://fontawesome.com
+[momentjs]: https://momentjs.com/
+[firebase]: https://firebase.google.com/
+[tailwind]: https://tailwindcss.com/

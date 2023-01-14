@@ -2,6 +2,7 @@
   <div class="dropdown inline-block relative transition-all">
     <button
       :key="dropdownKey"
+      ref="selectBtn"
       class="py-2 px-4 rounded-btn flex items-center hover:bg-secondary h-full justify-center transition min-w-max"
       :class="`w-${width}`"
       @click="toggleDropdown"
@@ -41,13 +42,17 @@
   }>()
 
   const emit = defineEmits<{
-    (e: 'dropdownSelect', value: string): void~
+    (e: 'dropdownSelect', value: string): void
   }>()
 
   const currentValue = ref<string>('')
   const select = ref<HTMLUListElement | null>(null)
+  const selectBtn = ref<HTMLUListElement | null>(null)
 
-  useClickOutside(hideDropdown, select)
+  onMounted(() => {
+    useClickOutside(hideDropdown, select)
+    useClickOutside(hideDropdown, selectBtn)
+  })
 
   function dropdownItemMouseHandler(e: KeyboardEvent): void {
     if (e?.code === 'Space' || e?.code === 'Enter') {
@@ -84,7 +89,7 @@
 
   function hideDropdown() {
     if (select.value instanceof HTMLElement) {
-      select.value.classList.toggle('hidden')
+      select.value.classList.add('hidden')
     }
   }
 </script>

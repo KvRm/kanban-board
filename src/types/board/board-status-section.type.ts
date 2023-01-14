@@ -1,7 +1,7 @@
-import { TaskLink } from '../task'
+import { StatusSectionTaskLink } from '../common/link.type'
 
 export interface BoardStatusSection {
   id: string
   title: string
-  tasks: TaskLink[]
+  tasks: StatusSectionTaskLink[]
 }

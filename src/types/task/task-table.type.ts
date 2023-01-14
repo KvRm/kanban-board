@@ -22,8 +22,8 @@ export enum TaskTableItemType {
 }
 
 export enum TaskTableCategoriesEnum {
-  Id = 'Идентификатор задачи',
-  TaskName = 'Название задачи',
+  Id = 'Идентификатор',
+  TaskName = 'Название',
   Board = 'Доска',
   StatusSection = 'Статус',
   CriticalLvl = 'Критичность',

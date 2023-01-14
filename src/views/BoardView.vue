@@ -1,6 +1,6 @@
 <template>
-  <BoardHeader />
-  <BoardSectionsList />
+  <BoardHeader board-title="Титульник" />
+  <BoardSectionsList :board-id="'1'" />
 </template>
 
 <script setup lang="ts">

@@ -19,8 +19,7 @@ module.exports = {
         'primary-soft': 'var(--color-bg-primary-soft)',
         secondary: 'var(--color-bg-secondary)',
         'secondary-soft': 'var(--color-bg-secondary-soft)',
-        default: 'var(--color-bg-default)',
-        'light-grey': 'var(--color-bg-light-grey)',
+        'dark-grey': 'var(--color-bg-dark-grey)',
       },
       fontFamily: {
         primary: 'var(--font-primary)',
@@ -38,6 +37,9 @@ module.exports = {
       borderColor: {
         'color-soft': 'var(--border-color-soft)',
         'color-primary': 'var(--border-color-primary)',
+      },
+      height: {
+        view: 'calc(100vh - 64px)',
       },
     },
   },

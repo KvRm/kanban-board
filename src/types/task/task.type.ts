@@ -28,10 +28,3 @@ export enum TaskCriticalLvlEnum {
   Medium = 'Средняя',
   Low = 'Низкая',
 }
-
-export interface TaskLink extends Link {
-  prefix: string
-  board: {
-    id: string
-  }
-}

@@ -2,9 +2,9 @@
   <div class="header">
     <div class="header-top flex justify-between pb-5 max-sm:flex-col max-sm:items-center">
       <h3 class="title text-2xl flex items-center max-sm:mb-5">
-        {{ boardTitle }} SOme title
+        {{ boardTitle }}
       </h3>
-      <SearchInput :search-resource="{}" placeholder="Введите id или название задачи" />
+      <SearchInput :search-resource="[{}]" placeholder="Введите id или название задачи" />
     </div>
     <div
       class="header-bottom flex justify-between mb-5 max-sm:flex-col max-sm:items-center"
@@ -16,11 +16,11 @@
 </template>
 
 <script setup lang="ts">
-import SearchInput from '../common/SearchInput.vue'
-import TagBadge from '../common/TagBadge.vue'
-import BoardSettings from './BoardSettings.vue'
+  import SearchInput from '../common/SearchInput.vue'
+  import TagBadge from '../common/TagBadge.vue'
+  import BoardSettings from './BoardSettings.vue'
 
-const props = defineProps<{
-  boardTitle: string
-}>()
+  const props = defineProps<{
+    boardTitle: string
+  }>()
 </script>

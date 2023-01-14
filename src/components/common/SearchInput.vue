@@ -7,7 +7,7 @@
       />
       <input
         id="price"
-        v-model.trim="input"
+        v-model="input"
         type="text"
         name="price"
         class="block w-80 rounded-btn border-color-soft focus:outline-0 pl-8 bg-primary-soft"
@@ -33,6 +33,7 @@
   const input = ref<string>('')
 
   const search = useDebouncer(() => {
+    input.value = input.value.trim()
     emit('search', input.value)
   }, 1000)
 </script>

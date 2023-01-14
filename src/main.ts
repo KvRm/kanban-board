@@ -17,6 +17,7 @@ import {
   faArrowDownWideShort,
   faEllipsis,
   faCircleUp,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -25,7 +26,8 @@ library.add(
   faArrowUpWideShort,
   faArrowDownWideShort,
   faEllipsis,
-  faCircleUp
+  faCircleUp,
+  faXmark
 )
 
 const store = useStore()

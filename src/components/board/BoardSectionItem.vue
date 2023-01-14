@@ -1,6 +1,7 @@
 <template>
-  <section class="board-section w-72 flex flex-col gap-3 h-full">
-    <div class="section-header py-3 px-0.5 relative font-bold">
+  <section class="board-section flex flex-col gap-3 h-full mb-3">
+    <!-- Header -->
+    <div class="section-header w-72 py-3 px-0.5 relative font-bold">
       <span
         class="title mr-2 after:bottom-0 after:left-0 after:w-full after:absolute after:h-1 after:bg-secondary after:rounded-btn"
       >
@@ -11,7 +12,11 @@
         <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
       </button>
     </div>
+
+    <!-- List -->
     <BoardTaskItem v-for="task in section.tasks" :task="task" />
+
+    <!-- AddBtn -->
     <button
       class="border bg-primary-soft hover:bg-secondary hover:border-color-primary transition-all border-color-soft px-3 py-1 rounded-btn flex self-center w-max"
     >

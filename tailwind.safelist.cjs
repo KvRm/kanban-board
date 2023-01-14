@@ -1,13 +1,29 @@
-const widthSafeList = []
+const safelist = []
 
 const widthValues = ['24', '32', '44', '52', '60', '64']
+const colors = [
+  'green',
+  'dark-green',
+  'yellow',
+  'orange',
+  'blue',
+  'dark-blue',
+  'red',
+  'dark-red',
+  'purple',
+  'pink',
+]
 
 widthValues.forEach((widthValue) => {
-  widthSafeList.push(`w-${widthValue}`)
+  safelist.push(`w-${widthValue}`)
+})
+
+colors.forEach((color) => {
+  safelist.push(`bg-${color}`)
 })
 
 module.exports = {
-  widthSafeList() {
-    return widthSafeList
+  safelist() {
+    return safelist
   },
 }

@@ -1,9 +1,9 @@
-var safelist = require('./tailwind.safelist.cjs')
+const { safelist } = require('./tailwind.safelist.cjs')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
-  safelist: safelist.widthSafeList(),
+  safelist: safelist(),
   theme: {
     colors: {},
     extend: {
@@ -27,7 +27,7 @@ module.exports = {
         blue: 'var(--color-bg-blue)',
         'dark-blue': 'var(--color-bg-dark-blue)',
         red: 'var(--color-bg-red)',
-        darkRed: 'var(--color-bg-darkRed)',
+        'dark-red': 'var(--color-bg-darkRed)',
         purple: 'var(--color-bg-purple)',
         pink: 'var(--color-bg-pink)',
       },
@@ -49,6 +49,9 @@ module.exports = {
         'color-primary': 'var(--border-color-primary)',
       },
       height: {
+        view: 'calc(100vh - 64px)',
+      },
+      minHeight: {
         view: 'calc(100vh - 64px)',
       },
     },

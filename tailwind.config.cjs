@@ -21,7 +21,7 @@ module.exports = {
         'secondary-soft': 'var(--color-bg-secondary-soft)',
         'dark-grey': 'var(--color-bg-dark-grey)',
         green: 'var(--color-bg-green)',
-        'dark-green': 'var(--color-bg-dark-gree)',
+        'dark-green': 'var(--color-bg-dark-green)',
         yellow: 'var(--color-bg-yellow)',
         orange: 'var(--color-bg-orange)',
         blue: 'var(--color-bg-blue)',

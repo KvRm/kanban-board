@@ -3,7 +3,7 @@
 ## Libraries used in this project
 
 - [Vue]
-- [Vuex]
+- [Pinia]
 - [Vue-router]
 - [Vee-validate]
 - [Tailwind]
@@ -28,7 +28,7 @@ http://localhost:3131
 ```
 
 [vue]: https://vuejs.org/
-[vuex]: https://vuex.vuejs.org/
+[pinia]: https://pinia.vuejs.org/
 [vue-router]: https://router.vuejs.org/
 [vee-validate]: https://vee-validate.logaretm.com/v4/
 [font awesome]: https://fontawesome.com

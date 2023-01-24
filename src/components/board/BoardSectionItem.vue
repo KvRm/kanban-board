@@ -29,6 +29,7 @@
   import { computed } from 'vue'
   import { BoardStatusSection } from '../../types/board'
   import BoardTaskItem from './BoardTaskItem.vue'
+  import DropdownInput from '../common/DropdownInput.vue'
 
   const props = defineProps<{
     section: BoardStatusSection

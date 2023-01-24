@@ -2,7 +2,11 @@
   <div
     class="search-sort flex mb-3 justify-between max-sm:flex-col max-sm:gap-4 max-sm:text-center"
   >
-    <SearchInput :search-resource="['ss', 'aa']" @search="handleSearch" />
+    <SearchInput
+      :search-resource="['ss', 'aa']"
+      placeholder="Введите id или название задачи"
+      @search="handleSearch"
+    />
 
     <div class="sort flex gap-4 max-sm:justify-center">
       <DropdownInput

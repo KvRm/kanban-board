@@ -42,7 +42,14 @@
     </div>
 
     <!-- List -->
-    <BoardTaskItem v-for="task in section.tasks" :task="task" />
+    <div
+      class="tasks flex flex-col gap-3 pt-4"
+      @drop="onDrop"
+      @dragover.prevent
+      @dragenter.prevent
+    >
+      <BoardTaskItem v-for="task in section.tasks" :task="task" />
+    </div>
 
     <!-- AddBtn -->
     <button
@@ -55,6 +62,7 @@
 
 <script setup lang="ts">
   import { computed, ref } from 'vue'
+  import { useToastsStore } from '../../stores/toastsStore'
   import { BoardStatusSection } from '../../types/board'
   import RewritableParagraph from '../common/RewritableParagraph.vue'
   import BoardTaskItem from './BoardTaskItem.vue'
@@ -62,6 +70,12 @@
   const props = defineProps<{
     section: BoardStatusSection
   }>()
+
+  const emit = defineEmits<{
+    (e: 'moveElement', taskId: string, sectionId: string): void
+  }>()
+
+  const toastStore = useToastsStore()
 
   const tasksCount = computed<number>(() => props.section.tasks.length)
   const title = ref<string>(props.section.title)
@@ -71,6 +85,12 @@
   function rewriteTitle(value: string) {
     title.value = value
     taskTitleRewriting.value = false
+    toastStore.log('Название изменено')
+  }
+
+  function onDrop(e: DragEvent) {
+    const taskId = e.dataTransfer?.getData('taskId') as string
+    emit('moveElement', taskId, props.section.id)
   }
 </script>
 

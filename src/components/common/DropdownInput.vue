@@ -1,9 +1,8 @@
 <template>
   <div class="dropdown inline-block relative transition-all">
     <button
-      :key="dropdownKey"
       ref="selectBtn"
-      class="py-2 px-4 rounded-btn flex items-center hover:bg-secondary h-full justify-center transition min-w-max"
+      class="py-2 px-4 rounded-btn flex items-center hover:bg-secondary hover:text-white h-full justify-center transition min-w-max"
       :class="`w-${width}`"
       @click="toggleDropdown"
     >
@@ -17,7 +16,7 @@
       <li
         v-for="item in items"
         :key="item"
-        class="border-x overflow-hidden border-b first:border-t border-color-soft bg-primary-soft first:rounded-t-btn last:rounded-b-btn"
+        class="border-x overflow-hidden border-b first:border-t border-color-soft bg-primary-soft hover:bg-grey focus:bg-grey first:rounded-t-btn last:rounded-b-btn"
         tabindex="0"
         @keydown="dropdownItemMouseHandler"
         @click="handleSelect"
@@ -35,7 +34,6 @@
   import { useClickOutside } from '../../composables/clickOutside'
 
   const props = defineProps<{
-    dropdownKey: string
     placeholderText: string
     items: string[]
     width: '24' | '32' | '44' | '52' | '60' | '64'

@@ -6,14 +6,16 @@
   --color-bg-primary-soft: #fff;
   --color-bg-secondary: #576f72;
   --color-bg-secondary-soft: #7d9d9c;
+  --color-bg-grey: #cfcfcf;
   --color-bg-dark-grey: #646464;
-  --color-bg-green: #2e7548;
-  --color-bg-dark-green: #576f72;
+  --color-bg-light-green: #45d379;
+  --color-bg-green: #219451;
+  --color-bg-dark-green: #2a4733;
   --color-bg-yellow: #efff15;
   --color-bg-orange: #eb9800;
   --color-bg-blue: #189bbf;
   --color-bg-dark-blue: #1d00be;
-  --color-bg-red: #e10e23;
+  --color-bg-red: #c1313f;
   --color-bg-darkRed: #7b0505;
   --color-bg-purple: #680387;
   --color-bg-pink: #bc0cb6;
@@ -22,6 +24,7 @@
   --color-text-secondary: #444;
   --color-text-secondary-soft: #999;
   --color-text-blue: #3b7cf5;
+  --color-text-red: #af2323;
   --color-text-white: #fff;
 
   --font-primary: 'Montserrat', sans-serif;
@@ -38,14 +41,16 @@
   --color-bg-primary-soft: #eee;
   --color-bg-secondary: #576f72;
   --color-bg-secondary-soft: #7d9d9c;
+  --color-bg-grey: #cfcfcf;
   --color-bg-dark-grey: #646464;
-  --color-bg-green: #2e7548;
-  --color-bg-dark-green: #576f72;
+  --color-bg-light-green: #45d379;
+  --color-bg-green: #219451;
+  --color-bg-dark-green: #2a4733;
   --color-bg-yellow: #efff15;
   --color-bg-orange: #eb9800;
   --color-bg-blue: #189bbf;
   --color-bg-dark-blue: #1d00be;
-  --color-bg-red: #e10e23;
+  --color-bg-red: #c1313f;
   --color-bg-darkRed: #7b0505;
   --color-bg-purple: #680387;
   --color-bg-pink: #bc0cb6;
@@ -54,6 +59,7 @@
   --color-text-default: #444;
   --color-text-default-soft: #999;
   --color-text-blue: #3b7cf5;
+  --color-text-red: #af2323;
   --color-text-white: #fff;
 
   --font-primary: 'Montserrat', sans-serif;

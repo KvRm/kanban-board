@@ -2,8 +2,8 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 
-import { useStore } from './stores'
 import router from './router'
+import { createPinia } from 'pinia'
 
 import DefaultLayout from './layout/DefaultLayout.vue'
 import EmptyLayout from './layout/EmptyLayout.vue'
@@ -18,6 +18,9 @@ import {
   faEllipsis,
   faCircleUp,
   faXmark,
+  faTrash,
+  faPen,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -27,14 +30,17 @@ library.add(
   faArrowDownWideShort,
   faEllipsis,
   faCircleUp,
-  faXmark
+  faXmark,
+  faTrash,
+  faPen,
+  faCheck
 )
 
-const store = useStore()
+const pinia = createPinia()
 
 createApp(App)
-  .use(store)
   .use(router)
+  .use(pinia)
   .component('DefaultLayout', DefaultLayout)
   .component('EmptyLayout', EmptyLayout)
   .component('FontAwesomeIcon', FontAwesomeIcon)

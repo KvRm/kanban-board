@@ -10,8 +10,8 @@
         v-model="input"
         type="text"
         name="price"
-        class="block w-80 rounded-btn border-color-soft focus:outline-0 pl-8 bg-primary-soft"
-        placeholder="Введите id или название задачи"
+        class="input block w-80 rounded-btn border-color-soft focus:outline-0 pl-8"
+        :placeholder="placeholder"
         @input="search"
       />
     </div>
@@ -24,6 +24,7 @@
 
   defineProps<{
     searchResource: any[]
+    placeholder: string
   }>()
 
   const emit = defineEmits<{
@@ -37,3 +38,9 @@
     emit('search', input.value)
   }, 1000)
 </script>
+
+<style scoped>
+  .input {
+    background: none;
+  }
+</style>

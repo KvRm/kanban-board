@@ -18,6 +18,9 @@ import {
   faEllipsis,
   faCircleUp,
   faXmark,
+  faTrash,
+  faPen,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -27,7 +30,10 @@ library.add(
   faArrowDownWideShort,
   faEllipsis,
   faCircleUp,
-  faXmark
+  faXmark,
+  faTrash,
+  faPen,
+  faCheck
 )
 
 const pinia = createPinia()

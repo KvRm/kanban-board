@@ -6,7 +6,7 @@
   --color-bg-primary-soft: #fff;
   --color-bg-secondary: #576f72;
   --color-bg-secondary-soft: #7d9d9c;
-  --color-bg-grey: #cfcfcf  ;
+  --color-bg-grey: #cfcfcf;
   --color-bg-dark-grey: #646464;
   --color-bg-light-green: #45d379;
   --color-bg-green: #219451;
@@ -24,6 +24,7 @@
   --color-text-secondary: #444;
   --color-text-secondary-soft: #999;
   --color-text-blue: #3b7cf5;
+  --color-text-red: #af2323;
   --color-text-white: #fff;
 
   --font-primary: 'Montserrat', sans-serif;
@@ -58,6 +59,7 @@
   --color-text-default: #444;
   --color-text-default-soft: #999;
   --color-text-blue: #3b7cf5;
+  --color-text-red: #af2323;
   --color-text-white: #fff;
 
   --font-primary: 'Montserrat', sans-serif;

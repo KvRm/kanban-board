@@ -32,9 +32,9 @@
   import { ref } from 'vue'
   import { ColorEnum } from '../../types/common/colors'
   import { Tag } from '../../types/common/tag.type'
-  import SearchInput from '../common/SearchInput.vue'
+  import SearchInput from '../SearchInput.vue'
   import BoardSettings from './BoardSettings.vue'
-  import TagList from '../common/TagList.vue'
+  import TagList from '../TagList.vue'
 
   const props = defineProps<{
     boardTitle: string

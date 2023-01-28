@@ -50,10 +50,12 @@
     >
       <BoardTaskItem v-for="task in section.tasks" :task="task" />
     </div>
+    <el-button size="large" class="m-2">Default</el-button>
 
     <!-- AddBtn -->
+
     <button
-      class="border bg-primary-soft hover:bg-secondary hover:border-color-primary transition-all border-color-soft px-3 py-1 rounded-btn flex self-center w-max"
+      class="btn border bg-primary-soft hover:bg-secondary hover:border-color-primary transition-all border-color-soft px-3 py-1 rounded-btn flex self-center w-max"
     >
       Добавить
     </button>
@@ -62,9 +64,9 @@
 
 <script setup lang="ts">
   import { computed, ref } from 'vue'
-  import { useToastsStore } from '../../stores/toastsStore'
+  import { useToasts } from '../../composables/toasts'
   import { BoardStatusSection } from '../../types/board'
-  import RewritableParagraph from '../common/RewritableParagraph.vue'
+  import RewritableParagraph from '../RewritableParagraph.vue'
   import BoardTaskItem from './BoardTaskItem.vue'
 
   const props = defineProps<{
@@ -74,8 +76,7 @@
   const emit = defineEmits<{
     (e: 'moveElement', taskId: string, sectionId: string): void
   }>()
-
-  const toastStore = useToastsStore()
+  const toast = useToasts()
 
   const tasksCount = computed<number>(() => props.section.tasks.length)
   const title = ref<string>(props.section.title)
@@ -85,7 +86,7 @@
   function rewriteTitle(value: string) {
     title.value = value
     taskTitleRewriting.value = false
-    toastStore.log('Название изменено')
+    toast.log('Название изменено')
   }
 
   function onDrop(e: DragEvent) {
@@ -100,3 +101,5 @@
     display: block;
   }
 </style>
+
+<style lang="scss"></style>

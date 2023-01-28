@@ -4,8 +4,8 @@ import { middleware } from './middleware'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'main',
-    component: () => import('../views/MainView.vue'),
+    name: 'storefront',
+    component: () => import('../modules/storefront/pages/MainPage.vue'),
     meta: {
       requiresAuth: true,
     },
@@ -18,18 +18,18 @@ const routes: Array<RouteRecordRaw> = [
       requiresAuth: true,
     },
   },
-  // {
-  //   path: '/board/:boardId/:taskId',
-  //   name: 'task',
-  //   component: () => import('../views/TaskView.vue'),
-  //   meta: {
-  //     requiresAuth: true,
-  //   },
-  // },
+  {
+    path: '/board/:boardId/:taskId',
+    name: 'task',
+    component: () => import('../modules/storefront/pages/MainPage.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
   {
     path: '/my-tasks',
     name: 'my-tasks',
-    component: () => import('../views/MyTasksView.vue'),
+    component: () => import('../modules/storefront/pages/MyTasksPage.vue'),
     meta: {
       requiresAuth: true,
     },
@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/MainView.vue'),
+    component: () => import('../modules/storefront/pages/MainPage.vue'),
     meta: {
       loginView: true,
       layout: 'EmptyLayout',

@@ -9,18 +9,14 @@ export const useClickOutside = (
     ev.stopPropagation()
   }
 
-  function outsideClick() {
-    cb()
-  }
-
   if (element.value instanceof HTMLElement)
     element.value.addEventListener('click', stopPropagination)
 
-  window.addEventListener('click', outsideClick)
+  window.addEventListener('click', cb)
 
   onUnmounted(() => {
     if (element.value instanceof HTMLElement)
       element.value.removeEventListener('click', stopPropagination)
-    window.removeEventListener('click', outsideClick)
+    window.removeEventListener('click', cb)
   })
 }

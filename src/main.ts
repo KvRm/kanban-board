@@ -5,8 +5,12 @@ import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
 
-import DefaultLayout from './layout/DefaultLayout.vue'
-import EmptyLayout from './layout/EmptyLayout.vue'
+import DefaultLayout from './views/DefaultLayout.vue'
+import EmptyLayout from './views/EmptyLayout.vue'
+
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -21,6 +25,8 @@ import {
   faTrash,
   faPen,
   faCheck,
+  faSortUp,
+  faSortDown,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -33,7 +39,9 @@ library.add(
   faXmark,
   faTrash,
   faPen,
-  faCheck
+  faCheck,
+  faSortUp,
+  faSortDown
 )
 
 const pinia = createPinia()
@@ -41,6 +49,7 @@ const pinia = createPinia()
 createApp(App)
   .use(router)
   .use(pinia)
+  .use(ElementPlus)
   .component('DefaultLayout', DefaultLayout)
   .component('EmptyLayout', EmptyLayout)
   .component('FontAwesomeIcon', FontAwesomeIcon)

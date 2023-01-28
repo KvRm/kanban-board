@@ -1,28 +1,47 @@
 <template>
-  <button id="theme-btn" class="bg-secondary p-2 rounded-btn" @click="switchTheme">
-    Switch theme
-  </button>
+  <el-switch
+    class="theme-switcher flex self-center"
+    v-model="theme"
+    inline-prompt
+    active-text="Dark"
+    inactive-text="Light"
+    style="
+      --el-switch-on-color: var(--el-color-info-light-5);
+      --el-switch-off-color: var(--el-color-info-light-5);
+    "
+    :size="'default'"
+  />
 </template>
 
 <script setup lang="ts">
-  import { useLocalStorage, LocalStorageKeys } from '../../utils/useLocalStorage'
+  import { onMounted, ref, watch } from 'vue'
+  import { useLocalStorage, LocalStorageKeys } from '../../lib/useLocalStorage'
 
   const ls = useLocalStorage()
+  const theme = ref<boolean>()
+  const d = document.documentElement
 
-  const d = document.documentElement,
-    currentTheme = ls.get(LocalStorageKeys.Theme)
+  onMounted(() => {
+    theme.value = ls.get(LocalStorageKeys.Theme) === 'dark' ? true : false
 
-  if (currentTheme == 'dark') {
-    d.classList.add('theme-dark')
-  }
+    if (theme.value) {
+      d.classList.add('dark')
+    }
+  })
 
-  function switchTheme() {
-    if (d.classList.contains('theme-dark')) {
-      d.classList.remove('theme-dark')
+  watch(theme, () => {
+    if (!theme.value) {
+      d.classList.remove('dark')
       ls.remove(LocalStorageKeys.Theme)
     } else {
-      d.classList.add('theme-dark')
+      d.classList.add('dark')
       ls.set(LocalStorageKeys.Theme, 'dark')
     }
-  }
+  })
 </script>
+
+<style scoped lang="scss">
+  .theme-switcher {
+    color: var(--el-text-color-primary);
+  }
+</style>

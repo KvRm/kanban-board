@@ -15,7 +15,7 @@ export interface MyTask {
 
 export enum TaskTableCategoriesEnum {
   Id = 'Идентификатор',
-  TaskName = 'Название',
+  Title = 'Название',
   Board = 'Доска',
   StatusSection = 'Статус',
   Tags = 'Теги',

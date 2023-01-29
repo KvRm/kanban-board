@@ -2,21 +2,35 @@
   <table class="base-table">
     <thead class="header">
       <tr>
-        <th v-for="category in categories" :key="category">
+        <th v-for="category in categories" :key="category.title">
           <div class="header-content">
-            <p>{{ category }}</p>
-            <span class="sort-buttons">
+            <p>{{ category.title }}</p>
+            <span v-if="category.sortable" class="sort-buttons">
               <FontAwesomeIcon
                 icon="fa-solid fa-sort-up"
                 class="icon-up"
-                :class="{ choosen: isChoosen(category, 'increasing') }"
-                @click="sort(category, 'increasing')"
+                :class="{
+                  choosen: isChoosen(category.title, 'increasing'),
+                }"
+                @click="
+                  chooseSort(
+                    category.title,
+                    'increasing',
+                    category.sortable as unknown as SortTypeEnum
+                  )
+                "
               />
               <FontAwesomeIcon
                 icon="fa-solid fa-sort-down"
                 class="icon-down"
-                :class="{ choosen: isChoosen(category, 'decreasing') }"
-                @click="sort(category, 'decreasing')"
+                :class="{ choosen: isChoosen(category.title, 'decreasing') }"
+                @click="
+                  chooseSort(
+                    category.title,
+                    'decreasing',
+                    category.sortable as unknown as SortTypeEnum
+                  )
+                "
               />
             </span>
           </div>
@@ -30,33 +44,42 @@
 </template>
 
 <script setup lang="ts">
-  import { reactive } from 'vue'
-  import { SortParams, SortType } from '.'
+  import { reactive, watch } from 'vue'
+  import { SortParams, SortOrderType, TableCategory, SortTypeEnum } from '.'
 
   const props = defineProps<{
-    categories: string[]
+    categories: TableCategory[]
+  }>()
+
+  const emit = defineEmits<{
+    (e: 'sort', payload: SortParams): void
   }>()
 
   const sortParams = reactive<SortParams>({
     category: null,
+    order: null,
     type: null,
   })
 
-  function sort(category: string, type: SortType): void {
-    console.log('sss')
+  watch(sortParams, () => {
+    emit('sort', sortParams)
+  })
 
-    if (sortParams.category === category && sortParams.type === type) {
+  function chooseSort(category: string, order: SortOrderType, type: SortTypeEnum): void {
+    if (sortParams.category === category && sortParams.order === order) {
       sortParams.category = null
       sortParams.type = null
+      sortParams.order = null
       return
     }
 
     sortParams.category = category
+    sortParams.order = order
     sortParams.type = type
   }
 
-  function isChoosen(category: string, type: SortType): boolean {
-    return category === sortParams.category && type === sortParams.type
+  function isChoosen(category: string, order: SortOrderType): boolean {
+    return category === sortParams.category && order === sortParams.order
   }
 </script>
 

@@ -1,13 +1,13 @@
 import { Link, TaskLink } from '../../../../components/Link'
 import { TaskCriticalLvlEnum } from '../../../../models/Task'
+import { Tag } from '../../../../typings/tag'
 
 export interface MyTask {
   id: TaskLink
   title: string
   board: Link
   statusSection: string
-  // TODO: изменить тип тега
-  tags: string
+  tags: Tag[]
   criticalLvl: TaskCriticalLvlEnum
   completeDate: string
   author: Link

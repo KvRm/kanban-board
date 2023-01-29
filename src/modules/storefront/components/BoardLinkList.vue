@@ -1,6 +1,8 @@
 <template>
   <div class="board-link-list">
-    <BoardLink v-for="board in boardList" :key="board.id" :link="board" />
+    <TransitionGroup name="list" appear>
+      <BoardLink v-for="board in boardList" :key="board.id" :link="board" />
+    </TransitionGroup>
   </div>
 </template>
 
@@ -77,5 +79,19 @@
         flex: 0 0 100%;
       }
     }
+  }
+
+  .list-move,
+  .list-enter-active,
+  .list-leave-active {
+    transition: all 0.5s ease;
+  }
+  .list-enter-from,
+  .list-leave-to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  .list-leave-active {
+    position: absolute;
   }
 </style>

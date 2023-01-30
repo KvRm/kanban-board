@@ -1,6 +1,6 @@
 <template>
   <section>
-    <BaseTable :categories="TABLE_CATEGORIES" @sort="sort">
+    <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
       <TransitionGroup name="list" appear>
         <BaseTableRow
           v-for="task in tasks"
@@ -37,37 +37,26 @@
   import BaseTableRow from '../../../../components/table/BaseTableRow.vue'
   import BaseTableItem from '../../../../components/table/BaseTableItem.vue'
   import { TaskCriticalLvlEnum } from '../../../../models/Task'
-  import { MyTask } from '../../components/TaskTable'
+  import { MyTask, TASK_TABLE_CATEGORIES } from '../../components/TaskTable'
   import { isLinkType, isTagType } from '../../../../lib/useTypeChecker'
   import { Tag } from '../../../../typings/tag'
-  import TABLE_CATEGORIES from '../../constants/tableCategories'
-  import { SortParams, SortTypeEnum } from '../../../../components/Table'
-  import { useSortByType } from '../../../../lib/useSort'
-
-  function sort(sortParams: SortParams) {
-    console.log(sortParams)
-
-    // TODO: доделать
-    tasks.value.sort((a, b) =>
-      useSortByType(SortTypeEnum.Default, a.id.title, b.id.title)
-    )
-  }
+  import { useTaskTableSort } from '../../composables/taskTableSort'
 
   /**
-   * Элементы должны быть размещены только в такой последовательности
+   * Элементы должны быть размещены только в такой последовательности, id.title === id.id
    */
   const tasks = ref<MyTask[]>([
     {
       id: {
         id: '2212121',
-        title: 'sadsa',
+        title: '2212121',
         prefix: 'SD',
         board: {
           id: 'sozgksof-32dasd-gdfs',
         },
         type: 'task',
       },
-      title: 'MyTask',
+      title: '1MyTask',
       board: {
         id: '2112121',
         title: 'BoardTitle',
@@ -96,8 +85,8 @@
           type: 'warning',
         },
       ],
-      criticalLvl: TaskCriticalLvlEnum.High,
-      completeDate: '22.11.2023',
+      criticalLvl: TaskCriticalLvlEnum.Medium,
+      completeDate: '22-11-2023',
       author: {
         id: '212121',
         title: 'SomeName',
@@ -114,7 +103,7 @@
         },
         type: 'task',
       },
-      title: 'MyTask',
+      title: '2MyTask',
       board: {
         id: '2112121',
         title: 'BoardTitle',
@@ -127,8 +116,8 @@
           type: '',
         },
       ],
-      criticalLvl: TaskCriticalLvlEnum.High,
-      completeDate: '22.11.2023',
+      criticalLvl: TaskCriticalLvlEnum.VeryHigh,
+      completeDate: '26-11-2023',
       author: {
         id: '212121',
         title: 'SomeName',
@@ -145,7 +134,7 @@
         },
         type: 'task',
       },
-      title: 'MyTask',
+      title: '3MyTask',
       board: {
         id: '2112121',
         title: 'BoardTitle',
@@ -159,7 +148,7 @@
         },
       ],
       criticalLvl: TaskCriticalLvlEnum.High,
-      completeDate: '22.11.2023',
+      completeDate: '23-11-2023',
       author: {
         id: '212121',
         title: 'SomeName',
@@ -168,9 +157,7 @@
     },
   ])
 
-  // function sort(sortParams: SortParams) {
-  //   tasks.value.sort((curent, b) => )
-  // }
+  const sort = useTaskTableSort(tasks)
 </script>
 
 <style scoped lang="scss">

@@ -67,9 +67,6 @@
 
   function chooseSort(category: string, order: SortOrderType, type: SortTypeEnum): void {
     if (sortParams.category === category && sortParams.order === order) {
-      sortParams.category = null
-      sortParams.type = null
-      sortParams.order = null
       return
     }
 

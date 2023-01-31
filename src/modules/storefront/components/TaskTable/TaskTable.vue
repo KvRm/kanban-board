@@ -1,7 +1,6 @@
 <template>
   <section>
     <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
-      <!-- TODO: Обновить стиль перерисовки таблицы -->
       <TransitionGroup name="list" appear>
         <BaseTableRow
           v-for="task in tasks"
@@ -41,10 +40,16 @@
   import BaseTableItem from '../../../../components/table/BaseTableItem.vue'
   import BaseLink from '../../../../components/Link/BaseLink.vue'
   import { TaskCriticalLvlEnum } from '../../../../models/Task'
-  import { MyTask, TASK_TABLE_CATEGORIES } from '../../components/TaskTable'
+  import {
+    MyTask,
+    TaskTableCategoriesEnum,
+    TASK_TABLE_CATEGORIES,
+  } from '../../components/TaskTable'
   import { isLinkType, isTagType } from '../../../../lib/useTypeChecker'
   import { Tag } from '../../../../typings/tag'
   import { useTaskTableSort } from '../../composables/taskTableSort'
+  import { SortParams } from '../../../../components/Table'
+  import { useCompareByType } from '../../../../lib/useCompare'
 
   /**
    * Элементы должны быть размещены только в такой последовательности, id.title === id.id
@@ -161,7 +166,52 @@
     },
   ])
 
-  const sort = useTaskTableSort(tasks)
+  function sort(sortParams: SortParams) {
+    switch (sortParams.category) {
+      case TaskTableCategoriesEnum.Id: {
+        tasks.value.sort((a, b) => {
+          return useCompareByType(sortParams, a.id.title, b.id.title)
+        })
+        break
+      }
+      case TaskTableCategoriesEnum.Title: {
+        tasks.value.sort((a, b) => {
+          return useCompareByType(sortParams, a.title, b.title)
+        })
+        break
+      }
+      case TaskTableCategoriesEnum.Board: {
+        tasks.value.sort((a, b) => {
+          return useCompareByType(sortParams, a.board.title, b.board.title)
+        })
+        break
+      }
+      case TaskTableCategoriesEnum.StatusSection: {
+        tasks.value.sort((a, b) => {
+          return useCompareByType(sortParams, a.statusSection, b.statusSection)
+        })
+        break
+      }
+      case TaskTableCategoriesEnum.CriticalLvl: {
+        tasks.value.sort((a, b) => {
+          return useCompareByType(sortParams, a.criticalLvl, b.criticalLvl)
+        })
+        break
+      }
+      case TaskTableCategoriesEnum.CompleteDate: {
+        tasks.value.sort((a, b) => {
+          return useCompareByType(sortParams, a.completeDate, b.completeDate)
+        })
+        break
+      }
+      case TaskTableCategoriesEnum.Author: {
+        tasks.value.sort((a, b) => {
+          return useCompareByType(sortParams, a.author.title, b.author.title)
+        })
+        break
+      }
+    }
+  }
 </script>
 
 <style scoped lang="scss">

@@ -1,5 +1,5 @@
 <template>
-  <el-switch
+  <ElSwitch
     class="theme-switcher flex self-center"
     v-model="theme"
     inline-prompt

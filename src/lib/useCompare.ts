@@ -34,8 +34,6 @@ function compareByDefault(a: string, b: string, order: SortOrderType): number {
 }
 
 function compareByDate(a: string, b: string, order: SortOrderType) {
-  console.log(a)
-
   const date1 = dayjs(dayjs(a, 'DD/MM/YYYY').format('YYYY/MM/DD'))
   const date2 = dayjs(dayjs(b, 'DD/MM/YYYY').format('YYYY/MM/DD'))
 

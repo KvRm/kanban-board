@@ -1,16 +1,14 @@
 <template>
-  <Transition name="item" appear>
-    <div class="tasks-history">
-      <span class="tasks-history-title">Последние задачи:</span>
-      <span
-        v-for="task in tasks"
-        :key="task.board.id + task.prefix + task.id"
-        class="tasks-history-item"
-      >
-        <BaseLink :link="task" />
-      </span>
-    </div>
-  </Transition>
+  <div class="tasks-history">
+    <span class="tasks-history-title">Последние задачи:</span>
+    <span
+      v-for="task in tasks"
+      :key="task.board.id + task.prefix + task.id"
+      class="tasks-history-item"
+    >
+      <BaseLink :link="task" />
+    </span>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -92,19 +90,5 @@
         color: var(--el-color-primary);
       }
     }
-  }
-
-  .item-move,
-  .item-enter-active,
-  .item-leave-active {
-    transition: all 0.5s ease;
-  }
-  .item-enter-from,
-  .item-leave-to {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  .item-leave-active {
-    position: absolute;
   }
 </style>

@@ -1,10 +1,13 @@
 <template>
   <section>
     <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
+      <!-- TODO: Обновить стиль перерисовки таблицы -->
       <TransitionGroup name="list" appear>
         <BaseTableRow
           v-for="task in tasks"
           :key="task.id.id + task.board.id + task.id.prefix"
+          class="line"
+          ref="row"
         >
           <BaseTableItem
             v-for="property in task"
@@ -23,7 +26,7 @@
                 {{ item.label }}
               </ElTag>
             </span>
-            <p v-else>{{ property }}</p>
+            <span v-else>{{ property }}</span>
           </BaseTableItem>
         </BaseTableRow>
       </TransitionGroup>
@@ -36,6 +39,7 @@
   import BaseTable from '../../../../components/table/BaseTable.vue'
   import BaseTableRow from '../../../../components/table/BaseTableRow.vue'
   import BaseTableItem from '../../../../components/table/BaseTableItem.vue'
+  import BaseLink from '../../../../components/Link/BaseLink.vue'
   import { TaskCriticalLvlEnum } from '../../../../models/Task'
   import { MyTask, TASK_TABLE_CATEGORIES } from '../../components/TaskTable'
   import { isLinkType, isTagType } from '../../../../lib/useTypeChecker'
@@ -163,9 +167,27 @@
 <style scoped lang="scss">
   .tags-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.25rem;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
+    overflow-x: auto;
+
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        display: block;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 0.4rem;
+      height: 0.4rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      display: none;
+      background-color: var(--el-color-info-light-3);
+      border-radius: 0.5rem;
+    }
   }
   .link {
     &:hover {
@@ -182,7 +204,7 @@
   .list-enter-from,
   .list-leave-to {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateY(-30px);
   }
   .list-leave-active {
     position: absolute;

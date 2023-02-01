@@ -1,7 +1,6 @@
 <template>
   <section>
     <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
-      <!-- TODO: Обновить стиль перерисовки таблицы -->
       <TransitionGroup name="list" appear>
         <BaseTableRow
           v-for="task in tasks"
@@ -41,10 +40,11 @@
   import BaseTableItem from '../../../../components/table/BaseTableItem.vue'
   import BaseLink from '../../../../components/Link/BaseLink.vue'
   import { TaskCriticalLvlEnum } from '../../../../models/Task'
-  import { MyTask, TASK_TABLE_CATEGORIES } from '../../components/TaskTable'
   import { isLinkType, isTagType } from '../../../../lib/useTypeChecker'
   import { Tag } from '../../../../typings/tag'
   import { useTaskTableSort } from '../../composables/taskTableSort'
+  import { TASK_TABLE_CATEGORIES } from './data'
+  import { MyTask } from './types'
 
   /**
    * Элементы должны быть размещены только в такой последовательности, id.title === id.id
@@ -90,6 +90,7 @@
         },
       ],
       criticalLvl: TaskCriticalLvlEnum.Medium,
+      createDate: '11-12-2022',
       completeDate: '22-11-2023',
       author: {
         id: '212121',
@@ -121,6 +122,7 @@
         },
       ],
       criticalLvl: TaskCriticalLvlEnum.VeryHigh,
+      createDate: '16-12-2022',
       completeDate: '26-11-2023',
       author: {
         id: '212121',
@@ -152,6 +154,7 @@
         },
       ],
       criticalLvl: TaskCriticalLvlEnum.High,
+      createDate: '11-12-2022',
       completeDate: '23-11-2023',
       author: {
         id: '212121',

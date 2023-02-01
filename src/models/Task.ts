@@ -6,6 +6,7 @@ export interface Task {
   prefix: string
   title: string
   criticalLvl: TaskCriticalLvlEnum
+  createDate: string
   completeDate: string
   board: {
     id: string

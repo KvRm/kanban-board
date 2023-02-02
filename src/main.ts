@@ -15,7 +15,6 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import en from './locales/en.json'
-import ru from './locales/ru.json'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -52,12 +51,12 @@ const app = createApp(App)
 
 const pinia = createPinia()
 
-const i18n = createI18n({
+export const i18n = createI18n<false>({
   legacy: false,
   locale: 'en',
+  fallbackLocale: 'en',
   messages: {
     en,
-    ru,
   },
   silentTranslationWarn: true,
   silentFallbackWarn: true,

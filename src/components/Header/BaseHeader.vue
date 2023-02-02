@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-  import ThemeSwitcher from './ThemeSwitcher.vue'
+  import ThemeSwitcher from '../Header/BaseThemeSwitcher.vue'
 </script>
 
 <style scoped lang="scss">

@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   // {
   //   path: '/board/:boardId',
-  //   name: 'board',
+  //   name: 'board',`
   //   component: () => import('../views/BoardView.vue'),
   //   meta: {
   //     requiresAuth: true,
@@ -53,6 +53,11 @@ const routes: Array<RouteRecordRaw> = [
   //   },
   // },
 ]
+
+routes.forEach((route) => {
+  route.path = '/:locale?' + route.path
+  route.props = true
+})
 
 const router = createRouter({
   history: createWebHistory(),

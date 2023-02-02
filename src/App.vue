@@ -1,4 +1,5 @@
 <template>
+  <BaseLocaleVue />
   <component :is="layout" class="wrapper">
     <Transition name="item" appear>
       <router-view />
@@ -11,6 +12,7 @@
   import { computed } from 'vue'
   import { useRoute } from 'vue-router'
   import ToastsContainer from './components/ToastsContainer.vue'
+  import BaseLocaleVue from './components/Header/BaseLocale.vue'
   import { LayoutType } from './layout/layout.type'
 
   const route = useRoute()

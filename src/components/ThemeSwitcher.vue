@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
   import { onMounted, ref, watch } from 'vue'
-  import { useLocalStorage, LocalStorageKeys } from '../../lib/useLocalStorage'
+  import { useLocalStorage, LocalStorageKeys } from '../lib/useLocalStorage'
 
   const ls = useLocalStorage()
   const theme = ref<boolean>()

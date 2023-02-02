@@ -4,16 +4,20 @@ import App from './App.vue'
 
 import router from './router'
 import { createPinia } from 'pinia'
+import { createI18n } from 'vue-i18n'
 
-import DefaultLayout from './views/DefaultLayout.vue'
-import EmptyLayout from './views/EmptyLayout.vue'
+import DefaultLayout from './layout/DefaultLayout.vue'
+import EmptyLayout from './layout/EmptyLayout.vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
+import en from './locales/en.json'
+import ru from './locales/ru.json'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
   faMagnifyingGlass,
   faChevronDown,
@@ -44,11 +48,25 @@ library.add(
   faSortDown
 )
 
+const app = createApp(App)
+
 const pinia = createPinia()
 
-createApp(App)
+const i18n = createI18n({
+  legacy: false,
+  locale: 'en',
+  messages: {
+    en,
+    ru,
+  },
+  silentTranslationWarn: true,
+  silentFallbackWarn: true,
+})
+
+app
   .use(router)
   .use(pinia)
+  .use(i18n)
   .use(ElementPlus)
   .component('DefaultLayout', DefaultLayout)
   .component('EmptyLayout', EmptyLayout)

@@ -10,14 +10,14 @@ const routes: Array<RouteRecordRaw> = [
       requiresAuth: true,
     },
   },
-  {
-    path: '/board/:boardId',
-    name: 'board',
-    component: () => import('../views/BoardView.vue'),
-    meta: {
-      requiresAuth: true,
-    },
-  },
+  // {
+  //   path: '/board/:boardId',
+  //   name: 'board',
+  //   component: () => import('../views/BoardView.vue'),
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
   {
     path: '/board/:boardId/:taskId',
     name: 'task',
@@ -59,6 +59,6 @@ const router = createRouter({
   routes,
 })
 
-// router.beforeEach(middleware)
+router.beforeEach(middleware)
 
 export default router

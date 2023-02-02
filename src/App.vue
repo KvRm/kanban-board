@@ -11,9 +11,10 @@
   import { computed } from 'vue'
   import { useRoute } from 'vue-router'
   import ToastsContainer from './components/ToastsContainer.vue'
-  import { LayoutType } from './views/layout.type'
+  import { LayoutType } from './layout/layout.type'
 
   const route = useRoute()
+
   const layout = computed<LayoutType>(() => route.meta.layout || 'DefaultLayout')
 </script>
 

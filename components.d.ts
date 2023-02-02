@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AuthLinks: typeof import('./src/components/AuthLinks.vue')['default']
     BaseBoardLink: typeof import('./src/components/link/BaseBoardLink.vue')['default']
     BaseHeader: typeof import('./src/components/BaseHeader.vue')['default']
     BaseLink: typeof import('./src/components/Link/BaseLink.vue')['default']
@@ -55,8 +56,10 @@ declare module '@vue/runtime-core' {
     TaskTableItem: typeof import('./src/components/my-tasks/TaskTableItem.vue')['default']
     TaskTableSearchSort: typeof import('./src/components/my-tasks/TaskTableSearchSort.vue')['default']
     TaskTag: typeof import('./src/components/Tag/TaskTag.vue')['default']
+    ThemeSwitcher: typeof import('./src/components/ThemeSwitcher.vue')['default']
     TheTaskLink: typeof import('./src/components/TheTaskLink.vue')['default']
     ToastNotification: typeof import('./src/components/ToastNotification.vue')['default']
     ToastsContainer: typeof import('./src/components/ToastsContainer.vue')['default']
+    UserProfile: typeof import('./src/components/UserProfile.vue')['default']
   }
 }

@@ -4,26 +4,28 @@ import { middleware } from './middleware'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'storefront',
     component: () => import('../modules/storefront/pages/MainPage.vue'),
+    name: 'storefront',
     meta: {
       requiresAuth: true,
+      requiresLocale: true,
     },
   },
-  {
-    path: '/board/:boardId',
-    name: 'board',
-    component: () => import('../views/BoardView.vue'),
-    meta: {
-      requiresAuth: true,
-    },
-  },
+  // {
+  //   path: '/board/:boardId',
+  //   name: 'board',`
+  //   component: () => import('../views/BoardView.vue'),
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
   {
     path: '/board/:boardId/:taskId',
     name: 'task',
     component: () => import('../modules/storefront/pages/MainPage.vue'),
     meta: {
       requiresAuth: true,
+      requiresLocale: true,
     },
   },
   {
@@ -32,6 +34,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../modules/storefront/pages/MyTasksPage.vue'),
     meta: {
       requiresAuth: true,
+      requiresLocale: true,
     },
   },
   {
@@ -41,6 +44,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       loginView: true,
       layout: 'EmptyLayout',
+      requiresLocale: true,
     },
   },
   // {
@@ -54,11 +58,18 @@ const routes: Array<RouteRecordRaw> = [
   // },
 ]
 
+routes.forEach((route) => {
+  if (route.meta?.requiresLocale) {
+    route.path = '/:locale' + route.path
+    route.props = true
+  }
+})
+
 const router = createRouter({
   history: createWebHistory(),
   routes,
 })
 
-// router.beforeEach(middleware)
+router.beforeEach(middleware)
 
 export default router

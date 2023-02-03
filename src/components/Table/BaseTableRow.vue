@@ -1,5 +1,5 @@
 <template>
-  <tr class="table-row max-lg:rounded-btn mb-2 px-4 py-2">
+  <tr class="table-row">
     <slot />
   </tr>
 </template>
@@ -8,23 +8,15 @@
 
 <style scoped lang="scss">
   .table-row {
-    border: 1px solid var(--el-border-color);
+    border-bottom: 1px solid var(--el-border-color);
+    margin-bottom: 0.5rem;
 
-    @media (min-width: 1024px) {
-      border-bottom-width: 1px;
-
-      &:hover {
-        background: var(--el-color-info-8);
-      }
-
-      &:last-child {
-        border-style: none;
-      }
+    &:hover {
+      background: var(--el-color-info-light-7);
     }
 
-    @media not all and (min-width: 1024px) {
-      display: block;
-      border-width: 1px;
+    &:last-child {
+      border: none;
     }
   }
 </style>

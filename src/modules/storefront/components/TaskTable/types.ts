@@ -1,25 +1,27 @@
 import { Link, TaskLink } from '../../../../components/Link'
 import { TaskCriticalLvlEnum } from '../../../../models/Task'
+import { Tag } from '../../../../typings/tag'
 
 export interface MyTask {
   id: TaskLink
   title: string
   board: Link
   statusSection: string
-  // TODO: изменить тип тега
-  tags: string
+  tags: Tag[]
   criticalLvl: TaskCriticalLvlEnum
+  createDate: string
   completeDate: string
   author: Link
 }
 
 export enum TaskTableCategoriesEnum {
   Id = 'Идентификатор',
-  TaskName = 'Название',
+  Title = 'Название',
   Board = 'Доска',
   StatusSection = 'Статус',
   Tags = 'Теги',
   CriticalLvl = 'Критичность',
+  CreateDate = 'Дата создания',
   CompleteDate = 'Крайний срок',
   Author = 'Автор',
 }

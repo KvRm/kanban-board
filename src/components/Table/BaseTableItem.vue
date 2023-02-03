@@ -1,10 +1,14 @@
 <template>
-  <td
-    class="text-center py-1 max-lg:border-b border-color-soft last:border-none max-lg:text-right max-lg:block max-lg:border-dashed max-lg:before:content-[attr(data-label)] before:float-left"
-  >
-    <!-- <TaskTableItem /> -->
+  <td class="table-item">
     <slot />
   </td>
 </template>
 
 <script setup lang="ts"></script>
+
+<style scoped lang="scss">
+  .table-item {
+    text-align: center;
+    padding: 0.25rem 0;
+  }
+</style>

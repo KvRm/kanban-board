@@ -15,13 +15,13 @@ export interface MyTask {
 }
 
 export enum TaskTableCategoriesEnum {
-  Id = 'Идентификатор',
-  Title = 'Название',
-  Board = 'Доска',
-  StatusSection = 'Статус',
-  Tags = 'Теги',
-  CriticalLvl = 'Критичность',
-  CreateDate = 'Дата создания',
-  CompleteDate = 'Крайний срок',
-  Author = 'Автор',
+  Id = 'categories.id',
+  Title = 'categories.title',
+  Board = 'categories.board',
+  StatusSection = 'categories.statusSection',
+  Tags = 'categories.tags',
+  CriticalLvl = 'categories.criticalLvl',
+  CreateDate = 'categories.createDate',
+  CompleteDate = 'categories.completeDate',
+  Author = 'categories.author',
 }

@@ -1,12 +1,23 @@
 import { DefineLocaleMessage, DefineDateTimeFormat, DefineNumberFormat } from 'vue-i18n'
 
-export type LocaleType = 'en' | 'ru'
-
 declare module 'vue-i18n' {
   // define the locale messages schema
   export interface DefineLocaleMessage {
-    hello: string
-    name: string
+    myTasks: string
+    myBoards: string
+    allBoards: string
+    lastTasks: string
+    categories: {
+      id: string
+      title: string
+      board: string
+      statusSection: string
+      tags: string
+      criticalLvl: string
+      createDate: string
+      completeDate: string
+      author: string
+    }
   }
 
   // define the datetime format schema

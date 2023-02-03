@@ -1,1 +1,23 @@
-{ "hello": "Hi!", "name": "Name" }
+{
+  "myBoards": "My boards",
+  "myTasks": "My tasks",
+  "allBoards": "All boards",
+  "lastTasks": "Last tasks",
+  "categories": {
+    "id": "Id",
+    "title": "Title",
+    "board": "Board",
+    "statusSection": "Status",
+    "tags": "Tags",
+    "criticalLvl": "Critical Lvl",
+    "createDate": "Create Date",
+    "completeDate": "Complete Date",
+    "author": "Author"
+  },
+  "criticalLvl": {
+    "veryHigh": "Very High",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  }
+}

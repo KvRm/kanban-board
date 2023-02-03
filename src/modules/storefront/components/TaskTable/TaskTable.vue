@@ -25,7 +25,8 @@
                 {{ item.label }}
               </ElTag>
             </span>
-            <span v-else>{{ property }}</span>
+            <!-- <span v-else-if=""></span> -->
+            <span v-else>{{ t(property as string) }}</span>
           </BaseTableItem>
         </BaseTableRow>
       </TransitionGroup>
@@ -46,6 +47,9 @@
   import { TASK_TABLE_CATEGORIES } from './data'
   import { useTaskTableSort } from '../../composables/useTaskTableSort'
   import { SortTypeEnum } from '../../../../components/Table'
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
 
   /**
    * Элементы должны быть размещены только в такой последовательности, id.title === id.id

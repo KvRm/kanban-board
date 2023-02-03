@@ -1,9 +1,11 @@
 <template>
   <header class="header">
     <nav class="header-nav" ref="nav">
-      <router-link class="header-nav__link" :to="links.mainRoute">Мои доски</router-link>
+      <router-link class="header-nav__link" :to="links.mainRoute">
+        {{ t('myBoards') }}
+      </router-link>
       <router-link class="header-nav__link" :to="links.myTasksRoute">
-        Мои задачи
+        {{ t('myTasks') }}
       </router-link>
     </nav>
     <div class="header-setting">
@@ -15,11 +17,13 @@
 
 <script setup lang="ts">
   import { reactive, watch } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import { useRoute } from 'vue-router'
   import ThemeSwitcher from '../Header/BaseThemeSwitcher.vue'
   import BaseLocale from './BaseLocale.vue'
 
   const route = useRoute()
+  const { t } = useI18n()
 
   const links = reactive({
     mainRoute: `/${route.params.locale as string}/`,

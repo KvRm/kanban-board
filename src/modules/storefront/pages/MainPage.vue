@@ -1,9 +1,9 @@
 <template>
   <div class="storefront">
     <section class="storefront-main">
-      <p class="board-list-titile">Мои доски</p>
+      <p class="board-list-titile">{{ t('myBoards') }}</p>
       <BoardLinkList />
-      <p class="board-list-titile">Все доски</p>
+      <p class="board-list-titile">{{ t('allBoards') }}</p>
       <BoardLinkList />
     </section>
     <aside class="storefront-aside">
@@ -13,8 +13,11 @@
 </template>
 
 <script setup lang="ts">
+  import { useI18n } from 'vue-i18n'
   import BoardLinkList from '../components/BoardLinkList.vue'
   import TaskHistory from '../components/TaskHistory.vue'
+
+  const { t } = useI18n()
 </script>
 
 <style scoped lang="scss">

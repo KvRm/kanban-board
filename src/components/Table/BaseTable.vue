@@ -4,7 +4,7 @@
       <tr>
         <th v-for="category in categories" :key="category.title">
           <div class="header-content">
-            <p>{{ category.title }}</p>
+            <p>{{ t(category.title) }}</p>
             <span v-if="category.sortable" class="sort-buttons">
               <FontAwesomeIcon
                 icon="fa-solid fa-sort-up"
@@ -45,7 +45,10 @@
 
 <script setup lang="ts">
   import { reactive, watch } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import { SortParams, SortOrderType, TableCategory, SortTypeEnum } from '.'
+
+  const { t } = useI18n()
 
   const props = defineProps<{
     categories: TableCategory[]

@@ -1,5 +1,4 @@
 <template>
-  <BaseLocaleVue />
   <component :is="layout" class="wrapper">
     <Transition name="item" appear>
       <router-view />
@@ -9,15 +8,29 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, watch } from 'vue'
   import { useRoute } from 'vue-router'
   import ToastsContainer from './components/ToastsContainer.vue'
-  import BaseLocaleVue from './components/Header/BaseLocale.vue'
   import { LayoutType } from './layout/layout.type'
+  import { useI18n } from 'vue-i18n'
+  import { useLocale } from './lib/useLocale'
 
   const route = useRoute()
+  const { locale } = useI18n()
+  const { loadLocaleMessages } = useLocale()
 
   const layout = computed<LayoutType>(() => route.meta.layout || 'DefaultLayout')
+
+  watch(route, () => {
+    setLocale()
+  })
+
+  async function setLocale() {
+    const currentLocale = route.params.locale as string
+
+    await loadLocaleMessages(currentLocale)
+    locale.value = currentLocale
+  }
 </script>
 
 <style scoped lang="scss">

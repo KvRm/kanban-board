@@ -4,7 +4,7 @@ import App from './App.vue'
 
 import router from './router'
 import { createPinia } from 'pinia'
-import { createI18n } from 'vue-i18n'
+import { i18n } from './plugins/i18n'
 
 import DefaultLayout from './layout/DefaultLayout.vue'
 import EmptyLayout from './layout/EmptyLayout.vue'
@@ -13,8 +13,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
-
-import en from './locales/en.json'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -50,17 +48,6 @@ library.add(
 const app = createApp(App)
 
 const pinia = createPinia()
-
-export const i18n = createI18n<false>({
-  legacy: false,
-  locale: 'en',
-  fallbackLocale: 'en',
-  messages: {
-    en,
-  },
-  silentTranslationWarn: true,
-  silentFallbackWarn: true,
-})
 
 app
   .use(router)

@@ -1,5 +1,7 @@
 import { DefineLocaleMessage, DefineDateTimeFormat, DefineNumberFormat } from 'vue-i18n'
 
+export type LocaleType = 'en' | 'ru'
+
 declare module 'vue-i18n' {
   // define the locale messages schema
   export interface DefineLocaleMessage {

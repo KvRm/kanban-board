@@ -17,9 +17,9 @@
 
   const route = computed<string>(() => {
     if (props.link.type === 'task' && isTaskLink(props.link)) {
-      return (
-        `${LinkRouteEnum.Board}${(props.link as TaskLink)?.board?.id}/${props.link.prefix}-${props.link.id}`
-      )
+      return `${LinkRouteEnum.Board}${(props.link as TaskLink)?.board?.id}/${
+        props.link.prefix
+      }-${props.link.id}`
     }
     if (props.link.type === 'board') {
       return LinkRouteEnum.Board + props.link.id

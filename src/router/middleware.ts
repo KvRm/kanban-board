@@ -1,12 +1,18 @@
 import { RouteLocationNormalized } from 'vue-router'
-import { isLoggedIn } from '../services/firebase/authStateChecker'
-import { loadLocaleMessages, setI18nLanguage } from '../composables/locale'
+import { SupportLocalesEnum } from '../components/Header/locale.types'
+import { startsWithLocaleWithoutSlash } from './helpers'
 
 export const middleware = async (to: RouteLocationNormalized) => {
-  const routeLocale = (to.params?.locale as string) || 'en'
+  const availableLocales = [...Object.values(SupportLocalesEnum)]
+  const locale = to.params.locale as string
 
-  setI18nLanguage(routeLocale)
-  await loadLocaleMessages(routeLocale)
+  if (availableLocales.includes(locale as SupportLocalesEnum)) {
+    if (startsWithLocaleWithoutSlash(to.path, availableLocales)) {
+      return { path: to.path + '/' }
+    }
+  } else {
+    return { path: '/en/' }
+  }
 
   // const loggenIn = await isLoggedIn()
   // if (!i18n.availableLocales.includes(paramsLocale)) {

@@ -1,15 +1,35 @@
 <template>
   <header class="header">
     <nav class="header-nav" ref="nav">
-      <router-link class="header-nav__link" to="/">Мои доски</router-link>
-      <router-link class="header-nav__link" to="/my-tasks">Мои задачи</router-link>
+      <router-link class="header-nav__link" :to="links.mainRoute">Мои доски</router-link>
+      <router-link class="header-nav__link" :to="links.myTasksRoute">
+        Мои задачи
+      </router-link>
     </nav>
-    <ThemeSwitcher />
+    <div class="header-setting">
+      <BaseLocale />
+      <ThemeSwitcher />
+    </div>
   </header>
 </template>
 
 <script setup lang="ts">
+  import { reactive, watch } from 'vue'
+  import { useRoute } from 'vue-router'
   import ThemeSwitcher from '../Header/BaseThemeSwitcher.vue'
+  import BaseLocale from './BaseLocale.vue'
+
+  const route = useRoute()
+
+  const links = reactive({
+    mainRoute: `/${route.params.locale as string}/`,
+    myTasksRoute: `/${route.params.locale as string}/my-tasks`,
+  })
+
+  watch(route, () => {
+    links.mainRoute = `/${route.params.locale as string}/`
+    links.myTasksRoute = `/${route.params.locale as string}/my-tasks`
+  })
 </script>
 
 <style scoped lang="scss">
@@ -47,6 +67,11 @@
           background: var(--el-color-info-light-8);
         }
       }
+    }
+    .header-setting {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
   }
   .router-link-active::after {

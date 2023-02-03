@@ -1,23 +1,45 @@
 <template>
-  <button @click="setI18nLanguage(locale)">{{ msg }}</button>
+  <el-dropdown size="large">
+    <span class="el-dropdown-link">
+      <div class="locale-dropdown">{{ capitalize(locale) }}</div>
+    </span>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item
+          v-for="availableLocale in availableLocales"
+          :key="availableLocale"
+          @click="changeLocale(availableLocale as SupportLocalesEnum)"
+        >
+          {{ capitalize(availableLocale) }}
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 
 <script setup lang="ts">
-  import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useRoute } from 'vue-router'
-  import { setI18nLanguage } from '../../composables/locale'
+  import { useRouter } from 'vue-router'
+  import { SupportLocalesEnum } from './locale.types'
 
-  const i18n = useI18n()
-  const route = useRoute()
-  type LocaleType = 'en' | 'ru'
-  const currentLocale = ref<'en' | 'ru'>((route.params?.locale as LocaleType) || 'en')
+  const { locale } = useI18n()
+  const router = useRouter()
 
-  function setLocale() {
-    currentLocale.value = currentLocale.value === 'en' ? 'ru' : 'en'
+  const availableLocales = [...Object.values(SupportLocalesEnum)]
 
-    setI18nLanguage(currentLocale)
+  async function changeLocale(newLocale: SupportLocalesEnum) {
+    router.replace({ params: { locale: newLocale } })
   }
 
-  const msg = computed<string>(() => i18n.t('hello'))
+  function capitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  }
 </script>
+
+<style scoped lang="scss">
+  .locale-dropdown {
+    cursor: default;
+    font-size: 1.25rem;
+    color: var(--el-text-color-primary);
+  }
+</style>

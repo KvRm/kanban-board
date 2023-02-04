@@ -7,6 +7,9 @@
       <router-link class="header-nav__link" :to="myTasksRoute">
         {{ t('myTasks') }}
       </router-link>
+      <router-link class="header-nav__link" :to="myTasksRoute">
+        Создать доску
+      </router-link>
     </nav>
     <div class="header-setting">
       <BaseLocale />

@@ -1,4 +1,5 @@
 {
+  "boards": "Boards",
   "myBoards": "My boards",
   "myTasks": "My tasks",
   "allBoards": "All boards",
@@ -19,5 +20,6 @@
     "high": "High",
     "medium": "Medium",
     "low": "Low"
-  }
+  },
+  "createNewSection": "Create new section"
 }

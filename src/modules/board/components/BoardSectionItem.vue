@@ -41,10 +41,12 @@
       </div>
     </div>
 
-    <!-- List -->
-    <div class="section-tasks-list" @drop="onDrop" @dragover.prevent @dragenter.prevent>
-      <BoardTaskItem v-for="task in section.tasks" :task="task" :board-id="boardId" />
-    </div>
+    <BoardTaskList
+      :tasks="section.tasks"
+      :board-id="boardId"
+      :section-id="section.id"
+      @move-element="moveElement"
+    />
 
     <!-- AddBtn -->
     <el-button size="large" class="section-add-btn">Добавить</el-button>
@@ -56,7 +58,7 @@
   import { useToasts } from '../../../composables/useToasts'
   import { BoardStatusSection } from '../../../models/Board'
   import RewritableParagraph from '../../../components/RewritableParagraph.vue'
-  import BoardTaskItem from './BoardTaskItem.vue'
+  import BoardTaskList from './BoardTaskList.vue'
 
   const props = defineProps<{
     section: BoardStatusSection
@@ -67,7 +69,7 @@
     (e: 'moveElement', taskId: string, sectionId: string): void
   }>()
 
-  const { toast } = useToasts()
+  const { dispatch } = useToasts()
 
   const tasksCount = computed<number>(() => props.section.tasks.length)
   const title = ref<string>(props.section.title)
@@ -77,12 +79,11 @@
   function rewriteTitle(value: string) {
     title.value = value
     taskTitleRewriting.value = false
-    toast('Название изменено', 'success')
+    dispatch('Название изменено', 'success')
   }
 
-  function onDrop(e: DragEvent) {
-    const taskId = e.dataTransfer?.getData('taskId') as string
-    emit('moveElement', taskId, props.section.id)
+  function moveElement(taskId: string, sectionId: string) {
+    emit('moveElement', taskId, sectionId)
   }
 </script>
 
@@ -131,12 +132,6 @@
           color: var(--el-text-color-primary);
         }
       }
-    }
-    .section-tasks-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding-top: 1rem;
     }
     .section-add-btn {
       margin-top: 0.5rem;

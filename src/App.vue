@@ -10,7 +10,7 @@
 <script setup lang="ts">
   import { computed, watch } from 'vue'
   import { useRoute } from 'vue-router'
-  import ToastsContainer from './components/ToastsContainer.vue'
+  import ToastsContainer from './components/Toast/BaseToasts.vue'
   import { LayoutType } from './layout/layout.type'
   import { useI18n } from 'vue-i18n'
   import { useLocale } from './composables/useLocale'

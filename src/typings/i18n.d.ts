@@ -3,8 +3,9 @@ import { DefineLocaleMessage, DefineDateTimeFormat, DefineNumberFormat } from 'v
 declare module 'vue-i18n' {
   // define the locale messages schema
   export interface DefineLocaleMessage {
-    myTasks: string
+    boards: string
     myBoards: string
+    myTasks: string
     allBoards: string
     lastTasks: string
     categories: {
@@ -18,6 +19,7 @@ declare module 'vue-i18n' {
       completeDate: string
       author: string
     }
+    createNewSection: string
   }
 
   // define the datetime format schema

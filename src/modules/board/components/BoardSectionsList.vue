@@ -7,11 +7,22 @@
       :board-id="boardId"
       @move-element="moveElement"
     />
+    <el-tooltip
+      class="box-item"
+      effect="light"
+      :content="t('createNewSection')"
+      placement="top-end"
+    >
+      <el-button class="add-section">
+        <font-awesome-icon icon="fa-solid fa-plus" />
+      </el-button>
+    </el-tooltip>
   </div>
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import { BoardStatusSection } from '../../../models/Board'
   import { TaskCriticalLvlEnum } from '../../../models/Task'
   import BoardSectionItem from './BoardSectionItem.vue'
@@ -19,6 +30,8 @@
   const props = defineProps<{
     boardId: string
   }>()
+
+  const { t } = useI18n()
 
   function moveElement(taskId: string, sectionId: string) {
     // sections.value.forEach((s) => {
@@ -67,79 +80,7 @@
     },
     {
       id: '2',
-      title: 'Не надо такое',
-      tasks: [
-        {
-          id: '2-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Не надо такое',
-      tasks: [
-        {
-          id: '2-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Не надо такое',
-      tasks: [
-        {
-          id: '2-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Не надо такое',
-      tasks: [
-        {
-          id: '2-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Не надо такое',
-      tasks: [
-        {
-          id: '2-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Не надо такое',
-      tasks: [
-        {
-          id: '2-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Не надо такое',
+      title: 'Очень неважно)',
       tasks: [
         {
           id: '2-0',
@@ -160,5 +101,10 @@
     gap: 1.5rem;
     flex-flow: row nowrap;
     overflow-x: auto;
+    .add-section {
+      margin-top: 0.7rem;
+      padding: 1.2rem 0.7rem;
+      font-size: 1.5rem;
+    }
   }
 </style>

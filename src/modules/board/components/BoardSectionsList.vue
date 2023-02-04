@@ -153,7 +153,6 @@
 </script>
 
 <style scoped lang="scss">
-  // TODO: Дописать стили для передвижения только секций
   .board-sections-list {
     display: flex;
     min-height: calc(100vh - 80px);

@@ -1,5 +1,5 @@
 <template>
-  <div class="storefront">
+  <section class="storefront">
     <section class="storefront-main">
       <p class="board-list-titile">{{ t('myBoards') }}</p>
       <BoardLinkList />
@@ -9,7 +9,7 @@
     <aside class="storefront-aside">
       <TaskHistory />
     </aside>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +23,8 @@
 <style scoped lang="scss">
   .storefront {
     display: flex;
-    width: 100%;
+    min-height: calc(100vh - 80px);
+
     @media not all and (min-width: 640px) {
       flex-direction: column-reverse;
     }

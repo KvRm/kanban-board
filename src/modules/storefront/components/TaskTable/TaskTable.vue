@@ -1,39 +1,37 @@
 <template>
-  <section>
-    <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
-      <TransitionGroup name="list" appear>
-        <BaseTableRow
-          v-for="task in tasks"
+  <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
+    <TransitionGroup name="list" appear>
+      <BaseTableRow
+        v-for="task in tasks"
+        :key="task.id.id + task.board.id + task.id.prefix"
+        class="line"
+        ref="row"
+      >
+        <BaseTableItem
+          v-for="property in task"
           :key="task.id.id + task.board.id + task.id.prefix"
-          class="line"
-          ref="row"
         >
-          <BaseTableItem
-            v-for="property in task"
-            :key="task.id.id + task.board.id + task.id.prefix"
-          >
-            <BaseLink v-if="isLinkType(property)" class="link" :link="property" />
-            <span v-else-if="isTagType(property[0])" class="tags-container">
-              <ElTag
-                v-for="item in (property as unknown as Tag)"
-                :key="item.labes"
-                :type="item.type"
-                effect="dark"
-                class="tag"
-                disable-transitions
-              >
-                {{ item.label }}
-              </ElTag>
-            </span>
-            <span v-else-if="existsInTaskCriticalLvlEnum(property as string)">
-              {{ t(property as string) }}
-            </span>
-            <span v-else>{{ property as string }}</span>
-          </BaseTableItem>
-        </BaseTableRow>
-      </TransitionGroup>
-    </BaseTable>
-  </section>
+          <BaseLink v-if="isLinkType(property)" class="link" :link="property" />
+          <span v-else-if="isTagType(property[0])" class="tags-container">
+            <ElTag
+              v-for="item in (property as unknown as Tag)"
+              :key="item.labes"
+              :type="item.type"
+              effect="dark"
+              class="tag"
+              disable-transitions
+            >
+              {{ item.label }}
+            </ElTag>
+          </span>
+          <span v-else-if="existsInTaskCriticalLvlEnum(property as string)">
+            {{ t(property as string) }}
+          </span>
+          <span v-else>{{ property as string }}</span>
+        </BaseTableItem>
+      </BaseTableRow>
+    </TransitionGroup>
+  </BaseTable>
 </template>
 
 <script setup lang="ts">

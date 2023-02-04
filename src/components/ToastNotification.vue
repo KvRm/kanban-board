@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
   import { computed } from 'vue'
-  import { useToasts } from '../composables/toasts'
+  import { useToasts } from '../composables/useToasts'
   import { Toast } from '../typings/common/toast.type'
   import 'element-plus/theme-chalk/display.css'
 

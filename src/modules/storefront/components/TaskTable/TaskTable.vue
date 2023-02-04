@@ -41,7 +41,7 @@
   import BaseTableItem from '../../../../components/table/BaseTableItem.vue'
   import BaseLink from '../../../../components/Link/BaseLink.vue'
   import { TaskCriticalLvlEnum } from '../../../../models/Task'
-  import { isLinkType, isTagType } from '../../../../lib/useTypeChecker'
+  import { useTypeChecker } from '../../../../lib/useTypeChecker'
   import { Tag } from '../../../../typings/tag'
   import { MyTask, TaskTableCategoriesEnum } from './types'
   import { TASK_TABLE_CATEGORIES } from './data'
@@ -50,6 +50,7 @@
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()
+  const { isLinkType, isTagType } = useTypeChecker()
 
   /**
    * Элементы должны быть размещены только в такой последовательности, id.title === id.id

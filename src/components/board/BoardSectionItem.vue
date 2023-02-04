@@ -64,7 +64,7 @@
 
 <script setup lang="ts">
   import { computed, ref } from 'vue'
-  import { useToasts } from '../../composables/toasts'
+  import { useToasts } from '../../composables/useToastssts'
   import { BoardStatusSection } from '../../types/board'
   import RewritableParagraph from '../RewritableParagraph.vue'
   import BoardTaskItem from './BoardTaskItem.vue'

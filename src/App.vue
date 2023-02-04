@@ -13,7 +13,7 @@
   import ToastsContainer from './components/ToastsContainer.vue'
   import { LayoutType } from './layout/layout.type'
   import { useI18n } from 'vue-i18n'
-  import { useLocale } from './lib/useLocale'
+  import { useLocale } from './composables/useLocale'
 
   const route = useRoute()
   const { locale } = useI18n()

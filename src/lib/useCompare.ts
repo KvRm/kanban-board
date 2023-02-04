@@ -37,7 +37,9 @@ function compareByDate(a: string, b: string, order: SortOrderType) {
   const date1 = dayjs(dayjs(a, 'DD/MM/YYYY').format('YYYY/MM/DD'))
   const date2 = dayjs(dayjs(b, 'DD/MM/YYYY').format('YYYY/MM/DD'))
 
-  return order === 'increasing' ? date1.diff(date2) : -date1.diff(date2)
+  const diff = date1.diff(date2)
+
+  return order === 'increasing' ? diff : -diff
 }
 
 function compareByCriticalLvl(
@@ -48,5 +50,7 @@ function compareByCriticalLvl(
   const indexA = Object.values(TaskCriticalLvlEnum).indexOf(a)
   const indexB = Object.values(TaskCriticalLvlEnum).indexOf(b)
 
-  return order === 'increasing' ? indexB - indexA : indexA - indexB
+  const diff = indexB - indexA
+
+  return order === 'increasing' ? diff : -diff
 }

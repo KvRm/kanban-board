@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useToasts } from '../composables/toasts'
+  import { useToasts } from '../composables/useToasts'
   import ToastNotification from './ToastNotification.vue'
 
   const { toasts } = useToasts()

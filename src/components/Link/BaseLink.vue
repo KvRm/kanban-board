@@ -7,6 +7,7 @@
 <script setup lang="ts">
   import { computed } from '@vue/reactivity'
   import { Link, LinkRouteEnum, TaskLink } from '.'
+  import { useTypeChecker } from '../../lib/useTypeChecker'
 
   const props = defineProps<{
     /**
@@ -14,6 +15,8 @@
      */
     link: Link | TaskLink
   }>()
+
+  const { isTaskLink } = useTypeChecker()
 
   const route = computed<string>(() => {
     if (props.link.type === 'task' && isTaskLink(props.link)) {
@@ -29,7 +32,4 @@
     }
     return ''
   })
-
-  const isTaskLink = (value: Link | TaskLink): value is TaskLink =>
-    !!((value as TaskLink)?.prefix && (value as TaskLink)?.board?.id)
 </script>

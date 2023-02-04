@@ -36,6 +36,7 @@
 <style scoped lang="scss">
   .wrapper {
     background: var(--el-color-info-light-8);
+    color: var(--el-text-color-primary);
     transition: color 0.3s, background 0.3s;
   }
 

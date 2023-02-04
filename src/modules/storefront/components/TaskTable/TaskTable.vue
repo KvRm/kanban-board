@@ -16,7 +16,7 @@
             <span v-else-if="isTagType(property[0])" class="tags-container">
               <ElTag
                 v-for="item in (property as unknown as Tag)"
-                :key="item.label"
+                :key="item.labes"
                 :type="item.type"
                 effect="dark"
                 class="tag"
@@ -25,8 +25,10 @@
                 {{ item.label }}
               </ElTag>
             </span>
-            <!-- <span v-else-if=""></span> -->
-            <span v-else>{{ t(property as string) }}</span>
+            <span v-else-if="existsInTaskCriticalLvlEnum(property as string)">
+              {{ t(property as string) }}
+            </span>
+            <span v-else>{{ property as string }}</span>
           </BaseTableItem>
         </BaseTableRow>
       </TransitionGroup>
@@ -179,6 +181,10 @@
       type: SortTypeEnum.Date,
     })
   })
+
+  function existsInTaskCriticalLvlEnum(value: string): boolean {
+    return Object.values(TaskCriticalLvlEnum).includes(value as TaskCriticalLvlEnum)
+  }
 </script>
 
 <style scoped lang="scss">

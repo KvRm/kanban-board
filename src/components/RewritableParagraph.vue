@@ -1,27 +1,30 @@
 <template>
-  <p v-if="!editing" class="rewritable-paragraph">
-    {{ modelValue }}
+  <p v-if="!editing">
+    {{ input }}
   </p>
-  <ElInput v-else class="rewritable-input" v-model="input" placeholder="Введите текст">
-    <template #suffix>
-      <FontAwesomeIcon icon="fa-solid fa-check" @click="save" />
+  <el-input v-else v-model="input" :placeholder="placeholder">
+    <template #append>
+      <el-button @click="save">
+        <FontAwesomeIcon icon="fa-solid fa-check" />
+      </el-button>
     </template>
-  </ElInput>
+  </el-input>
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue'
 
-  defineProps<{
+  const props = defineProps<{
     modelValue: string
     editing: boolean
+    placeholder: string
   }>()
 
   const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void
   }>()
 
-  const input = ref<string>('')
+  const input = ref<string>(props.modelValue)
 
   function save() {
     emit('update:modelValue', input.value)

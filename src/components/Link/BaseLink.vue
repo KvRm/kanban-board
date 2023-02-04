@@ -5,8 +5,9 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from '@vue/reactivity'
+  import { computed } from 'vue'
   import { Link, LinkRouteEnum, TaskLink } from '.'
+  import { useLocale } from '../../composables/useLocale'
   import { useTypeChecker } from '../../lib/useTypeChecker'
 
   const props = defineProps<{
@@ -17,18 +18,19 @@
   }>()
 
   const { isTaskLink } = useTypeChecker()
+  const { localeRoute } = useLocale()
 
   const route = computed<string>(() => {
     if (props.link.type === 'task' && isTaskLink(props.link)) {
-      return `${LinkRouteEnum.Board}${(props.link as TaskLink)?.board?.id}/${
-        props.link.prefix
-      }-${props.link.id}`
+      return `${localeRoute.value}/${LinkRouteEnum.Board}${
+        (props.link as TaskLink)?.board?.id
+      }/${props.link.prefix}-${props.link.id}`
     }
     if (props.link.type === 'board') {
-      return LinkRouteEnum.Board + props.link.id
+      return `${localeRoute.value}/${LinkRouteEnum.Board + props.link.id}`
     }
     if (props.link.type === 'user') {
-      return LinkRouteEnum.User + props.link.id
+      return `${localeRoute.value}/${LinkRouteEnum.User + props.link.id}`
     }
     return ''
   })

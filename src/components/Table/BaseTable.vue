@@ -100,6 +100,7 @@
         padding-bottom: 0.75rem;
         .sort-buttons {
           position: relative;
+          width: 10px;
           .choosen {
             color: var(--el-color-primary);
           }

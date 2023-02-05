@@ -8,6 +8,7 @@
           :type="toast.type"
           center
           show-icon
+          effect="dark"
           class="toast"
         />
       </TransitionGroup>
@@ -31,7 +32,7 @@
     margin-bottom: 0.5rem;
     z-index: 50;
     .toast {
-      max-width: 65rem;
+      max-width: 45rem;
       margin: 0.5rem auto 0 auto;
     }
   }

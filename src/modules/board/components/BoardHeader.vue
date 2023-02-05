@@ -1,13 +1,13 @@
 <template>
   <div class="board-header">
-    <div class="header-row max-sm:items-center">
-      <h3 class="title text-2xl flex items-center max-sm:mb-5">
+    <div class="header-row">
+      <h3 class="board-title">
         {{ boardTitle }}
       </h3>
       <BoardSettings />
     </div>
-    <div class="header-row mb-5 max-sm:flex-col max-sm:items-center">
-      <div class="sort-tags flex gap-6 max-sm:mb-5">
+    <div class="header-row">
+      <div class="sort-tags">
         <div class="choosen-tags">
           <span>Сортировать по:</span>
         </div>
@@ -81,6 +81,24 @@
       @media not all and (min-width: 840px) {
         flex-direction: column;
         align-items: center;
+      }
+      .board-title {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        line-height: 2rem;
+
+        @media not all and (min-width: 840px) {
+          margin-bottom: 1.25rem;
+        }
+      }
+      .sort-tags {
+        display: flex;
+        gap: 1.5rem;
+
+        @media not all and (min-width: 840px) {
+          margin-bottom: 1.25rem;
+        }
       }
     }
   }

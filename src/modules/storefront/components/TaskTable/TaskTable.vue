@@ -1,36 +1,37 @@
 <template>
-  <section>
-    <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
-      <TransitionGroup name="list" appear>
-        <BaseTableRow
-          v-for="task in tasks"
+  <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
+    <TransitionGroup name="list" appear>
+      <BaseTableRow
+        v-for="task in tasks"
+        :key="task.id.id + task.board.id + task.id.prefix"
+        class="line"
+        ref="row"
+      >
+        <BaseTableItem
+          v-for="property in task"
           :key="task.id.id + task.board.id + task.id.prefix"
-          class="line"
-          ref="row"
         >
-          <BaseTableItem
-            v-for="property in task"
-            :key="task.id.id + task.board.id + task.id.prefix"
-          >
-            <BaseLink v-if="isLinkType(property)" class="link" :link="property" />
-            <span v-else-if="isTagType(property[0])" class="tags-container">
-              <ElTag
-                v-for="item in (property as unknown as Tag)"
-                :key="item.label"
-                :type="item.type"
-                effect="dark"
-                class="tag"
-                disable-transitions
-              >
-                {{ item.label }}
-              </ElTag>
-            </span>
-            <span v-else>{{ property }}</span>
-          </BaseTableItem>
-        </BaseTableRow>
-      </TransitionGroup>
-    </BaseTable>
-  </section>
+          <BaseLink v-if="isLinkType(property)" class="link" :link="property" />
+          <span v-else-if="isTagType(property[0])" class="tags-container">
+            <ElTag
+              v-for="item in (property as unknown as Tag)"
+              :key="item.labes"
+              :type="item.type"
+              effect="dark"
+              class="tag"
+              disable-transitions
+            >
+              {{ item.label }}
+            </ElTag>
+          </span>
+          <span v-else-if="existsInTaskCriticalLvlEnum(property as string)">
+            {{ t(property as string) }}
+          </span>
+          <span v-else>{{ property as string }}</span>
+        </BaseTableItem>
+      </BaseTableRow>
+    </TransitionGroup>
+  </BaseTable>
 </template>
 
 <script setup lang="ts">
@@ -40,12 +41,16 @@
   import BaseTableItem from '../../../../components/table/BaseTableItem.vue'
   import BaseLink from '../../../../components/Link/BaseLink.vue'
   import { TaskCriticalLvlEnum } from '../../../../models/Task'
-  import { isLinkType, isTagType } from '../../../../lib/useTypeChecker'
+  import { useTypeChecker } from '../../../../lib/useTypeChecker'
   import { Tag } from '../../../../typings/tag'
   import { MyTask, TaskTableCategoriesEnum } from './types'
   import { TASK_TABLE_CATEGORIES } from './data'
   import { useTaskTableSort } from '../../composables/useTaskTableSort'
   import { SortTypeEnum } from '../../../../components/Table'
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+  const { isLinkType, isTagType } = useTypeChecker()
 
   /**
    * Элементы должны быть размещены только в такой последовательности, id.title === id.id
@@ -174,6 +179,10 @@
       type: SortTypeEnum.Date,
     })
   })
+
+  function existsInTaskCriticalLvlEnum(value: string): boolean {
+    return Object.values(TaskCriticalLvlEnum).includes(value as TaskCriticalLvlEnum)
+  }
 </script>
 
 <style scoped lang="scss">

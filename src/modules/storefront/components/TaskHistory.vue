@@ -1,6 +1,6 @@
 <template>
   <div class="tasks-history">
-    <span class="tasks-history-title">Последние задачи:</span>
+    <span class="tasks-history-title">{{ t('lastTasks') }}:</span>
     <span
       v-for="task in tasks"
       :key="task.board.id + task.prefix + task.id"
@@ -15,6 +15,9 @@
   import { ref } from 'vue'
   import BaseLink from '../../../components/link/BaseLink.vue'
   import { TaskLink } from '../../../components/link'
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
 
   const tasks = ref<TaskLink[]>([
     {

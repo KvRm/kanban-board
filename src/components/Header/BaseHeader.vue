@@ -1,9 +1,14 @@
 <template>
   <header class="header">
     <nav class="header-nav" ref="nav">
-      <router-link class="header-nav__link" :to="links.mainRoute">Мои доски</router-link>
-      <router-link class="header-nav__link" :to="links.myTasksRoute">
-        Мои задачи
+      <router-link class="header-nav__link" :to="mainRoute">
+        {{ t('myBoards') }}
+      </router-link>
+      <router-link class="header-nav__link" :to="myTasksRoute">
+        {{ t('myTasks') }}
+      </router-link>
+      <router-link class="header-nav__link" :to="myTasksRoute">
+        Создать доску
       </router-link>
     </nav>
     <div class="header-setting">
@@ -14,22 +19,17 @@
 </template>
 
 <script setup lang="ts">
-  import { reactive, watch } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { computed } from '@vue/reactivity'
+  import { useI18n } from 'vue-i18n'
+  import { useLocale } from '../../composables/useLocale'
   import ThemeSwitcher from '../Header/BaseThemeSwitcher.vue'
   import BaseLocale from './BaseLocale.vue'
 
-  const route = useRoute()
+  const { t } = useI18n()
+  const { localeRoute } = useLocale()
 
-  const links = reactive({
-    mainRoute: `/${route.params.locale as string}/`,
-    myTasksRoute: `/${route.params.locale as string}/my-tasks`,
-  })
-
-  watch(route, () => {
-    links.mainRoute = `/${route.params.locale as string}/`
-    links.myTasksRoute = `/${route.params.locale as string}/my-tasks`
-  })
+  const mainRoute = computed<string>(() => `${localeRoute.value}/`)
+  const myTasksRoute = computed<string>(() => `${localeRoute.value}/my-tasks`)
 </script>
 
 <style scoped lang="scss">

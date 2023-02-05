@@ -29,8 +29,8 @@ interface TaskComment {
 type StatusSection = Omit<BoardStatusSection, 'tasks'>
 
 export enum TaskCriticalLvlEnum {
-  VeryHigh = 'Очень высокая',
-  High = 'Высокая',
-  Medium = 'Средняя',
-  Low = 'Низкая',
+  VeryHigh = 'criticalLvl.veryHigh',
+  High = 'criticalLvl.high',
+  Medium = 'criticalLvl.medium',
+  Low = 'criticalLvl.low',
 }

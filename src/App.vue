@@ -10,10 +10,10 @@
 <script setup lang="ts">
   import { computed, watch } from 'vue'
   import { useRoute } from 'vue-router'
-  import ToastsContainer from './components/ToastsContainer.vue'
+  import ToastsContainer from './components/Toast/BaseToasts.vue'
   import { LayoutType } from './layout/layout.type'
   import { useI18n } from 'vue-i18n'
-  import { useLocale } from './lib/useLocale'
+  import { useLocale } from './composables/useLocale'
 
   const route = useRoute()
   const { locale } = useI18n()
@@ -36,6 +36,7 @@
 <style scoped lang="scss">
   .wrapper {
     background: var(--el-color-info-light-8);
+    color: var(--el-text-color-primary);
     transition: color 0.3s, background 0.3s;
   }
 

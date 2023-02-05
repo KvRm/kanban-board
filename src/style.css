@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 @tailwind base;
 
-html {
-  min-width: fit-content;
-}
-
 :root {
   --color-bg-primary: #f5f5f5;
   --color-bg-primary-soft: #fff;

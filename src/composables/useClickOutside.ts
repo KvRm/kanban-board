@@ -1,5 +1,4 @@
 import { onUnmounted, Ref } from 'vue'
-import { VoidFunction } from '../types/common'
 
 export const useClickOutside = (
   cb: VoidFunction,

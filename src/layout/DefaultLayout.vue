@@ -13,10 +13,8 @@
 
 <style scoped lang="scss">
   .default-layout {
-    min-height: 100vh;
     .main {
       padding: 0 0.5rem;
-      height: 100%;
       padding-top: 5rem;
     }
   }

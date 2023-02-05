@@ -1,10 +1,10 @@
 import { ref } from 'vue'
-import { Toast, ToastType } from '../typings/common/toast.type'
+import { Toast, ToastType } from '../components/Toast'
 
 const toasts = ref<Toast[]>([])
 
 export const useToasts = () => {
-  function toast(text: string, type: ToastType) {
+  function dispatch(text: string, type: ToastType) {
     const id = toasts.value.length + 1
     toasts.value.push({ id, text, type })
     setTimeout(() => removeToast(id), 5000)
@@ -14,5 +14,5 @@ export const useToasts = () => {
     toasts.value = toasts.value.filter((t) => t.id !== id)
   }
 
-  return { toasts, toast, removeToast }
+  return { toasts, dispatch, removeToast }
 }

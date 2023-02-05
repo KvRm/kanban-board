@@ -15,4 +15,4 @@ export interface BoardStatusSection {
   tasks: BoardTask[]
 }
 
-type BoardTask = Pick<Task, 'id' | 'title' | 'prefix' | 'criticalLvl'>
+export type BoardTask = Pick<Task, 'id' | 'title' | 'prefix' | 'criticalLvl'>

@@ -1,42 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { middleware } from './middleware'
+import { routes as storefrontRoutes } from '../modules/storefront/router'
+import { routes as boardRoutes } from '../modules/board/router'
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    component: () => import('../modules/storefront/pages/MainPage.vue'),
-    name: 'storefront',
-    meta: {
-      requiresAuth: true,
-      requiresLocale: true,
-    },
-  },
-  // {
-  //   path: '/board/:boardId',
-  //   name: 'board',`
-  //   component: () => import('../views/BoardView.vue'),
-  //   meta: {
-  //     requiresAuth: true,
-  //   },
-  // },
-  {
-    path: '/board/:boardId/:taskId',
-    name: 'task',
-    component: () => import('../modules/storefront/pages/MainPage.vue'),
-    meta: {
-      requiresAuth: true,
-      requiresLocale: true,
-    },
-  },
-  {
-    path: '/my-tasks',
-    name: 'my-tasks',
-    component: () => import('../modules/storefront/pages/MyTasksPage.vue'),
-    meta: {
-      requiresAuth: true,
-      requiresLocale: true,
-    },
-  },
+  ...storefrontRoutes,
+  ...boardRoutes,
   {
     path: '/login',
     name: 'login',

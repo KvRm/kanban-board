@@ -10,10 +10,8 @@
 
 <style scoped lang="scss">
   .task-container {
-    background: slateblue;
     min-height: calc(100vh - 80px);
     max-width: 1000px;
-    padding: 0.5rem;
     margin: 0 auto;
   }
 </style>

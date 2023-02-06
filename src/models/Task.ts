@@ -16,6 +16,7 @@ export interface Task {
   author: User
   executor: User
   description: string
+  // files
   comments: TaskComment[]
 }
 

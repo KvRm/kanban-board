@@ -7,6 +7,12 @@ export interface Board {
   owner: User
   participants: User[]
   statusSections: BoardStatusSection[]
+  // currentSprint: {
+  //   startDate: string
+  //   endDate: string
+  //   statusSections: BoardStatusSection[]
+  // }
+  // previousSprints
 }
 
 export interface BoardStatusSection {

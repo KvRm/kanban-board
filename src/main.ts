@@ -29,6 +29,9 @@ import {
   faSortUp,
   faSortDown,
   faPlus,
+  faUser,
+  faUpLong,
+  faCloudArrowUp,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -44,7 +47,10 @@ library.add(
   faCheck,
   faSortUp,
   faSortDown,
-  faPlus
+  faPlus,
+  faUser,
+  faUpLong,
+  faCloudArrowUp
 )
 
 const app = createApp(App)

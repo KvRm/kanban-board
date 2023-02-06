@@ -7,15 +7,31 @@
       <BoardSettings />
     </div>
     <div class="header-row">
-      <div class="sort-tags">
-        <div class="choosen-tags">
-          <span>Сортировать по:</span>
-        </div>
-        <div class="all-tags">
-          <span>Все теги:</span>
+      <div class="sort-search">
+        <SearchInput
+          :search-resource="[{}]"
+          placeholder="Введите id или название задачи"
+        />
+        <div class="sort-tags">
+          <div class="choosen-tags">
+            <span>Сортировать по:</span>
+          </div>
+          <div class="all-tags">
+            <span>Все теги:</span>
+          </div>
         </div>
       </div>
-      <SearchInput :search-resource="[{}]" placeholder="Введите id или название задачи" />
+      <div class="sprint">
+        <p>Спринт</p>
+        <el-select v-model="sprint" placeholder="Выбрать спринт" size="large">
+          <el-option
+            v-for="item in [currentSprint, ...previosSprints]"
+            :key="item"
+            :label="item"
+            :value="item"
+          />
+        </el-select>
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +53,11 @@
     { type: 'danger', label: 'Tag 4' },
     { type: 'warning', label: 'Tag 5' },
   ])
+
+  const currentSprint = ref<string>('01-02-2023')
+  const previosSprints = ref<string[]>(['01-01-2023', '01-12-2022'])
+
+  const sprint = ref<string>(currentSprint.value)
 
   const sortingTags = ref<Tag[]>([])
 
@@ -92,12 +113,16 @@
           margin-bottom: 1.25rem;
         }
       }
-      .sort-tags {
+      .sort-search {
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
+        .sort-tags {
+          display: flex;
+          gap: 1.5rem;
 
-        @media not all and (min-width: 840px) {
-          margin-bottom: 1.25rem;
+          @media not all and (min-width: 840px) {
+            margin-bottom: 1.25rem;
+          }
         }
       }
     }

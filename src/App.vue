@@ -15,6 +15,10 @@
   import { useI18n } from 'vue-i18n'
   import { useLocale } from './composables/useLocale'
 
+  const props = defineProps<{
+    locale: string
+  }>()
+
   const route = useRoute()
   const { locale } = useI18n()
   const { loadLocaleMessages } = useLocale()

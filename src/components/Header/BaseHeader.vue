@@ -12,6 +12,7 @@
       </router-link>
     </nav>
     <div class="header-setting">
+      <router-link :to="loginRoute">Login</router-link>
       <BaseLocale />
       <ThemeSwitcher />
     </div>
@@ -30,6 +31,7 @@
 
   const mainRoute = computed<string>(() => `${localeRoute.value}/`)
   const myTasksRoute = computed<string>(() => `${localeRoute.value}/my-tasks`)
+  const loginRoute = computed<string>(() => `${localeRoute.value}/login`)
 </script>
 
 <style scoped lang="scss">

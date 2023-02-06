@@ -6,6 +6,10 @@ export const middleware = async (to: RouteLocationNormalized) => {
   const availableLocales = [...Object.values(SupportLocalesEnum)]
   const locale = to.params.locale as string
 
+  if (locale === 'login') {
+    return { path: '/en/login' }
+  }
+
   if (availableLocales.includes(locale as SupportLocalesEnum)) {
     if (startsWithLocaleWithoutSlash(to.path, availableLocales)) {
       return { path: to.path + '/' }

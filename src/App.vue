@@ -1,8 +1,6 @@
 <template>
   <component :is="layout" class="wrapper">
-    <Transition name="item" appear>
-      <router-view />
-    </Transition>
+    <router-view />
   </component>
   <ToastsContainer />
 </template>
@@ -23,7 +21,7 @@
   const { locale } = useI18n()
   const { loadLocaleMessages } = useLocale()
 
-  const layout = computed<LayoutType>(() => route.meta.layout || 'DefaultLayout')
+  const layout = computed<LayoutType>(() => route.meta.layout || 'EmptyLayout')
 
   watch(route, () => {
     setLocale()
@@ -42,19 +40,5 @@
     background: var(--el-color-info-light-8);
     color: var(--el-text-color-primary);
     transition: color 0.3s, background 0.3s;
-  }
-
-  .item-move,
-  .item-enter-active,
-  .item-leave-active {
-    transition: all 0.5s ease;
-  }
-  .item-enter-from,
-  .item-leave-to {
-    opacity: 0;
-    transform: translateY(-500px);
-  }
-  .item-leave-active {
-    position: absolute;
   }
 </style>

@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
-const app = initializeApp({
+export const firebaseApp = initializeApp({
   apiKey: 'AIzaSyBsykbgBF86M_tEjTDz4P3VlSJL2yHPYAU',
   authDomain: 'scrum-board-vue.firebaseapp.com',
   projectId: 'scrum-board-vue',
@@ -10,4 +12,6 @@ const app = initializeApp({
   measurementId: 'G-NYPXPVZ2KZ',
 })
 
-export default app
+export const auth = getAuth(firebaseApp)
+
+export const db = getFirestore()

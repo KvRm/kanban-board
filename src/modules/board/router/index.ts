@@ -8,6 +8,7 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {
       requiresAuth: true,
       requiresLocale: true,
+      layout: 'DefaultLayout',
     },
   },
   {
@@ -17,6 +18,7 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {
       requiresAuth: true,
       requiresLocale: true,
+      layout: 'DefaultLayout',
     },
   },
 ]

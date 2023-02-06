@@ -1,4 +1,4 @@
-import { LayoutType } from '../types/common'
+import { LayoutType } from '../layout/layout.type'
 
 export {}
 

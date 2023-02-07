@@ -3,16 +3,16 @@
     <LoginForm :dark-theme="darkTheme" />
     <transition name="el-zoom-in-bottom" appear>
       <div class="login-footer">
-        <img v-if="darkTheme" src="../../../assets/LoginFooterDark.svg" />
-        <img v-if="!darkTheme" src="../../../assets/LoginFooterLight.svg" />
+        <img v-if="darkTheme" src="../assets/LoginFooterDark.svg" />
+        <img v-if="!darkTheme" src="../assets/LoginFooterLight.svg" />
       </div>
     </transition>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { useTheme } from '../../../composables/useTheme'
-  import LoginForm from '../components/LoginForm.vue'
+  import { useTheme } from '../composables/useTheme'
+  import LoginForm from '../components/Login/LoginForm.vue'
 
   const { darkTheme } = useTheme()
 </script>

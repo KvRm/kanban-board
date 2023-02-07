@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../modules/login/pages/LoginPage.vue'),
+    component: () => import('../pages/LoginPage.vue'),
     meta: {
       loginView: true,
       layout: 'EmptyLayout',

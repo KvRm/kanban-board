@@ -2,6 +2,7 @@
   <div class="form-main">
     <input
       type="text"
+      autocomplete="email"
       class="input-field"
       placeholder="Email"
       v-model="registerData.email"
@@ -9,6 +10,7 @@
     />
     <input
       type="password"
+      autocomplete="new-password"
       class="input-field"
       placeholder="Password"
       v-model="registerData.password"
@@ -16,6 +18,7 @@
     />
     <input
       type="password"
+      autocomplete="current-password"
       class="input-field repeat-password"
       placeholder="Repeat password"
       v-model="registerData.passwordRepeat"
@@ -28,9 +31,9 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, watch } from 'vue'
+  import { onMounted, reactive } from 'vue'
   import { useRoute } from 'vue-router'
-  import { AuthRequest } from '../../../services/firebase/auth/auth.types'
+  import { AuthRequest } from '../../services/firebase/types'
 
   interface RegisterData extends AuthRequest {
     passwordRepeat: string
@@ -42,23 +45,22 @@
 
   const route = useRoute()
 
-  const registerData = ref<RegisterData>({
+  const registerData = reactive<RegisterData>({
     email: '',
     password: '',
     passwordRepeat: '',
   })
 
-  function changeRegisterFields() {
-    const email = registerData.value.email
-    const password =
-      registerData.value.password === registerData.value.passwordRepeat
-        ? registerData.value.password
-        : ''
+  onMounted(() => {
+    changeRegisterFields()
+  })
 
-    emit('registerFieldsChanged', {
-      email,
-      password,
-    })
+  function changeRegisterFields() {
+    const email = registerData.email
+    const password =
+      registerData.password === registerData.passwordRepeat ? registerData.password : ''
+
+    emit('registerFieldsChanged', { email, password })
   }
 </script>
 
@@ -90,7 +92,7 @@
     }
   }
 
-  .form-main {
+  .form-main-dark {
     .form-link {
       color: #20df7f;
     }

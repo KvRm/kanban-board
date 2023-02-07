@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AuthLinks: typeof import('./src/components/AuthLinks.vue')['default']
+    AuthorizationFields: typeof import('./src/components/Login/AuthorizationFields.vue')['default']
     BaseBreadcrumbs: typeof import('./src/components/BaseBreadcrumbs.vue')['default']
     BaseForm: typeof import('./src/components/BaseForm.vue')['default']
     BaseHeader: typeof import('./src/components/Header/BaseHeader.vue')['default']
@@ -33,6 +34,8 @@ declare module '@vue/runtime-core' {
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
+    LoginForm: typeof import('./src/components/Login/LoginForm.vue')['default']
+    RegisterFields: typeof import('./src/components/Login/RegisterFields.vue')['default']
     RewritableParagraph: typeof import('./src/components/RewritableParagraph.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

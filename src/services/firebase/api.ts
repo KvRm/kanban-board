@@ -1,5 +1,5 @@
 import { getDoc, doc } from 'firebase/firestore'
-import { db } from '.'
+import { db } from '../../main'
 
 export const firestore = async () => {
   let docRef

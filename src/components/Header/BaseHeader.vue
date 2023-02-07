@@ -12,9 +12,9 @@
       </router-link>
     </nav>
     <div class="header-setting">
-      <router-link :to="loginRoute">Login</router-link>
       <BaseLocale />
-      <ThemeSwitcher />
+      <BaseThemeSwitcher />
+      <BaseHeaderUser />
     </div>
   </header>
 </template>
@@ -23,8 +23,9 @@
   import { computed } from '@vue/reactivity'
   import { useI18n } from 'vue-i18n'
   import { useLocale } from '../../composables/useLocale'
-  import ThemeSwitcher from '../Header/BaseThemeSwitcher.vue'
+  import BaseThemeSwitcher from '../Header/BaseThemeSwitcher.vue'
   import BaseLocale from './BaseLocale.vue'
+  import BaseHeaderUser from './BaseHeaderUser.vue'
 
   const { t } = useI18n()
   const { localeRoute } = useLocale()

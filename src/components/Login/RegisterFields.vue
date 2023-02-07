@@ -2,6 +2,13 @@
   <div class="form-main">
     <input
       type="text"
+      class="input-field"
+      placeholder="Username"
+      v-model="username"
+      @input="updateUsername"
+    />
+    <input
+      type="text"
       autocomplete="email"
       class="input-field"
       placeholder="Email"
@@ -31,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, reactive } from 'vue'
+  import { onMounted, reactive, ref } from 'vue'
   import { useRoute } from 'vue-router'
   import { AuthRequest } from '../../services/firebase/types'
 
@@ -41,6 +48,7 @@
 
   const emit = defineEmits<{
     (e: 'registerFieldsChanged', value: AuthRequest): void
+    (e: 'userNameChanged', value: string): void
   }>()
 
   const route = useRoute()
@@ -50,6 +58,8 @@
     password: '',
     passwordRepeat: '',
   })
+
+  const username = ref<string>('')
 
   onMounted(() => {
     changeRegisterFields()
@@ -61,6 +71,10 @@
       registerData.password === registerData.passwordRepeat ? registerData.password : ''
 
     emit('registerFieldsChanged', { email, password })
+  }
+
+  function updateUsername() {
+    emit('userNameChanged', username.value)
   }
 </script>
 

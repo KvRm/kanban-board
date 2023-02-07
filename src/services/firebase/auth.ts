@@ -1,8 +1,15 @@
 import { FirebaseError } from 'firebase/app'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth'
 import { onAuthStateChanged, User } from 'firebase/auth'
 import { computed, ref } from 'vue'
+import { useToasts } from '../../composables/useToasts'
 import { auth } from '../../main'
+
+const { dispatch } = useToasts()
 
 const userData = ref<User | null>(null)
 const error = ref<string>('')
@@ -33,6 +40,16 @@ export const useAuth = () => {
     }
   }
 
+  async function logout() {
+    try {
+      await signOut(auth)
+      userData.value = null
+      error.value = ''
+    } catch (e: unknown) {
+      dispatch('Failed to logout', 'error')
+    }
+  }
+
   async function isLoggedIn() {
     try {
       await new Promise((resolve, reject) =>
@@ -60,5 +77,5 @@ export const useAuth = () => {
     return false
   }
 
-  return { userData, uid, error, register, isLoggedIn, authorizate }
+  return { userData, uid, error, register, isLoggedIn, authorizate, logout }
 }

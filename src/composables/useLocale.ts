@@ -1,5 +1,5 @@
-import { nextTick, ref, watch } from 'vue'
-import { RouteLocationNormalized, useRoute } from 'vue-router'
+import { nextTick, ref } from 'vue'
+import { RouteLocationNormalized } from 'vue-router'
 import { i18n } from '../plugins/i18n'
 import router from '../router'
 

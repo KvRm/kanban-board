@@ -38,6 +38,7 @@ import {
   faUser,
   faUpLong,
   faCloudArrowUp,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -56,7 +57,8 @@ library.add(
   faPlus,
   faUser,
   faUpLong,
-  faCloudArrowUp
+  faCloudArrowUp,
+  faRightFromBracket
 )
 
 const firebaseApp = initializeApp(FIREBASE_CONFIG)

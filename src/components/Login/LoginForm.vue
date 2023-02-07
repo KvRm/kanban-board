@@ -12,11 +12,12 @@
           <RegisterFields
             v-if="registration"
             @register-fields-changed="rewriteAuthData"
+            @user-name-changed="rewriteUsername"
           />
           <AuthorizationFields v-else @auth-fields-changed="rewriteAuthData" />
         </template>
         <template #footer>
-          <p class="form-error">{{ auth.error.value }}</p>
+          <p class="form-error">{{ error }}</p>
           <div class="form-footer">
             <button
               type="submit"
@@ -34,8 +35,11 @@
 </template>
 
 <script setup lang="ts">
+  import { updateProfile } from '@firebase/auth'
   import { computed, reactive, ref, watch } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
+  import { useLocale } from '../../composables/useLocale'
+  import { auth } from '../../main'
   import { useAuth } from '../../services/firebase/auth'
   import { AuthRequest } from '../../services/firebase/types'
   import BaseForm from '../BaseForm.vue'
@@ -48,7 +52,8 @@
 
   const router = useRouter()
   const route = useRoute()
-  const auth = useAuth()
+  const { register, error, authorizate, userData } = useAuth()
+  const { localeRoute } = useLocale()
 
   const registration = computed<boolean>(() => route.query.t === 'register')
   const title = computed<string>(() => (registration.value ? 'Sign up' : 'Sign in'))
@@ -60,8 +65,10 @@
     password: '',
   })
 
+  const username = ref<string>('')
+
   watch(authData, () => {
-    auth.error.value = ''
+    error.value = ''
 
     !(authData.email && authData.password)
       ? (btnDisabled.value = true)
@@ -73,18 +80,27 @@
     authData.password = value.password
   }
 
+  function rewriteUsername(value: string) {
+    username.value = value
+  }
+
   async function handleForm() {
     btnText.value = 'Loading...'
     btnDisabled.value = true
     if (registration.value) {
-      await auth.register(authData.email, authData.password)
+      await register(authData.email, authData.password)
+
+      if (auth.currentUser) {
+        await updateProfile(auth.currentUser, {
+          displayName: username.value,
+        })
+      }
     } else {
-      await auth.authorizate(authData.email, authData.password)
+      await authorizate(authData.email, authData.password)
     }
-    if (auth.userData.value) {
-      router.push({ path: '/' })
+    if (userData.value) {
+      router.push({ path: `${localeRoute.value}/` })
     }
-    btnDisabled.value = false
   }
 </script>
 

@@ -81,7 +81,7 @@
       width: 100%;
       justify-content: space-between;
       padding-bottom: 1rem;
-      border-bottom: 1px solid var(--el-color-info);
+      border-bottom: 1px solid var(--el-color-info-light-3);
       .task-title {
         font-size: 1.75rem;
         font-weight: 700;
@@ -101,7 +101,7 @@
         flex-direction: column;
         padding-top: 1rem;
         max-width: 720px;
-        border-right: 1px solid var(--el-color-info);
+        border-right: 1px solid var(--el-color-info-light-3);
         .task-content-item {
           margin-bottom: 2rem;
           .label {

@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AuthLinks: typeof import('./src/components/AuthLinks.vue')['default']
     BaseBreadcrumbs: typeof import('./src/components/BaseBreadcrumbs.vue')['default']
+    BaseForm: typeof import('./src/components/BaseForm.vue')['default']
     BaseHeader: typeof import('./src/components/Header/BaseHeader.vue')['default']
     BaseLink: typeof import('./src/components/Link/BaseLink.vue')['default']
     BaseLocale: typeof import('./src/components/Header/BaseLocale.vue')['default']

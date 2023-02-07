@@ -1,4 +1,4 @@
-import { getAuth } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { onAuthStateChanged, User } from 'firebase/auth'
 
 export const auth = getAuth()

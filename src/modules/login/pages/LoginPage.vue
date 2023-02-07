@@ -1,10 +1,12 @@
 <template>
   <div class="login" :class="{ 'login-dark': darkTheme }">
-    <LoginForm />
-    <div class="login-footer">
-      <img v-if="darkTheme" src="../../../assets/LoginFooterDark.svg" />
-      <img v-if="!darkTheme" src="../../../assets/LoginFooterLight.svg" />
-    </div>
+    <LoginForm :dark-theme="darkTheme" />
+    <transition name="el-zoom-in-bottom" appear>
+      <div class="login-footer">
+        <img v-if="darkTheme" src="../../../assets/LoginFooterDark.svg" />
+        <img v-if="!darkTheme" src="../../../assets/LoginFooterLight.svg" />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -17,6 +19,9 @@
 
 <style scoped lang="scss">
   .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100vw;
     .login-footer {
@@ -29,6 +34,6 @@
     }
   }
   .login-dark {
-    background: #224957;
+    background: #093545;
   }
 </style>

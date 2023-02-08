@@ -12,14 +12,6 @@
           :search-resource="[{}]"
           placeholder="Введите id или название задачи"
         />
-        <div class="sort-tags">
-          <div class="choosen-tags">
-            <span>Сортировать по:</span>
-          </div>
-          <div class="all-tags">
-            <span>Все теги:</span>
-          </div>
-        </div>
       </div>
       <div class="sprint">
         <p>Спринт</p>
@@ -116,14 +108,6 @@
       .sort-search {
         display: flex;
         gap: 1rem;
-        .sort-tags {
-          display: flex;
-          gap: 1.5rem;
-
-          @media not all and (min-width: 840px) {
-            margin-bottom: 1.25rem;
-          }
-        }
       }
     }
   }

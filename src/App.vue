@@ -1,15 +1,14 @@
 <template>
-  <component :is="layout" class="wrapper">
+  <component :is="$route.meta.layout" class="wrapper">
     <router-view />
   </component>
   <ToastsContainer />
 </template>
 
 <script setup lang="ts">
-  import { computed, watch } from 'vue'
+  import { watch } from 'vue'
   import { useRoute } from 'vue-router'
   import ToastsContainer from './components/Toast/BaseToasts.vue'
-  import { LayoutType } from './layout/layout.type'
   import { useI18n } from 'vue-i18n'
   import { useLocale } from './composables/useLocale'
 
@@ -20,8 +19,6 @@
   const route = useRoute()
   const { locale } = useI18n()
   const { loadLocaleMessages } = useLocale()
-
-  const layout = computed<LayoutType>(() => route.meta.layout || 'EmptyLayout')
 
   watch(route, () => {
     setLocale()

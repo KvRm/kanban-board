@@ -3,10 +3,11 @@ import { SupportLocalesEnum } from '../components/Header/locale.types'
 import { useAuth } from '../services/firebase/auth'
 import { startsWithLocaleWithoutSlash } from './helpers'
 
+const { isLoggedIn } = useAuth()
+
 export const middleware = async (to: RouteLocationNormalized) => {
   const availableLocales = [...Object.values(SupportLocalesEnum)]
   const locale = to.params.locale as string
-  const { isLoggedIn } = useAuth()
 
   if (availableLocales.includes(locale as SupportLocalesEnum)) {
     if (startsWithLocaleWithoutSlash(to.path, availableLocales)) {

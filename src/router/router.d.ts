@@ -7,6 +7,6 @@ declare module 'vue-router' {
     requiresAuth?: boolean
     loginView?: boolean
     requiresLocale?: boolean
-    layout?: LayoutType
+    layout: LayoutType
   }
 }

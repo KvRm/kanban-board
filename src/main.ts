@@ -65,9 +65,9 @@ const firebaseApp = initializeApp(FIREBASE_CONFIG)
 export const auth = getAuth(firebaseApp)
 export const db = getFirestore(firebaseApp)
 
-const app = createApp(App)
-
 const pinia = createPinia()
+
+const app = createApp(App)
 
 app
   .use(router)

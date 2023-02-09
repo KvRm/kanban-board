@@ -113,7 +113,8 @@
     justify-content: center;
     text-align: center;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    color: #224957;
+    color: #1d3043;
+    z-index: 2;
     .form-header {
       margin-bottom: 36px;
       .title {
@@ -130,26 +131,26 @@
       .submit-btn {
         width: 300px;
         padding: 1rem 0;
-        background: #20df7f;
+        background: #409eff;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
         transition: all 0.2s;
-        color: #224957;
+        color: white;
         &:hover {
-          background: darken($color: #20df7f, $amount: 7);
+          background: darken($color: #409eff, $amount: 7);
         }
         &:active {
-          background: lighten($color: #20df7f, $amount: 7);
+          background: lighten($color: #409eff, $amount: 7);
         }
       }
       .submit-btn-disabled {
-        background: lighten($color: #20df7f, $amount: 25);
+        background: lighten($color: #409eff, $amount: 25);
         cursor: default;
         &:hover {
-          background: lighten($color: #20df7f, $amount: 25);
+          background: lighten($color: #409eff, $amount: 25);
         }
         &:active {
-          background: lighten($color: #20df7f, $amount: 25);
+          background: lighten($color: #409eff, $amount: 25);
         }
       }
     }
@@ -158,8 +159,5 @@
   .login-form-dark {
     text-shadow: none;
     color: white;
-    .submit-btn {
-      color: white;
-    }
   }
 </style>

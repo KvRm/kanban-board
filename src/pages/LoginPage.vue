@@ -3,8 +3,7 @@
     <LoginForm :dark-theme="darkTheme" />
     <transition name="el-zoom-in-bottom" appear>
       <div class="login-footer">
-        <img v-if="darkTheme" src="../assets/LoginFooterDark.svg" />
-        <img v-if="!darkTheme" src="../assets/LoginFooterLight.svg" />
+        <img :src="getImageUrl()" />
       </div>
     </transition>
   </div>
@@ -15,6 +14,11 @@
   import LoginForm from '../components/Login/LoginForm.vue'
 
   const { darkTheme } = useTheme()
+
+  function getImageUrl() {
+    const imgName = darkTheme.value ? 'Dark' : 'Light'
+    return new URL(`../assets/LoginFooter${imgName}.svg`, import.meta.url).href
+  }
 </script>
 
 <style scoped lang="scss">
@@ -34,6 +38,6 @@
     }
   }
   .login-dark {
-    background: #093545;
+    background: #1d3043;
   }
 </style>

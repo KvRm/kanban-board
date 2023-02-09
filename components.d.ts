@@ -7,12 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AuthLinks: typeof import('./src/components/AuthLinks.vue')['default']
     AuthorizationFields: typeof import('./src/components/Login/AuthorizationFields.vue')['default']
     BaseBreadcrumbs: typeof import('./src/components/BaseBreadcrumbs.vue')['default']
     BaseForm: typeof import('./src/components/BaseForm.vue')['default']
     BaseHeader: typeof import('./src/components/Header/BaseHeader.vue')['default']
-    BaseHeaderAuth: typeof import('./src/components/Header/BaseHeaderAuth.vue')['default']
     BaseHeaderUser: typeof import('./src/components/Header/BaseHeaderUser.vue')['default']
     BaseLink: typeof import('./src/components/Link/BaseLink.vue')['default']
     BaseLocale: typeof import('./src/components/Header/BaseLocale.vue')['default']
@@ -22,10 +20,7 @@ declare module '@vue/runtime-core' {
     BaseThemeSwitcher: typeof import('./src/components/Header/BaseThemeSwitcher.vue')['default']
     BaseToasts: typeof import('./src/components/Toast/BaseToasts.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
-    ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
-    ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCollapseTransition: typeof import('element-plus/es')['ElCollapseTransition']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
@@ -43,8 +38,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchInput: typeof import('./src/components/SearchInput.vue')['default']
-    ToastNotification: typeof import('./src/components/ToastNotification.vue')['default']
-    ToastsContainer: typeof import('./src/components/ToastsContainer.vue')['default']
     UserProfile: typeof import('./src/components/UserProfile.vue')['default']
   }
 }

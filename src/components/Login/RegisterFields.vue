@@ -86,7 +86,7 @@
     .input-field {
       margin-bottom: 32px;
       height: 45px;
-      background: #224957;
+      background: #213d5b;
       border-radius: 10px;
       padding: 12px 18px;
       color: white;

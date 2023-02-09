@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     LoginForm: typeof import('./src/components/Login/LoginForm.vue')['default']
     RegisterFields: typeof import('./src/components/Login/RegisterFields.vue')['default']
+    RestorePasswordForm: typeof import('./src/components/Login/RestorePasswordForm.vue')['default']
     RewritableParagraph: typeof import('./src/components/RewritableParagraph.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

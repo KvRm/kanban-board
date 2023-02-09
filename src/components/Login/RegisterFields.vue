@@ -31,15 +31,11 @@
       v-model="registerData.passwordRepeat"
       @input="changeRegisterFields"
     />
-    <router-link :to="{ path: route.path }" class="form-link">
-      Already have an account?
-    </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
   import { onMounted, reactive, ref } from 'vue'
-  import { useRoute } from 'vue-router'
   import { AuthRequest } from '../../services/firebase/types'
 
   interface RegisterData extends AuthRequest {
@@ -50,8 +46,6 @@
     (e: 'registerFieldsChanged', value: AuthRequest): void
     (e: 'userNameChanged', value: string): void
   }>()
-
-  const route = useRoute()
 
   const registerData = reactive<RegisterData>({
     email: '',
@@ -86,7 +80,7 @@
     .input-field {
       margin-bottom: 32px;
       height: 45px;
-      background: #213d5b;
+      background:   #213d5b;
       border-radius: 10px;
       padding: 12px 18px;
       color: white;

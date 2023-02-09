@@ -1,35 +1,26 @@
 <template>
-  <component :is="$route.meta.layout" class="wrapper">
+  <component :is="layout" class="wrapper">
     <router-view />
   </component>
   <ToastsContainer />
 </template>
 
 <script setup lang="ts">
-  import { watch } from 'vue'
+  import { computed, defineAsyncComponent } from 'vue'
   import { useRoute } from 'vue-router'
   import ToastsContainer from './components/Toast/BaseToasts.vue'
-  import { useI18n } from 'vue-i18n'
-  import { useLocale } from './composables/useLocale'
+  import { LayoutType } from './layout/layout.type'
 
-  const props = defineProps<{
-    locale: string
-  }>()
+  const EmptyLayout = defineAsyncComponent(() => import('./layout/EmptyLayout.vue'))
+  const DefaultLayput = defineAsyncComponent(() => import('./layout/DefaultLayout.vue'))
 
   const route = useRoute()
-  const { locale } = useI18n()
-  const { loadLocaleMessages } = useLocale()
 
-  watch(route, () => {
-    setLocale()
-  })
-
-  async function setLocale() {
-    const currentLocale = route.params.locale as string
-
-    await loadLocaleMessages(currentLocale)
-    locale.value = currentLocale
+  const layoutMap: Record<LayoutType, unknown> = {
+    EmptyLayout: EmptyLayout,
+    DefaultLayout: DefaultLayput,
   }
+  const layout = computed<unknown>(() => layoutMap[route.meta.layout])
 </script>
 
 <style scoped lang="scss">

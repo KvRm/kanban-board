@@ -27,6 +27,14 @@
             >
               {{ btnText }}
             </button>
+            <div class="form-auth-route">
+              <router-link
+                :to="{ path: authRoute.route.path, query: authRoute.route.query }"
+                class="form-link"
+              >
+                {{ authRoute.label }}
+              </router-link>
+            </div>
           </div>
         </template>
       </BaseForm>
@@ -38,7 +46,9 @@
   import { updateProfile } from '@firebase/auth'
   import { computed, reactive, ref, watch } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
+  import { AuthRoute, AuthRouteProps } from '.'
   import { useLocale } from '../../composables/useLocale'
+  import { useTheme } from '../../composables/useTheme'
   import { auth } from '../../main'
   import { useAuth } from '../../services/firebase/auth'
   import { AuthRequest } from '../../services/firebase/types'
@@ -46,14 +56,31 @@
   import AuthorizationFields from './AuthorizationFields.vue'
   import RegisterFields from './RegisterFields.vue'
 
-  defineProps<{
-    darkTheme: boolean
-  }>()
-
   const router = useRouter()
   const route = useRoute()
   const { register, error, authorizate, userData } = useAuth()
   const { localeRoute } = useLocale()
+  const { darkTheme } = useTheme()
+
+  const authRouteMap: AuthRoute = {
+    register: {
+      label: "Don't have an account?",
+      route: {
+        path: route.path,
+        query: { t: 'register' },
+      },
+    },
+    authorizate: {
+      label: 'Already have an account?',
+      route: {
+        path: route.path,
+        query: {},
+      },
+    },
+  }
+  const authRoute = computed<AuthRouteProps>(() =>
+    registration.value ? authRouteMap.authorizate : authRouteMap.register
+  )
 
   const registration = computed<boolean>(() => route.query.t === 'register')
   const title = computed<string>(() => (registration.value ? 'Sign up' : 'Sign in'))
@@ -89,7 +116,6 @@
     btnDisabled.value = true
     if (registration.value) {
       await register(authData.email, authData.password)
-
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, {
           displayName: username.value,
@@ -98,8 +124,11 @@
     } else {
       await authorizate(authData.email, authData.password)
     }
+
     if (userData.value) {
       router.push({ path: `${localeRoute.value}/` })
+    } else {
+      btnText.value = 'Login'
     }
   }
 </script>
@@ -131,6 +160,7 @@
       .submit-btn {
         width: 300px;
         padding: 1rem 0;
+        margin-bottom: 0.5rem;
         background: #409eff;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
@@ -152,6 +182,9 @@
         &:active {
           background: lighten($color: #409eff, $amount: 25);
         }
+      }
+      .form-auth-route {
+        text-align: start;
       }
     }
   }

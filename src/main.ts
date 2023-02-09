@@ -6,9 +6,6 @@ import router from './router'
 import { createPinia } from 'pinia'
 import { i18n } from './plugins/i18n'
 
-import DefaultLayout from './layout/DefaultLayout.vue'
-import EmptyLayout from './layout/EmptyLayout.vue'
-
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
@@ -74,7 +71,5 @@ app
   .use(pinia)
   .use(i18n)
   .use(ElementPlus)
-  .component('DefaultLayout', DefaultLayout)
-  .component('EmptyLayout', EmptyLayout)
   .component('FontAwesomeIcon', FontAwesomeIcon)
   .mount('#app')

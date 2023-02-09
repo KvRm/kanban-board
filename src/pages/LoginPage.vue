@@ -1,6 +1,6 @@
 <template>
   <div class="login" :class="{ 'login-dark': darkTheme }">
-    <LoginForm :dark-theme="darkTheme" />
+    <component :is="form" />
     <transition name="el-zoom-in-bottom" appear>
       <div class="login-footer">
         <img :src="getImageUrl()" />
@@ -11,9 +11,27 @@
 
 <script setup lang="ts">
   import { useTheme } from '../composables/useTheme'
-  import LoginForm from '../components/Login/LoginForm.vue'
+  import { useRoute } from 'vue-router'
+  import { computed, defineAsyncComponent } from 'vue'
+  import { AuthFormType } from '../components/Login'
+
+  const LoginForm = defineAsyncComponent(
+    () => import('../components/Login/LoginForm.vue')
+  )
+  const RestorePasswordForm = defineAsyncComponent(
+    () => import('../components/Login/RestorePasswordForm.vue')
+  )
 
   const { darkTheme } = useTheme()
+  const route = useRoute()
+
+  const authFormMap: Record<AuthFormType, unknown> = {
+    LoginForm: LoginForm,
+    RestorePasswordForm: RestorePasswordForm,
+  }
+  const form = computed<unknown>(() =>
+    route.query.a === 'restore' ? authFormMap.RestorePasswordForm : authFormMap.LoginForm
+  )
 
   function getImageUrl() {
     const imgName = darkTheme.value ? 'Dark' : 'Light'

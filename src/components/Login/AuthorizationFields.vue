@@ -16,19 +16,13 @@
       v-model="authData.password"
       @input="changeAuthFields"
     />
-    <span class="form-link forgot-pasword">Forgot password?</span>
-    <router-link :to="{ path: route.path, query: { t: 'register' } }" class="form-link">
-      Don't have an account?
-    </router-link>
+    <span class="form-link">Forgot password?</span>
   </div>
 </template>
 
 <script setup lang="ts">
   import { onMounted, reactive } from 'vue'
-  import { useRoute } from 'vue-router'
   import { AuthRequest } from '../../services/firebase/types'
-
-  const route = useRoute()
 
   const emit = defineEmits<{
     (e: 'authFieldsChanged', value: AuthRequest): void
@@ -76,9 +70,6 @@
       justify-self: flex-start;
       color: var(--el-text-color-primary);
       cursor: pointer;
-    }
-    .forgot-pasword {
-      margin-bottom: 10px;
     }
   }
 

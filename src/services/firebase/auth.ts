@@ -1,6 +1,7 @@
 import { FirebaseError } from 'firebase/app'
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
@@ -50,6 +51,16 @@ export const useAuth = () => {
     }
   }
 
+  async function restorePassword(email: string) {
+    try {
+      await sendPasswordResetEmail(auth, email)
+    } catch (e: unknown) {
+      if (e instanceof FirebaseError) {
+        error.value = e.code
+      }
+    }
+  }
+
   async function isLoggedIn() {
     try {
       await new Promise((resolve, reject) =>
@@ -77,5 +88,14 @@ export const useAuth = () => {
     return false
   }
 
-  return { userData, uid, error, register, isLoggedIn, authorizate, logout }
+  return {
+    userData,
+    uid,
+    error,
+    register,
+    isLoggedIn,
+    authorizate,
+    logout,
+    restorePassword,
+  }
 }

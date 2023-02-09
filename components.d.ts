@@ -31,7 +31,6 @@ declare module '@vue/runtime-core' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    ElUpload: typeof import('element-plus/es')['ElUpload']
     LoginForm: typeof import('./src/components/Login/LoginForm.vue')['default']
     RegisterFields: typeof import('./src/components/Login/RegisterFields.vue')['default']
     RestorePasswordForm: typeof import('./src/components/Login/RestorePasswordForm.vue')['default']

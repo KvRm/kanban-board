@@ -76,11 +76,11 @@
   .form-main {
     display: flex;
     flex-direction: column;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     .input-field {
-      margin-bottom: 32px;
+      margin-bottom: 16px;
       height: 45px;
-      background:   #213d5b;
+      background: #213d5b;
       border-radius: 10px;
       padding: 12px 18px;
       color: white;

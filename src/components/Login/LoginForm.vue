@@ -145,9 +145,9 @@
     color: #1d3043;
     z-index: 2;
     .form-header {
-      margin-bottom: 36px;
+      margin-bottom: 26px;
       .title {
-        margin-bottom: 40px;
+        margin-bottom: 25px;
         font-size: 64px;
         line-height: 80px;
       }

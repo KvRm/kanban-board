@@ -30,7 +30,9 @@
     RestorePasswordForm: RestorePasswordForm,
   }
   const form = computed<unknown>(() =>
-    route.query.a === 'restore' ? authFormMap.RestorePasswordForm : authFormMap.LoginForm
+    route.query.a === 'restore-password'
+      ? authFormMap.RestorePasswordForm
+      : authFormMap.LoginForm
   )
 
   function getImageUrl() {

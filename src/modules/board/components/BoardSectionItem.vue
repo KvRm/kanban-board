@@ -121,15 +121,15 @@
         gap: 0.5rem;
         align-items: center;
         .section-counter {
-          border-width: 1px;
-          border-color: var(--el-color-info-light-5);
-          padding: 0 0.75rem;
+          border: 1px solid var(--el-color-info-light-5);
+          padding: 0.15rem 0.55rem;
           border-radius: 0.5rem;
         }
         .section-settings {
           position: relative;
           float: right;
           color: var(--el-text-color-primary);
+          cursor: pointer;
         }
       }
     }

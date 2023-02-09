@@ -2,10 +2,10 @@
   <header class="header">
     <nav class="header-nav" ref="nav">
       <router-link class="header-nav__link" :to="mainRoute">
-        {{ t('myBoards') }}
+        {{ t('boards') }}
       </router-link>
       <router-link class="header-nav__link" :to="myTasksRoute">
-        {{ t('myTasks') }}
+        {{ t('tasks') }}
       </router-link>
       <router-link class="header-nav__link" :to="myTasksRoute">
         Создать доску
@@ -13,7 +13,8 @@
     </nav>
     <div class="header-setting">
       <BaseLocale />
-      <ThemeSwitcher />
+      <BaseThemeSwitcher />
+      <BaseHeaderUser />
     </div>
   </header>
 </template>
@@ -22,14 +23,16 @@
   import { computed } from '@vue/reactivity'
   import { useI18n } from 'vue-i18n'
   import { useLocale } from '../../composables/useLocale'
-  import ThemeSwitcher from '../Header/BaseThemeSwitcher.vue'
+  import BaseThemeSwitcher from '../Header/BaseThemeSwitcher.vue'
   import BaseLocale from './BaseLocale.vue'
+  import BaseHeaderUser from './BaseHeaderUser.vue'
 
   const { t } = useI18n()
   const { localeRoute } = useLocale()
 
   const mainRoute = computed<string>(() => `${localeRoute.value}/`)
   const myTasksRoute = computed<string>(() => `${localeRoute.value}/my-tasks`)
+  const loginRoute = computed<string>(() => `${localeRoute.value}/login`)
 </script>
 
 <style scoped lang="scss">
@@ -43,9 +46,13 @@
     z-index: 50;
     font-size: 1.25rem;
     line-height: 1.75rem;
-    padding: 0 0.5rem;
+    padding: 0 3rem;
     color: var(--el-text-color-primary);
     background-color: var(--el-color-info-light-9);
+
+    @media screen and (max-width: 900px) {
+      padding: 0 1rem;
+    }
 
     @media not all and (min-width: 640px) {
       font-size: 1.125rem;

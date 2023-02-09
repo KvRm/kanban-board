@@ -1,11 +1,17 @@
 import { Task } from './Task'
-import { User } from './User'
 
 export interface Board {
   id: string
   title: string
-  owner: User
-  participants: User[]
+  ownerId: string
+  participantsId: string[]
+  currentSprint: Sprint
+  previousSprints: Sprint[]
+}
+
+export interface Sprint {
+  startDate: string
+  endDate: string
   statusSections: BoardStatusSection[]
 }
 

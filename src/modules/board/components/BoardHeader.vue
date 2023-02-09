@@ -1,21 +1,29 @@
 <template>
   <div class="board-header">
-    <div class="header-row max-sm:items-center">
-      <h3 class="title text-2xl flex items-center max-sm:mb-5">
+    <div class="header-row">
+      <h3 class="board-title">
         {{ boardTitle }}
       </h3>
       <BoardSettings />
     </div>
-    <div class="header-row mb-5 max-sm:flex-col max-sm:items-center">
-      <div class="sort-tags flex gap-6 max-sm:mb-5">
-        <div class="choosen-tags">
-          <span>Сортировать по:</span>
-        </div>
-        <div class="all-tags">
-          <span>Все теги:</span>
-        </div>
+    <div class="header-row">
+      <div class="sort-search">
+        <SearchInput
+          :search-resource="[{}]"
+          placeholder="Введите id или название задачи"
+        />
       </div>
-      <SearchInput :search-resource="[{}]" placeholder="Введите id или название задачи" />
+      <div class="sprint">
+        <p>Спринт</p>
+        <el-select v-model="sprint" placeholder="Выбрать спринт" size="large">
+          <el-option
+            v-for="item in [currentSprint, ...previosSprints]"
+            :key="item"
+            :label="item"
+            :value="item"
+          />
+        </el-select>
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +45,11 @@
     { type: 'danger', label: 'Tag 4' },
     { type: 'warning', label: 'Tag 5' },
   ])
+
+  const currentSprint = ref<string>('01-02-2023')
+  const previosSprints = ref<string[]>(['01-01-2023', '01-12-2022'])
+
+  const sprint = ref<string>(currentSprint.value)
 
   const sortingTags = ref<Tag[]>([])
 
@@ -81,6 +94,20 @@
       @media not all and (min-width: 840px) {
         flex-direction: column;
         align-items: center;
+      }
+      .board-title {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        line-height: 2rem;
+
+        @media not all and (min-width: 840px) {
+          margin-bottom: 1.25rem;
+        }
+      }
+      .sort-search {
+        display: flex;
+        gap: 1rem;
       }
     }
   }

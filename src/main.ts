@@ -6,8 +6,11 @@ import router from './router'
 import { createPinia } from 'pinia'
 import { i18n } from './plugins/i18n'
 
-import DefaultLayout from './layout/DefaultLayout.vue'
-import EmptyLayout from './layout/EmptyLayout.vue'
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
+import { FIREBASE_CONFIG } from './services/firebase/config'
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import ElementPlus from 'element-plus'
@@ -29,6 +32,10 @@ import {
   faSortUp,
   faSortDown,
   faPlus,
+  faUser,
+  faUpLong,
+  faCloudArrowUp,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -44,19 +51,25 @@ library.add(
   faCheck,
   faSortUp,
   faSortDown,
-  faPlus
+  faPlus,
+  faUser,
+  faUpLong,
+  faCloudArrowUp,
+  faRightFromBracket
 )
 
-const app = createApp(App)
+const firebaseApp = initializeApp(FIREBASE_CONFIG)
+export const auth = getAuth(firebaseApp)
+export const db = getFirestore(firebaseApp)
 
 const pinia = createPinia()
+
+const app = createApp(App)
 
 app
   .use(router)
   .use(pinia)
   .use(i18n)
   .use(ElementPlus)
-  .component('DefaultLayout', DefaultLayout)
-  .component('EmptyLayout', EmptyLayout)
   .component('FontAwesomeIcon', FontAwesomeIcon)
   .mount('#app')

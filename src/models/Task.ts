@@ -1,5 +1,4 @@
 import { BoardStatusSection } from './Board'
-import { User } from './User'
 
 export interface Task {
   id: string
@@ -13,15 +12,16 @@ export interface Task {
     title: string
     statusSection: StatusSection
   }
-  author: User
-  executor: User
+  authorId: string
+  executorId: string
   description: string
+  // files
   comments: TaskComment[]
 }
 
 interface TaskComment {
   id: string
-  author: User
+  authorId: string
   creatingTime: string
   text: string
 }

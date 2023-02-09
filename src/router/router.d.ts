@@ -1,4 +1,4 @@
-import { LayoutType } from '../types/common'
+import { LayoutType } from '../layout/layout.type'
 
 export {}
 
@@ -7,6 +7,6 @@ declare module 'vue-router' {
     requiresAuth?: boolean
     loginView?: boolean
     requiresLocale?: boolean
-    layout?: LayoutType
+    layout: LayoutType
   }
 }

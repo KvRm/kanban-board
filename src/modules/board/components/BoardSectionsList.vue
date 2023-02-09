@@ -105,6 +105,7 @@
       margin-top: 0.7rem;
       padding: 1.2rem 0.7rem;
       font-size: 1.5rem;
+      min-width: 3rem;
     }
   }
 </style>

@@ -4,8 +4,7 @@ declare module 'vue-i18n' {
   // define the locale messages schema
   export interface DefineLocaleMessage {
     boards: string
-    myBoards: string
-    myTasks: string
+    tasks: string
     allBoards: string
     lastTasks: string
     categories: {

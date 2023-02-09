@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown size="large">
+  <el-dropdown size="large" trigger="click">
     <span class="el-dropdown-link">
       <div class="locale-dropdown">{{ capitalize(locale) }}</div>
     </span>
@@ -38,7 +38,7 @@
 
 <style scoped lang="scss">
   .locale-dropdown {
-    cursor: default;
+    cursor: pointer;
     font-size: 1.25rem;
     color: var(--el-text-color-primary);
   }

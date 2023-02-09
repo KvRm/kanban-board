@@ -8,15 +8,17 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {
       requiresAuth: true,
       requiresLocale: true,
+      layout: 'DefaultLayout',
     },
   },
-  // {
-  //   path: '/board/:boardId/:taskId',
-  //   name: 'task',
-  //   component: () => import('../modules/storefront/pages/MainPage.vue'),
-  //   meta: {
-  //     requiresAuth: true,
-  //     requiresLocale: true,
-  //   },
-  // },
+  {
+    path: '/board/:boardId/:taskId',
+    name: 'task',
+    component: () => import('../pages/TaskPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresLocale: true,
+      layout: 'DefaultLayout',
+    },
+  },
 ]

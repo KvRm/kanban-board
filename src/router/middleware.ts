@@ -1,28 +1,45 @@
-import { RouteLocationNormalized } from 'vue-router'
+import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 import { SupportLocalesEnum } from '../components/Header/locale.types'
+import { useAuth } from '../services/firebase/auth'
 import { startsWithLocaleWithoutSlash } from './helpers'
+import { useLocale } from '../composables/useLocale'
+import { i18n } from '../plugins/i18n'
 
-export const middleware = async (to: RouteLocationNormalized) => {
+export const middleware = async (
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext
+) => {
+  const { loadLocaleMessages } = useLocale()
+  const { isLoggedIn } = useAuth()
+
   const availableLocales = [...Object.values(SupportLocalesEnum)]
   const locale = to.params.locale as string
 
+  let nextRoute: Partial<RouteLocationNormalized> | null = null
+
   if (availableLocales.includes(locale as SupportLocalesEnum)) {
     if (startsWithLocaleWithoutSlash(to.path, availableLocales)) {
-      return { path: to.path + '/' }
+      nextRoute = { path: to.path + '/' }
     }
   } else {
-    return { path: '/en/' }
+    nextRoute = { path: `/en/` }
   }
 
-  // const loggenIn = await isLoggedIn()
-  // if (!i18n.availableLocales.includes(paramsLocale)) {
-  //   await loadLocaleMessages(paramsLocale)
-  // }
-  // setI18nLanguage(paramsLocale)
-  // if (to.meta.requiresAuth) {
-  //   return loggenIn ? true : { name: 'login' }
-  // }
-  // if (to.meta.loginView) {
-  //   if (loggenIn) return { name: 'main' }
-  // }
+  if (to.meta.requiresAuth) {
+    const loggenIn = await isLoggedIn()
+    if (!loggenIn) {
+      nextRoute = { path: `/${locale}/login` }
+    }
+  }
+
+  if (to.meta.loginView) {
+    const loggenIn = await isLoggedIn()
+    if (loggenIn) nextRoute = { path: `/${locale}/` }
+  }
+
+  await loadLocaleMessages(locale)
+  i18n.global.locale.value = locale
+
+  nextRoute ? next(nextRoute as RouteLocationNormalized) : next()
 }

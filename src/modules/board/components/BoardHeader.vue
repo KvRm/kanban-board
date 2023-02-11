@@ -15,12 +15,12 @@
       </div>
       <div class="sprint">
         <p>Спринт</p>
-        <el-select v-model="sprint" placeholder="Выбрать спринт" size="large">
+        <el-select v-model="sprintTitle" placeholder="Выбрать спринт" size="large">
           <el-option
-            v-for="item in [currentSprint, ...previosSprints]"
-            :key="item"
-            :label="item"
-            :value="item"
+            v-for="item in sprints"
+            :key="item.title"
+            :label="item.title"
+            :value="item.title"
           />
         </el-select>
       </div>
@@ -29,59 +29,34 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { computed, onMounted, ref } from 'vue'
+  import { useRoute } from 'vue-router'
   import SearchInput from '../../../components/SearchInput.vue'
+  import { Sprint } from '../../../models/Sprint'
+  import { useBoardStore } from '../stores/boardStore'
   import BoardSettings from './BoardSettings.vue'
-  import { Tag } from '../../../typings/tag'
 
   const props = defineProps<{
     boardTitle: string
   }>()
 
-  const tags = ref<Tag[]>([
-    { type: '', label: 'Tag 1' },
-    { type: 'success', label: 'Tag 2' },
-    { type: 'info', label: 'Tag 3' },
-    { type: 'danger', label: 'Tag 4' },
-    { type: 'warning', label: 'Tag 5' },
-  ])
+  const boardStore = useBoardStore()
+  const route = useRoute()
 
-  const currentSprint = ref<string>('01-02-2023')
-  const previosSprints = ref<string[]>(['01-01-2023', '01-12-2022'])
+  const sprints = computed<Sprint[] | null>(() => boardStore.sprints)
+  const sprint = ref<Sprint>()
+  const sprintTitle = ref<string>('Выбрать...')
 
-  const sprint = ref<string>(currentSprint.value)
-
-  const sortingTags = ref<Tag[]>([])
-
-  // function addTag(payload: string) {
-  //   const [title, color] = payload.split(' ')
-
-  //   const transferingTag: Tag | undefined = tags.value.find((tag) => {
-  //     if (tag.label === title && tag.color === color) return tag
-  //   })
-
-  //   if (transferingTag) {
-  //     tags.value = tags.value.filter((tag) =>
-  //       tag.label !== title && tag.color !== color ? true : false
-  //     )
-  //     sortingTags.value.push(transferingTag)
-  //   }
-  // }
-
-  // function removeTag(payload: string) {
-  //   const [title, color] = payload.split(' ')
-
-  //   const transferingTag: Tag | undefined = sortingTags.value.find((tag) => {
-  //     if (tag.label === title && tag.color === color) return tag
-  //   })
-
-  //   if (transferingTag) {
-  //     sortingTags.value = sortingTags.value.filter((tag) =>
-  //       tag.label !== title && tag.color !== color ? true : false
-  //     )
-  //     tags.value.push(transferingTag)
-  //   }
-  // }
+  onMounted(async () => {
+    const boardId = route.params.boardId as string
+    if (boardId) {
+      await boardStore.getSprints(boardId)
+      if (sprints.value && sprints.value.length) {
+        sprint.value = sprints.value[0]
+        sprintTitle.value = sprint.value.title
+      }
+    }
+  })
 </script>
 
 <style scoped lang="scss">

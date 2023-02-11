@@ -225,7 +225,6 @@
   .list-enter-from,
   .list-leave-to {
     opacity: 0;
-    transform: translateY(-30px);
   }
   .list-leave-active {
     position: absolute;

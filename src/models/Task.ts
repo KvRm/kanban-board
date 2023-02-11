@@ -1,21 +1,21 @@
+import { Tag } from '../typings/tag'
 import { BoardStatusSection } from './Board'
 
 export interface Task {
   id: string
-  prefix: string
   title: string
-  criticalLvl: TaskCriticalLvlEnum
-  createDate: string
-  completeDate: string
   board: {
     id: string
     title: string
-    statusSection: StatusSection
   }
+  completeDate: string
+  createDate: string
+  criticalLvl: TaskCriticalLvlEnum
+  description: string
   authorId: string
   executorId: string
-  description: string
-  // files
+  prefix: string
+  tags: Tag[]
   comments: TaskComment[]
 }
 
@@ -25,8 +25,6 @@ interface TaskComment {
   creatingTime: string
   text: string
 }
-
-type StatusSection = Omit<BoardStatusSection, 'tasks'>
 
 export enum TaskCriticalLvlEnum {
   VeryHigh = 'criticalLvl.veryHigh',

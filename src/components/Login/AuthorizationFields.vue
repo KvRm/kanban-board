@@ -28,7 +28,7 @@
 <script setup lang="ts">
   import { onMounted, reactive } from 'vue'
   import { useRoute } from 'vue-router'
-  import { AuthRequest } from '../../services/firebase/types'
+  import { AuthRequest } from '../../services/firebase/auth/types'
 
   const route = useRoute()
 

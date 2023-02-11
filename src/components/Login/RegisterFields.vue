@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
   import { onMounted, reactive, ref } from 'vue'
-  import { AuthRequest } from '../../services/firebase/types'
+  import { AuthRequest } from '../../services/firebase/auth/types'
 
   interface RegisterData extends AuthRequest {
     passwordRepeat: string

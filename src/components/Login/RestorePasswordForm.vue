@@ -39,14 +39,18 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, ref } from 'vue'
-  import { useAuth } from '../../services/firebase/auth'
+  import { computed, onMounted, ref } from 'vue'
+  import { useAuth } from '../../services/firebase/auth/auth'
   import BaseForm from '../BaseForm.vue'
 
   const { error, restorePassword } = useAuth()
 
   const email = ref<string>('')
   const btnDisabled = computed<boolean>(() => !email.value)
+
+  onMounted(() => {
+    error.value = ''
+  })
 
   async function sendLetter() {
     await restorePassword(email.value)

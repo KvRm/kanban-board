@@ -2,13 +2,15 @@
   <component :is="layout" class="wrapper">
     <router-view />
   </component>
-  <ToastsContainer />
+  <BaseToasts />
+  <BaseSpinner />
 </template>
 
 <script setup lang="ts">
   import { computed, defineAsyncComponent } from 'vue'
   import { useRoute } from 'vue-router'
-  import ToastsContainer from './components/Toast/BaseToasts.vue'
+  import BaseToasts from './components/Toast/BaseToasts.vue'
+  import BaseSpinner from './components/BaseSpinner.vue'
   import { LayoutType } from './layout/layout.type'
 
   const EmptyLayout = defineAsyncComponent(() => import('./layout/EmptyLayout.vue'))

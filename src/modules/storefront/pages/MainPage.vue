@@ -1,10 +1,18 @@
 <template>
   <section class="storefront">
     <section class="storefront-main">
-      <p class="board-list-titile">{{ t('myBoards') }}</p>
-      <BoardLinkList />
-      <p class="board-list-titile">{{ t('allBoards') }}</p>
-      <BoardLinkList />
+      <p v-if="myBoardLinks.length" class="board-list-titile">{{ t('myBoards') }}</p>
+      <BoardLinkList :board-links-list="myBoardLinks" :loading="loading" />
+      <p v-if="allAvailableBoardLinks.length" class="board-list-titile">
+        {{ t('allBoards') }}
+      </p>
+      <BoardLinkList :board-links-list="allAvailableBoardLinks" :loading="loading" />
+      <p
+        v-if="!myBoardLinks.length && !allAvailableBoardLinks.length"
+        class="board-list-titile"
+      >
+        Похоже у вас нет доступных досок
+      </p>
     </section>
     <aside class="storefront-aside">
       <TaskHistory />
@@ -13,11 +21,25 @@
 </template>
 
 <script setup lang="ts">
+  import { computed, onMounted } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import { Link } from '../../../components/Link'
   import BoardLinkList from '../components/BoardLinkList.vue'
   import TaskHistory from '../components/TaskHistory.vue'
+  import { useBoardLinksStore } from '../stores/boardLinksStore'
 
   const { t } = useI18n()
+  const boardLinksStore = useBoardLinksStore()
+
+  const loading = computed<boolean>(() => boardLinksStore.loading)
+  const myBoardLinks = computed<Link[]>(() => boardLinksStore.myBoardLinks)
+  const allAvailableBoardLinks = computed<Link[]>(
+    () => boardLinksStore.allAvailableBoardLinks
+  )
+
+  onMounted(() => {
+    boardLinksStore.getMyAndAvailableBoardLinks()
+  })
 </script>
 
 <style scoped lang="scss">

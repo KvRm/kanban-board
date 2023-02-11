@@ -1,3 +1,4 @@
+import { Sprint } from './Sprint'
 import { Task } from './Task'
 
 export interface Board {
@@ -5,14 +6,7 @@ export interface Board {
   title: string
   ownerId: string
   participantsId: string[]
-  currentSprint: Sprint
-  previousSprints: Sprint[]
-}
-
-export interface Sprint {
-  startDate: string
-  endDate: string
-  statusSections: BoardStatusSection[]
+  sprints: Sprint[]
 }
 
 export interface BoardStatusSection {

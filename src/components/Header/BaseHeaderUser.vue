@@ -12,7 +12,7 @@
   import { computed } from 'vue'
   import { useRouter } from 'vue-router'
   import { useLocale } from '../../composables/useLocale'
-  import { useAuth } from '../../services/firebase/auth'
+  import { useAuth } from '../../services/firebase/auth/auth'
 
   const { userData, logout } = useAuth()
   const router = useRouter()

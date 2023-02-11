@@ -1,6 +1,6 @@
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 import { SupportLocalesEnum } from '../components/Header/locale.types'
-import { useAuth } from '../services/firebase/auth'
+import { useAuth } from '../services/firebase/auth/auth'
 import { startsWithLocaleWithoutSlash } from './helpers'
 import { useLocale } from '../composables/useLocale'
 import { i18n } from '../plugins/i18n'

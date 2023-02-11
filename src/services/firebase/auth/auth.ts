@@ -7,8 +7,8 @@ import {
 } from 'firebase/auth'
 import { onAuthStateChanged, User } from 'firebase/auth'
 import { computed, ref } from 'vue'
-import { useToasts } from '../../composables/useToasts'
-import { auth } from '../../main'
+import { useToasts } from '../../../composables/useToasts'
+import { auth } from '../../../main'
 
 const { dispatch } = useToasts()
 

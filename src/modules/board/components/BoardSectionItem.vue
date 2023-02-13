@@ -56,12 +56,12 @@
 <script setup lang="ts">
   import { computed, ref } from 'vue'
   import { useToasts } from '../../../composables/useToasts'
-  import { BoardStatusSection } from '../../../models/Board'
   import RewritableParagraph from '../../../components/RewritableParagraph.vue'
   import BoardTaskList from './BoardTaskList.vue'
+  import { StatusSection } from '../../../models/StatusSection'
 
   const props = defineProps<{
-    section: BoardStatusSection
+    section: StatusSection
     boardId: string
   }>()
 

@@ -1,7 +1,7 @@
 <template>
   <div class="board-sections-list">
     <BoardSectionItem
-      v-for="section in sections"
+      v-for="section in statusSections"
       :key="section.id"
       :section="section"
       :board-id="boardId"
@@ -21,10 +21,10 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { BoardStatusSection } from '../../../models/Board'
-  import { TaskCriticalLvlEnum } from '../../../models/Task'
+  import { StatusSection } from '../../../models/StatusSection'
+  import { useStatusSectionsStore } from '../../../stores/statusSectionsStore'
   import BoardSectionItem from './BoardSectionItem.vue'
 
   const props = defineProps<{
@@ -32,65 +32,33 @@
   }>()
 
   const { t } = useI18n()
+  const statusSectionStore = useStatusSectionsStore()
 
-  function moveElement(taskId: string, sectionId: string) {
-    // sections.value.forEach((s) => {
-    //   s.tasks.forEach((t) => {
-    //     if (t.id === taskId) {
-    //       s.id = sectionId
-    //     }
-    //   })
-    // })
+  const statusSections = computed<StatusSection[]>(
+    () => statusSectionStore.statusSections
+  )
 
-    const allTasks = sections.value.flatMap((s) => s.tasks)
-    const movingTask = allTasks.find((t) => t.id === taskId)
+  function moveElement() {}
 
-    sections.value.forEach((s) => {
-      s.tasks = s.tasks.filter((t) => t.id !== taskId)
-      if (movingTask && s.id === sectionId) {
-        s.tasks.push(movingTask)
-      }
-    })
-  }
+  // function moveElement(taskId: string, sectionId: string) {
+  //   // sections.value.forEach((s) => {
+  //   //   s.tasks.forEach((t) => {
+  //   //     if (t.id === taskId) {
+  //   //       s.id = sectionId
+  //   //     }
+  //   //   })
+  //   // })
 
-  const sections = ref<BoardStatusSection[]>([
-    {
-      id: '0',
-      title: 'Важно',
-      tasks: [
-        {
-          id: '0-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-    {
-      id: '1',
-      title: 'Не очень важно',
-      tasks: [
-        {
-          id: '1-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Очень неважно)',
-      tasks: [
-        {
-          id: '2-0',
-          title: 'Task',
-          criticalLvl: TaskCriticalLvlEnum.Low,
-          prefix: 'JAP',
-        },
-      ],
-    },
-  ])
+  //   const allTasks = sections.value.flatMap((s) => s.tasks)
+  //   const movingTask = allTasks.find((t) => t.id === taskId)
+
+  //   sections.value.forEach((s) => {
+  //     s.tasks = s.tasks.filter((t) => t.id !== taskId)
+  //     if (movingTask && s.id === sectionId) {
+  //       s.tasks.push(movingTask)
+  //     }
+  //   })
+  // }
 </script>
 
 <style scoped lang="scss">

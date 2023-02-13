@@ -7,7 +7,7 @@
       <router-link class="header-nav__link" :to="myTasksRoute">
         {{ t('tasks') }}
       </router-link>
-      <router-link class="header-nav__link" :to="myTasksRoute">
+      <router-link class="header-nav__link" :to="createBoardRoute">
         Создать доску
       </router-link>
     </nav>
@@ -32,7 +32,7 @@
 
   const mainRoute = computed<string>(() => `${localeRoute.value}/`)
   const myTasksRoute = computed<string>(() => `${localeRoute.value}/my-tasks`)
-  const loginRoute = computed<string>(() => `${localeRoute.value}/login`)
+  const createBoardRoute = computed<string>(() => `${localeRoute.value}/create-board`)
 </script>
 
 <style scoped lang="scss">

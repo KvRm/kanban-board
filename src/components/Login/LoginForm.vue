@@ -50,7 +50,7 @@
   import { useLocale } from '../../composables/useLocale'
   import { useTheme } from '../../composables/useTheme'
   import { auth } from '../../main'
-  import { useAuth } from '../../services/firebase/auth/auth/auth'
+  import { useAuth } from '../../services/firebase/auth/auth'
   import { AuthRequest } from '../../services/firebase/auth/types'
   import BaseForm from '../BaseForm.vue'
   import AuthorizationFields from './AuthorizationFields.vue'

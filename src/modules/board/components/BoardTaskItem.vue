@@ -18,11 +18,11 @@
   import { computed } from '@vue/reactivity'
   import { ref } from 'vue'
   import BaseLink from '../../../components/Link/BaseLink.vue'
-  import { BoardTask } from '../../../models/Board'
   import { TaskLink } from '../../../components/Link'
+  import { StatusSectionTask } from '../../../models/StatusSection'
 
   const props = defineProps<{
-    task: BoardTask
+    task: StatusSectionTask
     boardId: string
   }>()
 

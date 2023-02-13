@@ -1,5 +1,4 @@
 import { Tag } from '../typings/tag'
-import { BoardStatusSection } from './Board'
 
 export interface Task {
   id: string
@@ -11,6 +10,7 @@ export interface Task {
   completeDate: string
   createDate: string
   criticalLvl: TaskCriticalLvlEnum
+  statusSection: string
   description: string
   authorId: string
   executorId: string

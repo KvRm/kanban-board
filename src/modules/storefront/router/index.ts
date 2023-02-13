@@ -21,4 +21,14 @@ export const routes: Array<RouteRecordRaw> = [
       layout: 'DefaultLayout',
     },
   },
+  {
+    path: '/create-board',
+    name: 'create-board',
+    component: () => import('../pages/CreateBoardPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresLocale: true,
+      layout: 'DefaultLayout',
+    },
+  },
 ]

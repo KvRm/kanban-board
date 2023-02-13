@@ -2,7 +2,7 @@
   <BaseTable :categories="TASK_TABLE_CATEGORIES" @sort="sort">
     <TransitionGroup name="list" appear>
       <BaseTableRow
-        v-for="task in tasks"
+        v-for="task in collectedMyTasks"
         :key="task.id.id + task.board.id + task.id.prefix"
         class="line"
         ref="row"
@@ -35,12 +35,12 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, ref } from 'vue'
+  import { computed, onMounted, ref, watch } from 'vue'
   import BaseTable from '../../../../components/table/BaseTable.vue'
   import BaseTableRow from '../../../../components/table/BaseTableRow.vue'
   import BaseTableItem from '../../../../components/table/BaseTableItem.vue'
   import BaseLink from '../../../../components/Link/BaseLink.vue'
-  import { TaskCriticalLvlEnum } from '../../../../models/Task'
+  import { Task, TaskCriticalLvlEnum } from '../../../../models/Task'
   import { useTypeChecker } from '../../../../lib/useTypeChecker'
   import { Tag } from '../../../../typings/tag'
   import { MyTask, TaskTableCategoriesEnum } from './types'
@@ -48,131 +48,23 @@
   import { useTaskTableSort } from '../../composables/useTaskTableSort'
   import { SortTypeEnum } from '../../../../components/Table'
   import { useI18n } from 'vue-i18n'
+  import { useMyTasksStore } from '../../../../stores/myTasksStore'
+  import { useTypeConverter } from '../../../../composables/useTypeConverter'
 
   const { t } = useI18n()
   const { isLinkType, isTagType } = useTypeChecker()
+  const myTasksStore = useMyTasksStore()
+  const { covertTaskToMyTask } = useTypeConverter()
 
-  /**
-   * Элементы должны быть размещены только в такой последовательности, id.title === id.id
-   */
-  const tasks = ref<MyTask[]>([
-    {
-      id: {
-        id: '2212121',
-        title: 'SD-2212121',
-        prefix: 'SD',
-        board: {
-          id: 'sozgksof-32dasd-gdfs',
-        },
-        type: 'task',
-      },
-      title: '1MyTask',
-      board: {
-        id: '2112121',
-        title: 'BoardTitle',
-        type: 'board',
-      },
-      statusSection: 'В работе',
-      tags: [
-        {
-          label: 'SomeTag',
-          type: '',
-        },
-        {
-          label: 'SomeTag',
-          type: 'danger',
-        },
-        {
-          label: 'SomeTag',
-          type: 'info',
-        },
-        {
-          label: 'SomeTag',
-          type: 'success',
-        },
-        {
-          label: 'SomeTag',
-          type: 'warning',
-        },
-      ],
-      criticalLvl: TaskCriticalLvlEnum.Medium,
-      createDate: '11-12-2022',
-      completeDate: '22-11-2023',
-      author: {
-        id: '212121',
-        title: 'SomeName',
-        type: 'user',
-      },
-    },
-    {
-      id: {
-        id: '2212121',
-        title: 'SD-2212121',
-        prefix: 'SD',
-        board: {
-          id: 'sozgksof-32dasd-gdfs',
-        },
-        type: 'task',
-      },
-      title: '2MyTask',
-      board: {
-        id: '2112121',
-        title: 'BoardTitle',
-        type: 'board',
-      },
-      statusSection: 'В работе',
-      tags: [
-        {
-          label: 'SomeTag',
-          type: '',
-        },
-      ],
-      criticalLvl: TaskCriticalLvlEnum.VeryHigh,
-      createDate: '16-12-2022',
-      completeDate: '26-11-2023',
-      author: {
-        id: '212121',
-        title: 'SomeName',
-        type: 'user',
-      },
-    },
-    {
-      id: {
-        id: '2212121',
-        title: 'SD-2212121',
-        prefix: 'SD',
-        board: {
-          id: 'sozgksof-32dasd-gdfs',
-        },
-        type: 'task',
-      },
-      title: '3MyTask',
-      board: {
-        id: '2112121',
-        title: 'BoardTitle',
-        type: 'board',
-      },
-      statusSection: 'В работе',
-      tags: [
-        {
-          label: 'SomeTag',
-          type: '',
-        },
-      ],
-      criticalLvl: TaskCriticalLvlEnum.High,
-      createDate: '11-12-2022',
-      completeDate: '23-11-2023',
-      author: {
-        id: '212121',
-        title: 'SomeName',
-        type: 'user',
-      },
-    },
-  ])
+  const myTasks = computed<Task[]>(() => myTasksStore.myTasks)
+  const collectedMyTasks = computed<MyTask[]>(() =>
+    myTasks.value ? myTasks.value.map<MyTask>((task) => covertTaskToMyTask(task)) : []
+  )
 
-  const sort = useTaskTableSort(tasks)
+  const sort = useTaskTableSort(collectedMyTasks)
 
-  onMounted(() => {
+  onMounted(async () => {
+    await myTasksStore.getMyTasks()
     sort({
       category: TaskTableCategoriesEnum.CreateDate,
       order: 'increasing',

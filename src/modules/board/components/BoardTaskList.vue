@@ -5,11 +5,11 @@
 </template>
 
 <script setup lang="ts">
-  import { BoardTask } from '../../../models/Board'
+  import { StatusSectionTask } from '../../../models/StatusSection'
   import BoardTaskItem from './BoardTaskItem.vue'
 
   const props = defineProps<{
-    tasks: BoardTask[]
+    tasks: StatusSectionTask[]
     boardId: string
     sectionId: string
   }>()

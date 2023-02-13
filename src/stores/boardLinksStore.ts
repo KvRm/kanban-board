@@ -1,10 +1,10 @@
 import { getDoc, doc, query, collection, where, getDocs } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { Link } from '../../../components/Link'
-import { db } from '../../../main'
-import { Board } from '../../../models/Board'
-import { useAuth } from '../../../services/firebase/auth/auth'
+import { Link } from '../components/Link'
+import { db } from '../main'
+import { Board } from '../models/Board'
+import { useAuth } from '../services/firebase/auth/auth'
 
 const { uid } = useAuth()
 

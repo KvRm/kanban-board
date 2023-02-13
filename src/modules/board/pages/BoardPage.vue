@@ -9,8 +9,8 @@
   import BoardHeader from '../components/BoardHeader.vue'
   import BoardSectionsList from '../components/BoardSectionsList.vue'
   import { useI18n } from 'vue-i18n'
-  import { computed, onMounted } from 'vue'
-  import { useBoardStore } from '../stores/boardStore'
+  import { computed, onMounted, watch } from 'vue'
+  import { useBoardStore } from '../../../stores/boardStore'
   import { useRoute } from 'vue-router'
   import { Board } from '../../../models/Board'
 
@@ -21,6 +21,10 @@
   const board = computed<Board | null>(() => boardStore.board)
 
   onMounted(async () => {
+    await boardStore.getBoard(route.params.boardId as string)
+  })
+
+  watch(route, async () => {
     await boardStore.getBoard(route.params.boardId as string)
   })
 </script>

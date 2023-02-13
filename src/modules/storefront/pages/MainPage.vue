@@ -26,7 +26,7 @@
   import { Link } from '../../../components/Link'
   import BoardLinkList from '../components/BoardLinkList.vue'
   import TaskHistory from '../components/TaskHistory.vue'
-  import { useBoardLinksStore } from '../stores/boardLinksStore'
+  import { useBoardLinksStore } from '../../../stores/boardLinksStore'
 
   const { t } = useI18n()
   const boardLinksStore = useBoardLinksStore()

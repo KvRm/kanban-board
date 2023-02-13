@@ -8,9 +8,10 @@ export interface StatusSection {
   color: string
 }
 
-interface StatusSectionTask {
+export interface StatusSectionTask {
   id: string
   title: string
+  prefix: string
   order: number
   criticalLvl: TaskCriticalLvlEnum
 }

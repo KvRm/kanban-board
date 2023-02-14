@@ -14,6 +14,7 @@
   import { useRoute } from 'vue-router'
   import { computed, defineAsyncComponent } from 'vue'
   import { AuthFormType } from '../components/Login'
+  import { AsyncComponent } from '../typings/component'
 
   const LoginForm = defineAsyncComponent(
     () => import('../components/Login/LoginForm.vue')
@@ -25,11 +26,11 @@
   const { darkTheme } = useTheme()
   const route = useRoute()
 
-  const authFormMap: Record<AuthFormType, unknown> = {
+  const authFormMap: Record<AuthFormType, AsyncComponent> = {
     LoginForm: LoginForm,
     RestorePasswordForm: RestorePasswordForm,
   }
-  const form = computed<unknown>(() =>
+  const form = computed<AsyncComponent>(() =>
     route.query.a === 'restore-password'
       ? authFormMap.RestorePasswordForm
       : authFormMap.LoginForm

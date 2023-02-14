@@ -34,5 +34,9 @@ export const useStatusSectionsStore = defineStore('statusSection', () => {
     }
   }
 
-  return { loading, statusSections, getStatusSections }
+  function clearStatusSections() {
+    statusSections.value = []
+  }
+
+  return { loading, statusSections, getStatusSections, clearStatusSections }
 })

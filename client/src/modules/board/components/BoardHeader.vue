@@ -45,10 +45,10 @@
   const statusSectionsStore = useStatusSectionsStore()
   const route = useRoute()
 
+  const sprints = computed<Sprint[]>(() => sprintsStore.sprints)
+
   const boardId = route.params.boardId as string
   const defaultTitle = 'Выбрать...'
-
-  const sprints = computed<Sprint[]>(() => sprintsStore.sprints)
   const sprint = ref<Sprint>({
     title: defaultTitle,
     id: '',
@@ -70,6 +70,8 @@
   watch(sprint, () => {
     if (sprint.value.title !== defaultTitle) {
       statusSectionsStore.getStatusSections(boardId, sprint.value.id)
+    } else {
+      statusSectionsStore.clearStatusSections()
     }
   })
 </script>

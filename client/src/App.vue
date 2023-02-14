@@ -12,17 +12,18 @@
   import BaseToasts from './components/Toast/BaseToasts.vue'
   import BaseSpinner from './components/BaseSpinner.vue'
   import { LayoutType } from './layout/layout.type'
+  import { AsyncComponent } from './typings/component'
 
   const EmptyLayout = defineAsyncComponent(() => import('./layout/EmptyLayout.vue'))
   const DefaultLayput = defineAsyncComponent(() => import('./layout/DefaultLayout.vue'))
 
   const route = useRoute()
 
-  const layoutMap: Record<LayoutType, unknown> = {
+  const layoutMap: Record<LayoutType, AsyncComponent> = {
     EmptyLayout: EmptyLayout,
     DefaultLayout: DefaultLayput,
   }
-  const layout = computed<unknown>(() => layoutMap[route.meta.layout])
+  const layout = computed<AsyncComponent>(() => layoutMap[route.meta.layout])
 </script>
 
 <style scoped lang="scss">

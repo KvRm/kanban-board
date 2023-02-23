@@ -1,8 +1,8 @@
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-import { SupportLocalesEnum } from '../components/Header/locale.types'
-import { useAuth } from '../services/firebase/auth/auth'
+import { SupportLocalesEnum } from '../locales/types'
+import { useAuthStore } from '../modules/login/stores/authStore'
 import { startsWithLocaleWithoutSlash } from './helpers'
-import { useLocale } from '../composables/useLocale'
+import { useLocale } from '../modules/LocaleSwitcher/composables/useLocale'
 import { i18n } from '../plugins/i18n'
 
 export const middleware = async (
@@ -10,8 +10,8 @@ export const middleware = async (
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
-  const { loadLocaleMessages } = useLocale()
-  const { isLoggedIn } = useAuth()
+  const { loadAndSetLocaleMessages } = useLocale()
+  const { isLoggedIn } = useAuthStore()
 
   const availableLocales = [...Object.values(SupportLocalesEnum)]
   const locale = to.params.locale as string
@@ -38,8 +38,10 @@ export const middleware = async (
     if (loggenIn) nextRoute = { path: `/${locale}/` }
   }
 
-  await loadLocaleMessages(locale)
-  i18n.global.locale.value = locale
+  if (i18n.global.locale.value !== locale) {
+    await loadAndSetLocaleMessages(locale)
+    i18n.global.locale.value = locale
+  }
 
   nextRoute ? next(nextRoute as RouteLocationNormalized) : next()
 }

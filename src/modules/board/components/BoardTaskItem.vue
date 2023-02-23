@@ -1,10 +1,24 @@
 <template>
   <div class="task" :draggable="draggable" @dragstart="onDragStart($event)">
     <div class="task-content">
-      <span class="task-critical-icon">
-        <FontAwesomeIcon icon="fa-solid fa-circle-up" />
-      </span>
-      <BaseLink class="task-link" :link="taskLink" />
+      <div class="main-info">
+        <span class="task-critical-icon">
+          <FontAwesomeIcon icon="fa-solid fa-circle-up" />
+        </span>
+        <BaseLink class="task-link" :link="taskLink" />
+      </div>
+      <div class="tags-container">
+        <ElTag
+          v-for="item in task.tags"
+          :key="item.label"
+          :type="item.type"
+          effect="dark"
+          class="tag"
+          disable-transitions
+        >
+          {{ item.label }}
+        </ElTag>
+      </div>
     </div>
     <div
       class="task-drag-hand"
@@ -18,7 +32,7 @@
   import { computed } from '@vue/reactivity'
   import { ref } from 'vue'
   import BaseLink from '../../../components/Link/BaseLink.vue'
-  import { TaskLink } from '../../../components/Link'
+  import { TaskLink } from '../../../components/Link/types'
   import { StatusSectionTask } from '../../../models/StatusSection'
 
   const props = defineProps<{
@@ -60,10 +74,18 @@
     }
     .task-content {
       display: flex;
+      flex-direction: column;
       padding: 0.5rem;
-      .task-link:hover {
-        text-decoration: underline;
-        color: var(--el-color-primary);
+      .main-info {
+        display: flex;
+        .task-link:hover {
+          text-decoration: underline;
+          color: var(--el-color-primary);
+        }
+      }
+      .tags-container {
+        display: flex;
+        flex-wrap: wrap;
       }
     }
     .task-critical-icon {

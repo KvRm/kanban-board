@@ -1,11 +1,57 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { middleware } from './middleware'
-import { routes as storefrontRoutes } from '../modules/storefront/router'
-import { routes as boardRoutes } from '../modules/board/router'
 
 const routes: Array<RouteRecordRaw> = [
-  ...storefrontRoutes,
-  ...boardRoutes,
+  {
+    path: '/',
+    component: () => import('../pages/MainPage.vue'),
+    name: 'storefront',
+    meta: {
+      requiresAuth: true,
+      requiresLocale: true,
+      layout: 'DefaultLayout',
+    },
+  },
+  {
+    path: '/my-tasks',
+    name: 'my-tasks',
+    component: () => import('../pages/MyTasksPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresLocale: true,
+      layout: 'DefaultLayout',
+    },
+  },
+  {
+    path: '/create-board',
+    name: 'create-board',
+    component: () => import('../pages/CreateBoardPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresLocale: true,
+      layout: 'DefaultLayout',
+    },
+  },
+  {
+    path: '/board/:boardId',
+    name: 'board',
+    component: () => import('../pages/BoardPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresLocale: true,
+      layout: 'DefaultLayout',
+    },
+  },
+  {
+    path: '/board/:boardId/:taskId',
+    name: 'task',
+    component: () => import('../pages/TaskPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresLocale: true,
+      layout: 'DefaultLayout',
+    },
+  },
   {
     path: '/login',
     name: 'login',
@@ -16,15 +62,6 @@ const routes: Array<RouteRecordRaw> = [
       requiresLocale: true,
     },
   },
-  // {
-  //   path: '/:pathMatch(.*)',
-  //   name: 'error-404',
-  //   component: () => import('@/layout/Error404Layout.vue'),
-  //   meta: {
-  //     error: true,
-  //     layout: 'EmptyLayout',
-  //   },
-  // },
 ]
 
 routes.forEach((route) => {

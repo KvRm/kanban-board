@@ -13,7 +13,7 @@
       :content="t('createNewSection')"
       placement="top-end"
     >
-      <el-button class="add-section">
+      <el-button class="add-section" @click="handleCreateSection">
         <font-awesome-icon icon="fa-solid fa-plus" />
       </el-button>
     </el-tooltip>
@@ -24,7 +24,7 @@
   import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { StatusSection } from '../../../models/StatusSection'
-  import { useStatusSectionsStore } from '../../../stores/statusSectionsStore'
+  import { useBoardStore } from '../stores/boardStore'
   import BoardSectionItem from './BoardSectionItem.vue'
 
   const props = defineProps<{
@@ -32,11 +32,19 @@
   }>()
 
   const { t } = useI18n()
-  const statusSectionStore = useStatusSectionsStore()
+  const boardStore = useBoardStore()
 
-  const statusSections = computed<StatusSection[]>(
-    () => statusSectionStore.statusSections
-  )
+  const statusSections = computed<StatusSection[]>(() => boardStore.statusSections)
+
+  function handleCreateSection() {
+    if (boardStore.choosenSprint)
+      boardStore.createStatusSection(
+        props.boardId,
+        '#313131',
+        '',
+        boardStore.choosenSprint.id
+      )
+  }
 
   function moveElement() {}
 
@@ -64,7 +72,7 @@
 <style scoped lang="scss">
   .board-sections-list {
     display: flex;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 96px);
     justify-content: flex-start;
     gap: 1.5rem;
     flex-flow: row nowrap;

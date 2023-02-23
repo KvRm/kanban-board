@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-  import BaseHeader from '../components/Header/BaseHeader.vue'
+  import BaseHeader from '../components/BaseHeader.vue'
 </script>
 
 <style scoped lang="scss">

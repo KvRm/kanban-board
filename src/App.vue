@@ -3,26 +3,25 @@
     <router-view />
   </component>
   <BaseToasts />
-  <BaseSpinner />
 </template>
 
 <script setup lang="ts">
   import { computed, defineAsyncComponent } from 'vue'
   import { useRoute } from 'vue-router'
-  import BaseToasts from './components/Toast/BaseToasts.vue'
-  import BaseSpinner from './components/BaseSpinner.vue'
-  import { LayoutType } from './layout/layout.type'
+  import { LayoutType } from './layout/types'
+  import BaseToasts from './modules/Toast/components/BaseToasts.vue'
+  import { AsyncComponent } from './typings/async-component'
 
   const EmptyLayout = defineAsyncComponent(() => import('./layout/EmptyLayout.vue'))
   const DefaultLayput = defineAsyncComponent(() => import('./layout/DefaultLayout.vue'))
 
   const route = useRoute()
 
-  const layoutMap: Record<LayoutType, unknown> = {
+  const layoutMap: Record<LayoutType, AsyncComponent> = {
     EmptyLayout: EmptyLayout,
     DefaultLayout: DefaultLayput,
   }
-  const layout = computed<unknown>(() => layoutMap[route.meta.layout])
+  const layout = computed<AsyncComponent>(() => layoutMap[route.meta.layout])
 </script>
 
 <style scoped lang="scss">

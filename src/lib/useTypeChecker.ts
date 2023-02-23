@@ -1,4 +1,4 @@
-import { Link, TaskLink } from '../components/Link'
+import { Link, TaskLink } from '../components/Link/types'
 import { Tag } from '../typings/tag'
 
 export const useTypeChecker = () => {

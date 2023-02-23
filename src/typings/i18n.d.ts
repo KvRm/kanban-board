@@ -11,6 +11,7 @@ declare module 'vue-i18n' {
       id: string
       title: string
       board: string
+      sprint: string
       statusSection: string
       tags: string
       criticalLvl: string

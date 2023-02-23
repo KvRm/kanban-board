@@ -15,7 +15,11 @@
       </div>
       <div class="sprint">
         <p>Спринт</p>
-        <el-select v-model="sprint.title" placeholder="Выбрать спринт" size="large">
+        <el-select
+          v-model="choosenSprint.title"
+          placeholder="Выбрать спринт"
+          size="large"
+        >
           <el-option
             v-for="item in sprints"
             :key="item.title"
@@ -31,45 +35,37 @@
 <script setup lang="ts">
   import { computed, onMounted, ref, watch } from 'vue'
   import { useRoute } from 'vue-router'
-  import SearchInput from '../../../components/SearchInput.vue'
   import { Sprint } from '../../../models/Sprint'
-  import { useSprintsStore } from '../../../stores/sprintsStore'
-  import { useStatusSectionsStore } from '../../../stores/statusSectionsStore'
+  import { useBoardStore } from '../stores/boardStore'
   import BoardSettings from './BoardSettings.vue'
 
   const props = defineProps<{
     boardTitle: string
   }>()
 
-  const sprintsStore = useSprintsStore()
-  const statusSectionsStore = useStatusSectionsStore()
+  const boardStore = useBoardStore()
   const route = useRoute()
+
+  const sprints = computed<Sprint[]>(() => boardStore.sprints)
+  const choosenSprint = computed<Sprint?>(() => boardStore.choosenSprint)
 
   const boardId = route.params.boardId as string
   const defaultTitle = 'Выбрать...'
 
-  const sprints = computed<Sprint[]>(() => sprintsStore.sprints)
-  const sprint = ref<Sprint>({
-    title: defaultTitle,
-    id: '',
-    boardId: '',
-    endDate: '',
-    startDate: '',
-    statusSectionsId: [],
-  })
-
   onMounted(async () => {
     if (boardId) {
-      await sprintsStore.getSprints(boardId)
+      await boardStore.loadSprints(boardId)
       if (sprints.value && sprints.value.length) {
-        sprint.value = sprints.value[0]
+        boardStore.chooseSprint(sprints.value[0])
       }
     }
   })
 
-  watch(sprint, () => {
-    if (sprint.value.title !== defaultTitle) {
-      statusSectionsStore.getStatusSections(boardId, sprint.value.id)
+  watch(choosenSprint, () => {
+    if (choosenSprint.value?.title !== defaultTitle) {
+      boardStore.loadStatusSections(boardId, choosenSprint.value.id)
+    } else {
+      boardStore.clearStatusSections()
     }
   })
 </script>

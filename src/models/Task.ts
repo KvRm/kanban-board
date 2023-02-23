@@ -7,6 +7,7 @@ export interface Task {
     id: string
     title: string
   }
+  sprint: string
   completeDate: string
   createDate: string
   criticalLvl: TaskCriticalLvlEnum
@@ -15,7 +16,7 @@ export interface Task {
   authorId: string
   executorId: string
   prefix: string
-  tags: Tag[]
+  tags: TaskTag[]
   comments: TaskComment[]
 }
 
@@ -31,4 +32,17 @@ export enum TaskCriticalLvlEnum {
   High = 'criticalLvl.high',
   Medium = 'criticalLvl.medium',
   Low = 'criticalLvl.low',
+}
+
+export interface TaskTag {
+  label: string
+  type: TagEnum
+}
+
+enum TagEnum {
+  Default = '',
+  Success = 'success',
+  Info = 'info',
+  Danger = 'danger',
+  Warning = 'warning',
 }

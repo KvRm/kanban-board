@@ -10,26 +10,27 @@
 </template>
 
 <script setup lang="ts">
-  import { useTheme } from '../composables/useTheme'
+  import { useTheme } from '../modules/ThemeSwitcher/composables/useTheme'
   import { useRoute } from 'vue-router'
   import { computed, defineAsyncComponent } from 'vue'
-  import { AuthFormType } from '../components/Login'
+  import { AuthFormType } from '../modules/login/types'
+  import { AsyncComponent } from '../typings/async-component'
 
   const LoginForm = defineAsyncComponent(
-    () => import('../components/Login/LoginForm.vue')
+    () => import('../modules/login/components/LoginForm.vue')
   )
   const RestorePasswordForm = defineAsyncComponent(
-    () => import('../components/Login/RestorePasswordForm.vue')
+    () => import('../modules/login/components/RestorePasswordForm.vue')
   )
 
   const { darkTheme } = useTheme()
   const route = useRoute()
 
-  const authFormMap: Record<AuthFormType, unknown> = {
+  const authFormMap: Record<AuthFormType, AsyncComponent> = {
     LoginForm: LoginForm,
     RestorePasswordForm: RestorePasswordForm,
   }
-  const form = computed<unknown>(() =>
+  const form = computed<AsyncComponent>(() =>
     route.query.a === 'restore-password'
       ? authFormMap.RestorePasswordForm
       : authFormMap.LoginForm

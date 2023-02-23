@@ -1,7 +1,5 @@
-import { VoidEmptyFunction } from '../types/common'
-
-export const useDebouncer = (cb: any, delay: number): VoidEmptyFunction => {
-  let timeoutId: NodeJS.Timeout
+export const useDebouncer = (cb: Function, delay: number) => {
+  let timeoutId: number
 
   return () => {
     clearTimeout(timeoutId)

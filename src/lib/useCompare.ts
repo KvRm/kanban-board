@@ -1,5 +1,9 @@
 import dayjs from 'dayjs'
-import { SortOrderType, SortParams, SortTypeEnum } from '../components/Table'
+import {
+  SortOrderType,
+  SortParams,
+  SortTypeEnum,
+} from '../components/SortableTable/types'
 import { TaskCriticalLvlEnum } from '../models/Task'
 
 const modes: Record<SortTypeEnum, Function> = {
@@ -8,26 +12,7 @@ const modes: Record<SortTypeEnum, Function> = {
   criticalLvl: compareByCriticalLvl,
 }
 
-/**
- * Пример использования: arr.sort((a,b) => useCompareByType(sortParams, a, b))
- * @param sortParams Получает параметры, в зависимости от которых выбирает, как фильтровать
- * @param a Первый элемент для сравнения
- * @param b Второй элемент для сравнения
- * @returns Возвращает число, используемое при сортировке
- */
-export const useCompareByType = (
-  sortParams: SortParams,
-  a: string,
-  b: string
-): number => {
-  const type = sortParams.type as unknown as SortTypeEnum
-
-  const method = modes[type]
-
-  return method(a, b, sortParams.order)
-}
-
-function compareByDefault(a: string, b: string, order: SortOrderType): number {
+function compareByDefault(a: string, b: string, order: SortOrderType) {
   return order === 'increasing'
     ? a.toLowerCase().localeCompare(b.toLowerCase())
     : b.toLowerCase().localeCompare(a.toLowerCase())
@@ -53,4 +38,23 @@ function compareByCriticalLvl(
   const diff = indexB - indexA
 
   return order === 'increasing' ? diff : -diff
+}
+
+/**
+ * @example arr.sort((a,b) => useCompareByType(sortParams, a, b))
+ * @param sortParams Получает параметры, в зависимости от которых выбирает, как фильтровать
+ * @param a Первый элемент для сравнения
+ * @param b Второй элемент для сравнения
+ * @returns Возвращает число, используемое при сортировке
+ */
+export const useCompareByType = (
+  sortParams: SortParams,
+  a: string,
+  b: string
+): number => {
+  const type = sortParams.type as unknown as SortTypeEnum
+
+  const method = modes[type]
+
+  return method(a, b, sortParams.order)
 }

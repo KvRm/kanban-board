@@ -8,6 +8,7 @@
     "id": "Id",
     "title": "Title",
     "board": "Board",
+    "sprint": "Sprint",
     "statusSection": "Status",
     "tags": "Tags",
     "criticalLvl": "Critical Lvl",

@@ -55,10 +55,10 @@
 
 <script setup lang="ts">
   import { computed, ref } from 'vue'
-  import { useToasts } from '../../../composables/useToasts'
-  import RewritableParagraph from '../../../components/RewritableParagraph.vue'
+  import RewritableParagraph from '../../../components/BaseRewritableParagraph.vue'
   import BoardTaskList from './BoardTaskList.vue'
   import { StatusSection } from '../../../models/StatusSection'
+  import { useToasts } from '../../Toast/composables/useToasts'
 
   const props = defineProps<{
     section: StatusSection

@@ -4,7 +4,7 @@ import { MyTask } from '../types'
 export const convertToMyTask = (task: Task): MyTask => ({
   id: {
     id: task.id,
-    title: `${task.prefix}-${task.id}`,
+    title: task.id,
     prefix: `${task.prefix}`,
     board: {
       id: task.board.id,

@@ -65,13 +65,26 @@
       <div class="create-form">
         <div class="title">
           <label>Название</label>
-          <ElInput v-model="newSectionTitle" placeholder="Введите текст" />
+          <ElInput v-model="newTaskTitle" placeholder="Введите текст" />
+          <p class="error-message">{{ errors.newTaskTitle }}</p>
+          <label>Критичность</label>
+          <ElInput v-model="newTaskTitle" placeholder="Введите текст" />
+          <p class="error-message">{{ errors.newTaskTitle }}</p>
+          <label>Префикс</label>
+          <ElInput v-model="newTaskTitle" placeholder="Введите текст" />
+          <p class="error-message">{{ errors.newTaskTitle }}</p>
         </div>
       </div>
       <template #footer>
         <span class="dialog-footer">
           <ElButton @click="isDialogVisible = false">Отменить</ElButton>
-          <ElButton type="primary" @click="handleAddTaskBtn">Создать</ElButton>
+          <ElButton
+            type="primary"
+            @click="handleCreateTask"
+            :disabled="isBtnDisabled"
+            :loading="loading"
+            >Создать</ElButton
+          >
         </span>
       </template>
     </ElDialog>
@@ -86,6 +99,10 @@
   import { useModalWidth } from '../../../../composables/useModalWidth'
   import { ElDropdown, ElMessageBox } from 'element-plus'
   import { useBoardStore } from '../../stores/boardStore'
+  import { useField, useForm } from 'vee-validate'
+  import { toFormValidator } from '@vee-validate/zod'
+  import * as zod from 'zod'
+  import { useToasts } from '../../../Toast/composables/useToasts'
 
   const props = defineProps<{
     section: StatusSection
@@ -96,34 +113,37 @@
     (e: 'moveElement', taskId: string, sectionId: string): void
   }>()
 
+  const { dispatch } = useToasts()
   const modalWidth = useModalWidth()
   const boardStore = useBoardStore()
+
+  const loading = computed(() => boardStore.loading)
 
   const title = ref<string>(props.section.title)
   const taskTitleRewriting = ref<boolean>(false)
   const isDialogVisible = ref<boolean>(false)
-  const newSectionTitle = ref<string>('')
 
+  const isBtnDisabled = computed<boolean>(() => !!errors.value.newTaskTitle)
   const tasksCount = computed<number>(() => props.section.tasks.length)
   const capitalizedTitle = computed<string>(() => title.value.toUpperCase())
 
   async function rewriteTitle(value: string) {
-    const isRewrited = await boardStore.updateTitle(props.section.id, value)
-    if (isRewrited) {
-      title.value = value
-      taskTitleRewriting.value = false
+    taskTitleRewriting.value = false
+
+    if (title.value.toLowerCase() === value.toLowerCase()) {
+      return dispatch('Название осталось прежним', 'warning')
     }
+
+    const isRewrited = await boardStore.updateTitle(props.section.id, value)
+    if (isRewrited) title.value = value
   }
 
   function moveElement(taskId: string, sectionId: string) {
     emit('moveElement', taskId, sectionId)
   }
 
-  function handleAddTaskBtn() {
-    isDialogVisible.value = false
-  }
-
   const handleRemoveSection = () => {
+    isDialogVisible.value = false
     ElMessageBox.confirm(
       `Статус секция "${title.value}" будет безвозвратно удалена. Продолжить?`,
       'Предупреждение',
@@ -136,6 +156,34 @@
       boardStore.removeStatusSection(props.section.id)
     })
   }
+
+  const validationSchema = toFormValidator(
+    zod.object({
+      newTaskTitle: zod
+        .string()
+        .trim()
+        .min(1, 'Обязательное поле')
+        .max(20, 'Максимальное количество символов - 20'),
+    })
+  )
+  const { handleSubmit, errors } = useForm<{ newTaskTitle: string }>({
+    validationSchema,
+  })
+  const { value: newTaskTitle } = useField<string>('newTaskTitle')
+
+  const handleCreateTask = handleSubmit(async (values) => {
+    // if (choosenSprint.value)
+    //   await boardStore.createStatusSection({
+    //     boardId,
+    //     title: values.newTaskTitle,
+    //     color: newSectionColor.value,
+    //     sprintId: choosenSprint.value.id,
+    //     tasks: [],
+    //     order: statusSections.value.length,
+    //   })
+
+    isDialogVisible.value = false
+  })
 </script>
 
 <style scoped lang="scss">

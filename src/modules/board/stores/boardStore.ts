@@ -136,7 +136,7 @@ export const useBoardStore = defineStore('board', () => {
     }
   }
 
-  function createTask() {}
+  async function createTask(sectionId: string) {}
 
   async function removeStatusSection(sectionId: string) {
     try {

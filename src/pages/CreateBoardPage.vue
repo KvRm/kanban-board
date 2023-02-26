@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import CreateBoardForm from '../modules/board/components/CreateBoardForm.vue'
+  import CreateBoardForm from '../modules/CreateBoard/components/CreateBoardForm.vue'
 </script>
 
 <style scoped lang="scss">

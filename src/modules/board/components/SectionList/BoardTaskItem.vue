@@ -31,9 +31,9 @@
 <script setup lang="ts">
   import { computed } from '@vue/reactivity'
   import { ref } from 'vue'
-  import BaseLink from '../../../components/Link/BaseLink.vue'
-  import { TaskLink } from '../../../components/Link/types'
-  import { StatusSectionTask } from '../../../models/StatusSection'
+  import BaseLink from '../../../../components/Link/BaseLink.vue'
+  import { TaskLink } from '../../../../components/Link/types'
+  import { StatusSectionTask } from '../../../../models/StatusSection'
 
   const props = defineProps<{
     task: StatusSectionTask

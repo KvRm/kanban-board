@@ -41,16 +41,13 @@
   import { useI18n } from 'vue-i18n'
   import { useMyTasksStore } from '../stores/myTasksStore'
   import { SortTypeEnum } from '../../../components/SortableTable/types'
-  import { convertToMyTask } from '../utils/convertToMyTask'
 
   const { t } = useI18n()
   const { isLinkType, isTagType } = useTypeChecker()
   const myTasksStore = useMyTasksStore()
 
   const myTasks = computed<Task[]>(() => myTasksStore.myTasks)
-  const collectedMyTasks = computed<MyTask[]>(() =>
-    myTasks.value ? myTasks.value.map<MyTask>((task) => convertToMyTask(task)) : []
-  )
+  const collectedMyTasks = computed<MyTask[]>(() => myTasksStore.collectedMyTasks)
 
   const sort = useTaskTableSort(collectedMyTasks)
 

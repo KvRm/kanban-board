@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import { StatusSectionTask } from '../../../models/StatusSection'
+  import { StatusSectionTask } from '../../../../models/StatusSection'
   import BoardTaskItem from './BoardTaskItem.vue'
 
   const props = defineProps<{

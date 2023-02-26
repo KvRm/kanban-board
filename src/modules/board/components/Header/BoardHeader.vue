@@ -8,18 +8,14 @@
     </div>
     <div class="header-row">
       <div class="sort-search">
-        <SearchInput
+        <!-- <SearchInput
           :search-resource="[{}]"
           placeholder="Введите id или название задачи"
-        />
+        /> -->
       </div>
       <div class="sprint">
         <p>Спринт</p>
-        <el-select
-          v-model="choosenSprint.title"
-          placeholder="Выбрать спринт"
-          size="large"
-        >
+        <el-select v-model="dropdownValue" placeholder="Выбрать спринт" size="large">
           <el-option
             v-for="item in sprints"
             :key="item.title"
@@ -33,24 +29,24 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, onMounted, ref, watch } from 'vue'
+  import { computed, onMounted, watch } from 'vue'
   import { useRoute } from 'vue-router'
-  import { Sprint } from '../../../models/Sprint'
-  import { useBoardStore } from '../stores/boardStore'
-  import BoardSettings from './BoardSettings.vue'
+  import { Sprint } from '../../../../models/Sprint'
+  import { useBoardStore } from '../../stores/boardStore'
+  import BoardSettings from '../Header/BoardSettings.vue'
 
-  const props = defineProps<{
-    boardTitle: string
-  }>()
+  const DEFAULT_DROPDOWN_VALUE = 'Выбрать спринт'
 
   const boardStore = useBoardStore()
   const route = useRoute()
+  const boardId = route.params.boardId as string
 
   const sprints = computed<Sprint[]>(() => boardStore.sprints)
-  const choosenSprint = computed<Sprint?>(() => boardStore.choosenSprint)
-
-  const boardId = route.params.boardId as string
-  const defaultTitle = 'Выбрать...'
+  const choosenSprint = computed<Sprint | null>(() => boardStore.choosenSprint)
+  const dropdownValue = computed<string>(
+    () => choosenSprint.value?.title || DEFAULT_DROPDOWN_VALUE
+  )
+  const boardTitle = computed<string | undefined>(() => boardStore.boardTitle)
 
   onMounted(async () => {
     if (boardId) {
@@ -62,7 +58,7 @@
   })
 
   watch(choosenSprint, () => {
-    if (choosenSprint.value?.title !== defaultTitle) {
+    if (choosenSprint.value && choosenSprint.value.title !== DEFAULT_DROPDOWN_VALUE) {
       boardStore.loadStatusSections(boardId, choosenSprint.value.id)
     } else {
       boardStore.clearStatusSections()

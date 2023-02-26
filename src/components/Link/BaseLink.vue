@@ -1,6 +1,6 @@
 <template>
   <router-link :key="link.title" :to="route">
-    {{ link.title }}
+    {{ title }}
   </router-link>
 </template>
 
@@ -19,6 +19,10 @@
 
   const { localeRoute } = useLocale()
   const { isTaskLink } = useTypeChecker()
+
+  const title = computed<string>(() =>
+    isTaskLink(props.link) ? props.link.prefix + '-' + props.link.title : props.link.title
+  )
 
   const route = computed<string>(() => {
     if (props.link.type === 'task' && isTaskLink(props.link)) {

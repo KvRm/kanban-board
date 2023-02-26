@@ -1,13 +1,13 @@
 <template>
-  <div v-if="board" class="board">
-    <BoardHeader :board-title="board.title" />
-    <BoardSectionsList board-id="1" />
+  <div v-if="isBoardAvailable" class="board">
+    <BoardHeader />
+    <BoardSectionsList />
   </div>
 </template>
 
 <script setup lang="ts">
-  import BoardHeader from '../modules/board/components/BoardHeader.vue'
-  import BoardSectionsList from '../modules/board/components/BoardSectionsList.vue'
+  import BoardHeader from '../modules/Board/components/Header/BoardHeader.vue'
+  import BoardSectionsList from '../modules/Board/components/SectionList/BoardSectionsList.vue'
   import { useI18n } from 'vue-i18n'
   import { computed, onMounted, onUnmounted, watch } from 'vue'
   import { useBoardStore } from '../modules/board/stores/boardStore'
@@ -18,8 +18,7 @@
   const boardStore = useBoardStore()
   const route = useRoute()
 
-  // TODO: getter boolean
-  const board = computed<Board | null>(() => boardStore.board)
+  const isBoardAvailable = computed<boolean>(() => boardStore.isBoardAvailable)
 
   onMounted(async () => {
     await boardStore.loadBoard(route.params.boardId as string)

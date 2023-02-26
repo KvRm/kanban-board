@@ -1,4 +1,13 @@
-import { query, collection, where, getDocs, doc, addDoc } from 'firebase/firestore'
+import {
+  query,
+  collection,
+  where,
+  getDocs,
+  doc,
+  addDoc,
+  deleteDoc,
+  updateDoc,
+} from 'firebase/firestore'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { db } from '../../../main'
@@ -17,9 +26,11 @@ export const useBoardStore = defineStore('board', () => {
 
   const board = ref<Board | null>(null)
   const sprints = ref<Sprint[]>([])
+  const choosenSprint = ref<Sprint | null>(null)
   const statusSections = ref<StatusSection[]>([])
 
-  const choosenSprint = ref<Sprint | null>(null)
+  const isBoardAvailable = computed<boolean>(() => !!board.value)
+  const boardTitle = computed<string | undefined>(() => board.value?.title)
 
   async function loadBoard(boardId: string) {
     try {
@@ -35,27 +46,6 @@ export const useBoardStore = defineStore('board', () => {
           board.value = { ...b.data(), id: b.id } as Board
         }
       })
-    } catch (e) {
-      dispatch(e as string, 'error')
-    } finally {
-      loading.value = false
-    }
-  }
-
-  async function createBoard(title: string) {
-    try {
-      loading.value = true
-
-      const response = await addDoc(collection(db, 'board'), {
-        title,
-        ownerId: uid.value,
-        participantsId: [uid.value],
-      })
-      const boardId = response.id
-
-      dispatch(`Доска ${title} успешно создана`, 'success')
-
-      return boardId
     } catch (e) {
       dispatch(e as string, 'error')
     } finally {
@@ -95,10 +85,10 @@ export const useBoardStore = defineStore('board', () => {
       const statusSectionsResponse = await getDocs(q)
 
       const statusSectionsData: StatusSection[] = []
-
       statusSectionsResponse.forEach((s) => {
         statusSectionsData.push({ ...s.data(), id: s.id } as StatusSection)
       })
+      statusSectionsData.sort((a, b) => a.order - b.order)
 
       statusSections.value = statusSectionsData
     } catch (e) {
@@ -108,35 +98,69 @@ export const useBoardStore = defineStore('board', () => {
     }
   }
 
-  async function createStatusSection(
-    boardId: string,
-    color: string,
-    title: string,
-    sprintId: string
-  ) {
+  async function createBoard(title: string) {
     try {
       loading.value = true
 
-      const newStatusSection: Omit<StatusSection, 'id'> = {
+      const response = await addDoc(collection(db, 'board'), {
         title,
-        boardId,
-        order: statusSections.value.length,
-        color,
-        tasks: [],
-        sprintId,
-      }
+        ownerId: uid.value,
+        participantsId: [uid.value],
+      })
+      const boardId = response.id
 
-      const response = await addDoc(collection(db, 'statusSection'), newStatusSection)
-      const newStatusSectionId = response.id
+      dispatch(`Доска ${title} успешно создана`, 'success')
 
-      statusSections.value.push({ id: newStatusSectionId, ...newStatusSection })
-
-      dispatch(`Статус секция ${title} успешно создана`, 'success')
+      return boardId
     } catch (e) {
       dispatch(e as string, 'error')
     } finally {
       loading.value = false
     }
+  }
+
+  async function createStatusSection(payload: Omit<StatusSection, 'id'>) {
+    try {
+      loading.value = true
+
+      const response = await addDoc(collection(db, 'statusSection'), payload)
+      const newStatusSectionId = response.id
+
+      statusSections.value.push({ id: newStatusSectionId, ...payload })
+
+      dispatch(`Статус секция ${payload.title} успешно создана`, 'success')
+    } catch (e) {
+      dispatch(e as string, 'error')
+    } finally {
+      loading.value = false
+    }
+  }
+
+  async function createTask(sectionId: string) {}
+
+  async function removeStatusSection(sectionId: string) {
+    try {
+      await deleteDoc(doc(db, 'statusSection', sectionId))
+      statusSections.value = statusSections.value.filter((s) => s.id !== sectionId)
+      dispatch(`Статус секция удалена`, 'success')
+    } catch (e) {
+      dispatch(`Не удалось удалить статус секцию`, 'error')
+    }
+  }
+
+  async function updateTitle(sectionId: string, newTitle: string) {
+    try {
+      await updateDoc(doc(db, 'statusSection', sectionId), { title: newTitle })
+      dispatch('Название успешно изменено', 'success')
+      return true
+    } catch (e) {
+      dispatch('Не удалось изменить название', 'error')
+      return false
+    }
+  }
+
+  function chooseSprint(sprint: Sprint) {
+    choosenSprint.value = sprint
   }
 
   function clearStatusSections() {
@@ -147,25 +171,30 @@ export const useBoardStore = defineStore('board', () => {
     board.value = null
     sprints.value = []
     statusSections.value = []
-  }
-
-  function chooseSprint(sprint: Sprint) {
-    choosenSprint.value = sprint
+    choosenSprint.value = null
   }
 
   return {
     loading,
+
     board,
     sprints,
     choosenSprint,
     statusSections,
+
+    isBoardAvailable,
+    boardTitle,
+
     loadBoard,
-    createBoard,
-    createStatusSection,
     loadSprints,
     loadStatusSections,
+    createBoard,
+    createStatusSection,
+    createTask,
+    removeStatusSection,
+    updateTitle,
+    chooseSprint,
     clearStatusSections,
     clearState,
-    chooseSprint,
   }
 })

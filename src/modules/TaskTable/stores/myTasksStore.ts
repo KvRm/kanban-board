@@ -5,16 +5,20 @@ import { useAuthStore } from '../../login/stores/authStore'
 import { useToasts } from '../../Toast/composables/useToasts'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../../main'
+import { MyTask } from '../types'
+import { convertToMyTask } from '../utils/convertToMyTask'
 
 export const useMyTasksStore = defineStore('myTasks', () => {
   const authStore = useAuthStore()
   const uid = computed<string>(() => authStore.uid)
-
   const { dispatch } = useToasts()
 
   const loading = ref<boolean>(false)
 
   const myTasks = ref<Task[]>([])
+  const collectedMyTasks = computed<MyTask[]>(() =>
+    myTasks.value.map<MyTask>((task) => convertToMyTask(task))
+  )
 
   async function loadMyTasks() {
     try {
@@ -39,5 +43,5 @@ export const useMyTasksStore = defineStore('myTasks', () => {
     }
   }
 
-  return { loading, myTasks, loadMyTasks }
+  return { loading, myTasks, loadMyTasks, collectedMyTasks }
 })

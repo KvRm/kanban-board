@@ -5,7 +5,7 @@ export const TASK_TABLE_CATEGORIES: TableCategory[] = [
   { title: TaskTableCategoriesEnum.Id, sortable: SortTypeEnum.Default },
   { title: TaskTableCategoriesEnum.Title, sortable: SortTypeEnum.Default },
   { title: TaskTableCategoriesEnum.Board, sortable: SortTypeEnum.Default },
-  { title: TaskTableCategoriesEnum.Sprint, sortable: SortTypeEnum.Date },
+  { title: TaskTableCategoriesEnum.Sprint },
   { title: TaskTableCategoriesEnum.StatusSection, sortable: SortTypeEnum.Default },
   { title: TaskTableCategoriesEnum.Tags },
   { title: TaskTableCategoriesEnum.CriticalLvl, sortable: SortTypeEnum.CriticalLvl },

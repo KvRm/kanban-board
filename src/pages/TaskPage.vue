@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import TheTask from '../modules/board/components/TheTask.vue'
+  import TheTask from '../modules/Board/components/Task/TheTask.vue'
 </script>
 
 <style scoped lang="scss">

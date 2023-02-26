@@ -26,7 +26,6 @@
 <style scoped lang="scss">
   .toasts-container {
     width: 100%;
-    justify-content: center;
     position: fixed;
     bottom: 0;
     padding: 0 0.5rem;

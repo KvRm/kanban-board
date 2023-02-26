@@ -3,6 +3,12 @@
     <BaseSortableTableRow v-for="task in collectedMyTasks" :key="JSON.stringify(task)">
       <BaseSortableTableItem v-for="property in task" :key="JSON.stringify(task)">
         <BaseLink v-if="isLinkType(property)" class="link" :link="property" />
+        <span v-else-if="existsInTaskCriticalLvlEnum(property as string)">
+          {{ t(property as string) }}
+        </span>
+        <span v-else-if="typeof property === 'string'">
+          {{ property }}
+        </span>
         <span
           v-else-if="property?.length && isTagType(property[0])"
           class="tags-container"
@@ -18,10 +24,6 @@
             {{ item.label }}
           </ElTag>
         </span>
-        <span v-else-if="existsInTaskCriticalLvlEnum(property as string)">
-          {{ t(property as string) }}
-        </span>
-        <span v-else-if="typeof property === 'string'">{{ property }}</span>
       </BaseSortableTableItem>
     </BaseSortableTableRow>
   </BaseSortableTable>
@@ -33,7 +35,7 @@
   import BaseSortableTableRow from '../../../components/SortableTable/BaseSortableTableRow.vue'
   import BaseSortableTableItem from '../../../components/SortableTable/BaseSortableTableItem.vue'
   import BaseLink from '../../../components/Link/BaseLink.vue'
-  import { Task, TaskCriticalLvlEnum, TaskTag } from '../../../models/Task'
+  import { TaskCriticalLvlEnum, TaskTag } from '../../../models/Task'
   import { useTypeChecker } from '../../../lib/useTypeChecker'
   import { MyTask, TaskTableCategoriesEnum } from '../types'
   import { TASK_TABLE_CATEGORIES } from '../data'
@@ -41,16 +43,12 @@
   import { useI18n } from 'vue-i18n'
   import { useMyTasksStore } from '../stores/myTasksStore'
   import { SortTypeEnum } from '../../../components/SortableTable/types'
-  import { convertToMyTask } from '../utils/convertToMyTask'
 
   const { t } = useI18n()
   const { isLinkType, isTagType } = useTypeChecker()
   const myTasksStore = useMyTasksStore()
 
-  const myTasks = computed<Task[]>(() => myTasksStore.myTasks)
-  const collectedMyTasks = computed<MyTask[]>(() =>
-    myTasks.value ? myTasks.value.map<MyTask>((task) => convertToMyTask(task)) : []
-  )
+  const collectedMyTasks = computed<MyTask[]>(() => myTasksStore.collectedMyTasks)
 
   const sort = useTaskTableSort(collectedMyTasks)
 

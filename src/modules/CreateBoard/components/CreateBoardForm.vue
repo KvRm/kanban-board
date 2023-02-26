@@ -15,7 +15,7 @@
       <ElButton
         class="submit-btn"
         native-type="submit"
-        :loading="boardStore.loading"
+        :loading="createBoardStore.loading"
         :disabled="isBtnDisabled"
       >
         Создать
@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
   import BaseForm from '../../../components/BaseForm.vue'
-  import { useBoardStore } from '../stores/boardStore'
+  import { useBoardStore } from '../../board/stores/boardStore'
   import { useField, useForm } from 'vee-validate'
   import { toFormValidator } from '@vee-validate/zod'
   import * as zod from 'zod'
@@ -34,9 +34,10 @@
   import { useRouter } from 'vue-router'
   import { useLocale } from '../../LocaleSwitcher/composables/useLocale'
   import { LinkRouteEnum } from '../../../components/Link/types'
+  import { useCreateBoardStore } from '../stores/createBoardStore'
 
   const router = useRouter()
-  const boardStore = useBoardStore()
+  const createBoardStore = useCreateBoardStore()
   const { localeRoute } = useLocale()
 
   const validationSchema = toFormValidator(
@@ -58,7 +59,7 @@
   )
 
   const handleForm = handleSubmit(async (values) => {
-    const boardId = await boardStore.createBoard(values.boardTitle)
+    const boardId = await createBoardStore.createBoard(values.boardTitle)
     if (boardId) router.push(`${localeRoute.value}/${LinkRouteEnum.Board + boardId}`)
   })
 </script>
